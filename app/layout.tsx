@@ -7,3 +7,5 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en"><body className="bg-black"><Navbar />{children}</body></html>
   );
 }
+
+
