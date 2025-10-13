@@ -1,9 +1,8 @@
 'use client';
-
-import { useState, useTransition } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { updateCompletedSteps } from '@/app/journey/actions'; // Our new Server Action
+import { updateCompletedSteps } from '@/app/journey/actions';
 
 const journeySteps = [
   { id: 1, title: 'What is Open Source?', description: 'Understand the core philosophy of collaboration.' },
@@ -11,11 +10,12 @@ const journeySteps = [
   { id: 3, title: 'Find a Project', description: 'Explore our orgs and choose your first mission.' },
   // ... add the rest of the journey steps
 ];
-
 export default function JourneyChecklist({ initialCompletedSteps }: { initialCompletedSteps: number[] }) {
+  // DEBUG: Log when the client component renders and what data it receives
+  console.log("[Journey Checklist - Client] Rendering with initial steps:", initialCompletedSteps);
+
   const [completedSteps, setCompletedSteps] = useState(initialCompletedSteps);
   const [isPending, startTransition] = useTransition();
-
   const handleStepToggle = (stepId: number) => {
     const isCompleted = completedSteps.includes(stepId);
     const newCompletedSteps = isCompleted
@@ -40,8 +40,8 @@ export default function JourneyChecklist({ initialCompletedSteps }: { initialCom
           <div key={step.id} className="flex items-start space-x-4 p-4 bg-card border rounded-lg">
             <Checkbox id={`step-${step.id}`} checked={completedSteps.includes(step.id)} onCheckedChange={() => handleStepToggle(step.id)} />
             <div className="grid gap-1.5 leading-none">
-              <label htmlFor={`step-${step.id}`} className="text-lg font-medium">{`Step ${index + 1}: ${step.title}`}</label>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
+              <label htmlFor={`step-${step.id}`} className="text-lg font-medium text-white">{`Step ${index + 1}: ${step.title}`}</label>
+              <p className="text-sm text-gray-400">{step.description}</p>
             </div>
           </div>
         ))}
@@ -49,3 +49,5 @@ export default function JourneyChecklist({ initialCompletedSteps }: { initialCom
     </div>
   );
 }
+  
+ 
