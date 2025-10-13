@@ -1,11 +1,13 @@
-import { PropsWithChildren } from 'react';
 import './globals.css';
-import Navbar from '@/components/ui/Navbar';
-export const metadata = { title: 'OpenVeda', description: "India's Launchpad for Open Source" };
-export default function RootLayout({ children }: PropsWithChildren) {
+import Navbar from '@/components/ui/Navbar'; // <-- ADD THIS IMPORT BACK
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en"><body className="bg-black"><Navbar />{children}</body></html>
+    <html lang="en">
+      <body className="bg-black">
+        <Navbar /> {/* <-- ADD THE COMPONENT HERE */}
+        {children}
+      </body>
+    </html>
   );
 }
-
-
