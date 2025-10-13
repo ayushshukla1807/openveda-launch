@@ -1,87 +1,46 @@
-'use client'; 
-
-import { useState, useEffect } from 'react';
-import { Checkbox } from "@/components/ui/checkbox"; 
-import { Progress } from "@/components/ui/progress"; 
+import { createClient } from '@/lib/supabase/server';
+import JourneyChecklist from '@/components/ui/JourneyChecklist';
 import Link from 'next/link';
 
-// This is the data for our learning path
-const journeySteps = [
-  { id: 1, title: 'What is Open Source?', description: 'Understand the core philosophy of collaboration.' },
-  { id: 2, title: 'Learn Git & GitHub', description: 'Master the essential tools of version control.' },
-  { id: 3, title: 'Find a Project', description: 'Explore our orgs and choose your first mission.' },
-  { id: 4, title: 'Setup Your Environment', description: 'Follow a Playbook to get the code running locally.' },
-  { id: 5, title: 'Find & Claim an Issue', description: 'Pick a "good first issue" and claim it.' },
-  { id: 6, title: 'Make Your Changes', description: 'Write the code and solve the problem.' },
-  { id: 7, title: 'Create Your First Pull Request', description: 'Submit your work for review.' },
-  { id: 8, title: 'Conquer Code Review', description: 'Learn to accept and implement feedback.' },
-  { id: 9, title: 'Get Merged!', description: 'Celebrate your first official contribution!' },
-];
-
-export default function JourneyPage() {
-  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
-
-  useEffect(() => {
-    // We check if 'window' is defined to prevent errors during server-side rendering
-    if (typeof window !== 'undefined') {
-      const savedProgress = localStorage.getItem('openveda-journey');
-      if (savedProgress) {
-        setCompletedSteps(JSON.parse(savedProgress));
-      }
-    }
-  }, []);
-
-  const handleStepToggle = (stepId: number) => {
-    let newCompletedSteps;
-    if (completedSteps.includes(stepId)) {
-      newCompletedSteps = completedSteps.filter(id => id !== stepId);
-    } else {
-      newCompletedSteps = [...completedSteps, stepId];
-    }
-    setCompletedSteps(newCompletedSteps);
-    localStorage.setItem('openveda-journey', JSON.stringify(newCompletedSteps));
-  };
+// This function now securely fetches the user's progress on the server
+async function getProgress() {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
   
-  const progressValue = (completedSteps.length / journeySteps.length) * 100;
+  const { data } = await supabase
+    .from('user_progress')
+    .select('completed_steps')
+    .eq('user_id', user.id)
+    .single();
+    
+  return data?.completed_steps || [];
+}
+
+export default async function JourneyPage() {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const initialCompletedSteps = await getProgress();
+
+  if (!user) {
+    return (
+      <main className="container mx-auto p-8 text-center">
+        <h1 className="text-4xl font-bold">Login to Start Your Journey</h1>
+        <p className="mt-4 text-lg text-muted-foreground">Create an account to save and track your progress across devices.</p>
+        <Link href="/login" className="mt-6 inline-flex items-center justify-center h-11 px-8 bg-primary text-primary-foreground rounded-md">
+          Login / Sign Up
+        </Link>
+      </main>
+    );
+  }
 
   return (
-    <main className="container mx-auto p-8 md:p-12 text-white">
+    <main className="container mx-auto p-8">
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-white">Your Open Source Journey</h1>
-        <p className="mt-4 text-lg text-gray-300">Follow this path from zero to your first merged pull request.</p>
+        <h1 className="text-5xl font-bold">Your Open Source Journey</h1>
+        <p className="mt-4 text-lg text-muted-foreground">Your progress is saved to your account.</p>
       </div>
-      
-      <div className="max-w-3xl mx-auto">
-        <Progress value={progressValue} className="w-full mb-8 bg-gray-700" />
-        
-        <div className="space-y-4">
-          {journeySteps.map((step, index) => (
-            <div key={step.id} className="flex items-start space-x-4 p-6 bg-gray-800 border border-gray-700 rounded-lg">
-              <Checkbox 
-                id={`step-${step.id}`} 
-                className="mt-1 border-gray-500 data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
-                checked={completedSteps.includes(step.id)}
-                onCheckedChange={() => handleStepToggle(step.id)}
-              />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor={`step-${step.id}`}
-                  className="text-lg font-medium leading-none text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Step {index + 1}: {step.title}
-                </label>
-                <p className="text-sm text-gray-400">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="mt-12 text-center">
-            <Link href="/orgs" className="bg-green-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-all inline-flex items-center justify-center whitespace-nowrap text-sm h-11">
-                Ready? Let's Find a Project!
-            </Link>
-        </div>
-      </div>
+      <JourneyChecklist initialCompletedSteps={initialCompletedSteps} />
     </main>
   );
 }
