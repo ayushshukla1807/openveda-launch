@@ -17,7 +17,7 @@ export default function FounderPage() {
           <Image 
             src="https://i.postimg.cc/7LnSZn1Z/Ayush-Shukla.jpg" // Your profile picture URL
             alt="Ayush Shukla, Founder of OpenVeda"
-            width={128}
+            width={1024}
             height={128}
             className="rounded-full mx-auto mb-6 border-4 border-green-500 shadow-lg"
           />
