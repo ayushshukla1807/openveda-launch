@@ -30,7 +30,7 @@ export default function LoginPage() {
             </Link>
          </div>
         <div className="bg-card border rounded-lg p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-center text-card-foreground mb-6">Login / Sign Up</h2>
+          <h2 className="text-2xl text-white font-bold text-center text-card-foreground mb-6">Login / Sign Up</h2>
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
