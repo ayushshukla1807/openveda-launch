@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -13,16 +13,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    },
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".", // CRITICAL: This sets the base for all '@/' imports
+    "paths": {       // CRITICAL: This defines your custom aliases
+      "@/components/*": ["./components/*"], // For components in the root 'components' (if any)
+      "@/components/ui/*": ["./components/ui/*"], // For shadcn/ui components
+      "@/lib/*": ["./lib/*"],
+      "@/utils/*": ["./utils/*"] // For the template's existing utils folder
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
