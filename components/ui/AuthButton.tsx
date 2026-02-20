@@ -1,16 +1,69 @@
+// components/ui/AuthButton.tsx
+
+// FIX: Correct NAMED import for the SERVER client helper
+import { createServerSupabaseClient } from '@/lib/supabase/client'; 
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server'; // <-- USES THE TEMPLATE'S SERVER CLIENT
-import Image from 'next/image';
+import React from 'react';
 
 export default async function AuthButton() {
-  const supabase = createClient();
+  // FIX: Must use 'await' with the async server helper function
+  const supabase = await createServerSupabaseClient(); 
+
   const { data: { user } } = await supabase.auth.getUser();
-  return user ? (
-    <div className="flex items-center gap-4">
-      {user.user_metadata?.avatar_url && ( <Image src={user.user_metadata.avatar_url} alt="User Avatar" width={32} height={32} className="rounded-full border-2 border-gray-600" /> )}
-      <form action="/auth/sign-out" method="post"><button className="py-2 px-4 rounded-md text-sm bg-gray-700 hover:bg-gray-600">Logout</button></form>
-    </div>
-  ) : (
-    <Link href="/login" className="py-2 px-3 flex rounded-md text-sm bg-green-500 hover:bg-green-600 font-semibold">Login</Link>
+
+  if (user) {
+    return (
+      <form action="/auth/sign-out" method="post">
+        <span>Hello, {user.email}!</span>
+        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+          Logout
+        </button>
+      </form>
+    );
+  }
+
+  return (
+    <Link
+      href="/login"
+      className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+    >
+      Login
+    </Link>
   );
 }
+
+
+
+
+// // components/ui/AuthButton.tsx
+
+// // FIX: Correct import path for the SERVER client helper
+// import { createServerSupabaseClient } from '@/lib/supabase/client'; 
+// import Link from 'next/link';
+
+// export default async function AuthButton() {
+//   // FIX: Must use 'await' when calling the now-async helper function
+//   const supabase = await createServerSupabaseClient(); 
+
+//   const { data: { user } } = await supabase.auth.getUser();
+
+//   if (user) {
+//     return (
+//       <form action="/auth/sign-out" method="post">
+//         <span>Hello, {user.email}!</span>
+//         <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+//           Logout
+//         </button>
+//       </form>
+//     );
+//   }
+
+//   return (
+//     <Link
+//       href="/login"
+//       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+//     >
+//       Login
+//     </Link>
+//   );
+// }

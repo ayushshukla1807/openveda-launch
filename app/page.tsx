@@ -1,8 +1,13 @@
-import { supabase } from '@/lib/supabaseClient';
+// app/page.tsx 
+
+import { createServerSupabaseClient } from '@/lib/supabase/client'; // Correct Server Import
 import OrgCard from '@/components/ui/OrgCard';
 import Link from 'next/link';
 
 async function getFeaturedOrgs() {
+  // FIX: Must use 'await' when calling the now-async helper function
+  const supabase = await createServerSupabaseClient(); 
+  
   const { data } = await supabase.from('organizations').select('name, slug, logo_url, tech_stack').limit(3);
   return data || [];
 }
