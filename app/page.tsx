@@ -1,38 +1,165 @@
-// app/page.tsx 
+'use client';
 
-import { createServerSupabaseClient } from '@/lib/supabase/client'; // Correct Server Import
+import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
 import OrgCard from '@/components/ui/OrgCard';
+import ProgramCard from '@/components/ui/ProgramCard';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+
+const supabase = createBrowserSupabaseClient(); 
 
 async function getFeaturedOrgs() {
-  // FIX: Must use 'await' when calling the now-async helper function
-  const supabase = await createServerSupabaseClient(); 
-  
   const { data } = await supabase.from('organizations').select('name, slug, logo_url, tech_stack').limit(3);
   return data || [];
 }
 
-export default async function HomePage() {
-  const featuredOrgs: any[] = await getFeaturedOrgs();
+const programs = [
+  { name: 'GSoC 2026', slug: 'GSoC 2026', description: 'The gold standard for open-source mentorship.', icon: '🎓' },
+  { name: 'LFX Mentorship', slug: 'LFX', description: 'Build the infrastructure of the internet.', icon: '🐧' },
+  { name: 'Outreachy', slug: 'Outreachy', description: 'Inclusive internships for underrepresented groups.', icon: '💜' },
+  { name: 'GSSoC', slug: 'GSSoC', description: 'A massive open-source extravaganza.', icon: '🌟' }
+];
+
+import { Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { stiffness: 100 },
+  },
+};
+
+export default function HomePage() {
+  const [featuredOrgs, setFeaturedOrgs] = useState<any[]>([]);
+
+  useEffect(() => {
+    getFeaturedOrgs().then(setFeaturedOrgs);
+  }, []);
+
   return (
-    <main className="flex flex-col items-center p-8">
-      <div className="text-center max-w-4xl mx-auto mt-24">
-        <h1 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-          From Confusion to Contribution
-        </h1>
-        <p className="mt-6 text-xl text-gray-300">
-          OpenVeda is the unrivaled launchpad for India's open-source developers. We provide hyper-detailed playbooks and on-demand mentorship to turn your ambition into a merged pull request.
-        </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Link href="/orgs" className="bg-green-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-600 transition-all">Explore Organizations</Link>
-        </div>
+    <main className="relative min-h-screen bg-background overflow-hidden">
+      {/* Animated Background Mesh */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full animate-mesh-gradient" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full animate-mesh-gradient [animation-delay:4s]" />
       </div>
-      <div className="mt-24 w-full max-w-7xl">
-        <h2 className="text-4xl font-bold text-center mb-8">Featured Organizations</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredOrgs.map((org) => (<OrgCard key={org.slug} {...org} />))}
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 flex flex-col items-center px-4"
+      >
+        {/* Hero Section */}
+        <div className="text-center max-w-5xl mx-auto mt-48 mb-32">
+          <motion.div variants={itemVariants} className="inline-block px-4 py-1.5 mb-8 text-sm font-bold tracking-widest text-primary uppercase bg-primary/10 rounded-full border border-primary/20 backdrop-blur-sm">
+            Empowering the Next Generation of Contributors
+          </motion.div>
+          <motion.h1 variants={itemVariants} className="text-7xl md:text-9xl font-black text-foreground leading-none tracking-tight">
+            From Confusion <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-500 to-purple-600 animate-gradient-x">
+              to Contribution.
+            </span>
+          </motion.h1>
+          <motion.p variants={itemVariants} className="mt-10 text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
+            OpenVeda is the unrivaled launchpad for open-source developers. 
+            Detailed playbooks, live issues, and a community that ships.
+          </motion.p>
+          <motion.div variants={itemVariants} className="mt-12 flex flex-wrap justify-center gap-6">
+            <Link href="/orgs" className="group relative bg-primary text-primary-foreground font-black py-5 px-12 rounded-2xl hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-primary/40">
+              Explore Projects
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-ping" />
+            </Link>
+            <Link href="/login" className="bg-muted border border-border text-foreground font-bold py-5 px-12 rounded-2xl hover:bg-accent transition-all backdrop-blur-md">
+              Join the Community
+            </Link>
+          </motion.div>
         </div>
-      </div>
+
+        {/* Discover Programs - Bento Style */}
+        <section className="w-full max-w-7xl mb-48">
+          <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 px-4">
+            <div>
+              <h2 className="text-5xl font-bold text-foreground tracking-tight">Discover Programs</h2>
+              <p className="mt-4 text-muted-foreground text-xl font-medium">Your gateway to the world's most prestigious mentorships.</p>
+            </div>
+            <Link href="/programs" className="group text-foreground font-bold flex items-center gap-2 hover:text-primary transition-colors">
+              View All <span className="p-2 bg-muted rounded-lg group-hover:bg-primary/20 transition-all">→</span>
+            </Link>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-4">
+            {programs.map((p, idx) => (
+              <motion.div key={p.slug} variants={itemVariants}>
+                <ProgramCard {...p} />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Featured Orgs - Clean Grid */}
+        <section className="w-full max-w-7xl mb-48 px-4">
+          <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <h2 className="text-5xl font-bold text-foreground tracking-tight">Top GSoC Orgs</h2>
+              <p className="mt-4 text-muted-foreground text-xl font-medium">Curated for mentorship quality and contribution impact.</p>
+            </div>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredOrgs.map((org, idx) => (
+              <motion.div key={org.slug} variants={itemVariants}>
+                <OrgCard {...org} />
+              </motion.div>
+            ))}
+          </div>
+          <motion.div variants={itemVariants} className="mt-16 text-center">
+            <Link href="/orgs" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+              View 180+ more organizations →
+            </Link>
+          </motion.div>
+        </section>
+
+        {/* Connect & Update Section */}
+        <section className="w-full max-w-5xl mb-48 px-4">
+          <motion.div 
+            variants={itemVariants}
+            className="glass p-16 md:p-24 rounded-[4rem] border-primary/10 relative overflow-hidden text-center"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+            <div className="relative z-10">
+              <span className="text-primary font-black text-xs uppercase tracking-[0.4em] mb-6 block">Join the Mission</span>
+              <h2 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter mb-8 leading-none">
+                Connect. Contribute. <br />
+                <span className="text-primary italic">Scale.</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+                OpenVeda.in is more than a platform. It's a movement to build India's next generation of open-source founders.
+              </p>
+              <div className="flex flex-wrap justify-center gap-8">
+                 <Link href="https://github.com/ayushshukla1807" target="_blank" className="text-lg font-black text-foreground hover:text-primary transition-colors uppercase tracking-widest flex items-center gap-2">GitHub <span className="text-xs opacity-30">↗</span></Link>
+                 <Link href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank" className="text-lg font-black text-foreground hover:text-primary transition-colors uppercase tracking-widest flex items-center gap-2">LinkedIn <span className="text-xs opacity-30">↗</span></Link>
+                 <Link href="https://twitter.com/your-twitter-handle/" target="_blank" className="text-lg font-black text-foreground hover:text-primary transition-colors uppercase tracking-widest flex items-center gap-2">Twitter <span className="text-xs opacity-30">↗</span></Link>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      </motion.div>
+
+      {/* Footer Decoration */}
+      <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
     </main>
   );
 }

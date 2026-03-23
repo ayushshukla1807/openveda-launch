@@ -1,69 +1,64 @@
-// components/ui/AuthButton.tsx
+'use client';
 
-// FIX: Correct NAMED import for the SERVER client helper
-import { createServerSupabaseClient } from '@/lib/supabase/client'; 
+import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default async function AuthButton() {
-  // FIX: Must use 'await' with the async server helper function
-  const supabase = await createServerSupabaseClient(); 
+export default function AuthButton() {
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const supabase = createBrowserSupabaseClient();
 
-  const { data: { user } } = await supabase.auth.getUser();
+  useEffect(() => {
+    async function getUser() {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    }
+    getUser();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    window.location.href = '/';
+  };
+
+  if (loading) return <div className="w-20 h-8 animate-pulse bg-white/5 rounded-xl" />;
 
   if (user) {
     return (
-      <form action="/auth/sign-out" method="post">
-        <span>Hello, {user.email}!</span>
-        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+      <div className="flex items-center gap-6">
+        <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Dashboard</Link>
+        <button 
+          onClick={handleSignOut}
+          className="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all"
+        >
           Logout
         </button>
-      </form>
+      </div>
     );
   }
 
   return (
-    <Link
-      href="/login"
-      className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-    >
-      Login
-    </Link>
+    <div className="flex items-center gap-4">
+      <Link
+        href="/login"
+        className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
+      >
+        Login
+      </Link>
+      <Link
+        href="/login"
+        className="bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-green-500/20"
+      >
+        Sign Up
+      </Link>
+    </div>
   );
 }
-
-
-
-
-// // components/ui/AuthButton.tsx
-
-// // FIX: Correct import path for the SERVER client helper
-// import { createServerSupabaseClient } from '@/lib/supabase/client'; 
-// import Link from 'next/link';
-
-// export default async function AuthButton() {
-//   // FIX: Must use 'await' when calling the now-async helper function
-//   const supabase = await createServerSupabaseClient(); 
-
-//   const { data: { user } } = await supabase.auth.getUser();
-
-//   if (user) {
-//     return (
-//       <form action="/auth/sign-out" method="post">
-//         <span>Hello, {user.email}!</span>
-//         <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-//           Logout
-//         </button>
-//       </form>
-//     );
-//   }
-
-//   return (
-//     <Link
-//       href="/login"
-//       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-//     >
-//       Login
-//     </Link>
-//   );
-// }
