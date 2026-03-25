@@ -3,11 +3,12 @@
 -- ==========================================
 
 -- 1. Drop existing tables to start fresh (WARNING: Data will be lost)
-DROP TABLE IF EXISTS public.user_stars;
-DROP TABLE IF EXISTS public.user_proposals;
-DROP TABLE IF EXISTS public.user_progress;
-DROP TABLE IF EXISTS public.playbooks;
-DROP TABLE IF EXISTS public.organizations;
+-- Use CASCADE to handle dependent objects like old constraints or mapping tables.
+DROP TABLE IF EXISTS public.user_stars CASCADE;
+DROP TABLE IF EXISTS public.user_proposals CASCADE;
+DROP TABLE IF EXISTS public.user_progress CASCADE;
+DROP TABLE IF EXISTS public.playbooks CASCADE;
+DROP TABLE IF EXISTS public.organizations CASCADE;
 
 -- 2. Re-create Organizations with UUID
 CREATE TABLE IF NOT EXISTS public.organizations (
