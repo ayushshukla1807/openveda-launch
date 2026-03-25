@@ -1,3 +1,7 @@
+-- 0. Ensure schema is up to date
+ALTER TABLE organizations ADD COLUMN IF NOT EXISTS description TEXT;
+ALTER TABLE organizations ADD COLUMN IF NOT EXISTS program TEXT DEFAULT 'GSoC 2026';
+
 -- 1. Insert Outreachy Organizations
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program, description, repo_path)
 VALUES 
