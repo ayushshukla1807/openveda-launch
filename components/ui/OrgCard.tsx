@@ -10,9 +10,10 @@ interface OrgCardProps {
   slug: string;
   logo_url: string | null;
   tech_stack: string[] | null;
+  program?: string;
 }
 
-export default function OrgCard({ name, slug, logo_url, tech_stack }: OrgCardProps) {
+export default function OrgCard({ name, slug, logo_url, tech_stack, program }: OrgCardProps) {
   return (
     <motion.div
       whileHover={{ y: -8, scale: 1.01 }}
@@ -46,7 +47,7 @@ export default function OrgCard({ name, slug, logo_url, tech_stack }: OrgCardPro
             </h2>
             <div className="flex items-center gap-2 mt-1">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">GSoC 2026</span>
+              <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{program || 'GSoC 2026'}</span>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 const supabase = createBrowserSupabaseClient(); 
 
 async function getFeaturedOrgs() {
-  const { data } = await supabase.from('organizations').select('name, slug, logo_url, tech_stack').limit(3);
+  const { data } = await supabase.from('organizations').select('name, slug, logo_url, tech_stack, program').limit(3);
   return data || [];
 }
 
@@ -18,7 +18,7 @@ const programs = [
   { name: 'GSoC 2026', slug: 'GSoC 2026', description: 'The gold standard for open-source mentorship.', icon: '🎓' },
   { name: 'LFX Mentorship', slug: 'LFX', description: 'Build the infrastructure of the internet.', icon: '🐧' },
   { name: 'Outreachy', slug: 'Outreachy', description: 'Inclusive internships for underrepresented groups.', icon: '💜' },
-  { name: 'GSSoC', slug: 'GSSoC', description: 'A massive open-source extravaganza.', icon: '🌟' }
+  { name: 'ESOC 2026', slug: 'ESOC 2026', description: 'EuroSocio-OpenSource for social impact.', icon: '🌍' }
 ];
 
 import { Variants } from 'framer-motion';
