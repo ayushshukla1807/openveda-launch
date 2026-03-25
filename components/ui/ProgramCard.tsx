@@ -19,7 +19,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ name, slug, description, icon
       className="h-full"
     >
       <Link 
-        href="/organizations" 
+        href={`/organizations?program=${encodeURIComponent(slug)}`} 
         className="block group flex flex-col h-full p-8 glass glass-hover rounded-[2rem] relative overflow-hidden"
       >
         {/* Decorative Gradient Background */}

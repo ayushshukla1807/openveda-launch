@@ -38,7 +38,7 @@ function OrgsContent() {
   useEffect(() => {
     async function fetchOrgs() {
       setIsLoading(true);
-      let query = supabase.from('organizations').select('name, slug, logo_url, tech_stack').order('name');
+      let query = supabase.from('organizations').select('name, slug, logo_url, tech_stack, program').order('name');
       if (filterProgram) {
         query = query.eq('program', filterProgram);
       }
@@ -98,7 +98,7 @@ function OrgsContent() {
             <option value="GSoC 2026">GSoC 2026</option>
             <option value="LFX">LFX Mentorship</option>
             <option value="Outreachy">Outreachy</option>
-            <option value="GSSoC">GSSoC</option>
+            <option value="ESOC 2026">ESOC 2026</option>
           </select>
           <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
