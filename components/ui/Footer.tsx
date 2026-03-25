@@ -23,7 +23,7 @@ export default function Footer() {
           <div className="space-y-8">
             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground/30 italic">Navigation</h4>
             <div className="flex flex-col gap-4">
-              <Link href="/orgs" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Organizations</Link>
+              <Link href="/organizations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Organizations</Link>
               <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Dashboard</Link>
               <Link href="/login" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Contribution Login</Link>
             </div>

@@ -107,7 +107,7 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="flex gap-4">
-              <Link href="/orgs" className="glass px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-foreground hover:text-background transition-all">
+              <Link href="/organizations" className="glass px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-foreground hover:text-background transition-all">
                 Explore Projects
               </Link>
             </div>
@@ -187,7 +187,12 @@ export default function DashboardPage() {
           <motion.div variants={itemVariants} className="space-y-10">
             <div className="flex items-center justify-between">
               <h2 className="text-3xl font-black tracking-tight">My Target <span className="text-muted-foreground">Organizations</span></h2>
-              <Link href="/orgs" className="text-muted-foreground hover:text-foreground transition-colors text-xs font-black uppercase tracking-widest">See All →</Link>
+              <Link 
+        href="/organizations"
+        className="text-muted-foreground hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest"
+      >
+        View All Organizations
+      </Link>
             </div>
             
             {starredOrgs.length > 0 ? (
@@ -203,7 +208,7 @@ export default function DashboardPage() {
                 <p className="text-muted-foreground font-medium max-w-sm mx-auto mb-10 leading-relaxed">
                   Start your journey by exploring organizations and starring your target projects.
                 </p>
-                <Link href="/orgs" className="bg-foreground text-background font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-widest hover:scale-105 transition-transform">
+                <Link href="/organizations" className="bg-foreground text-background font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-widest hover:scale-105 transition-transform">
                   Begin Exploration
                 </Link>
               </div>

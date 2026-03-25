@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   //    This tells Next.js to fetch fresh data for these paths
   try {
     revalidatePath('/') // Revalidate the homepage
-    revalidatePath('/orgs') // Revalidate the organizations page
+    revalidatePath('/organizations') // Revalidate the organizations page
     // We can also add revalidation for individual playbook pages if needed
     // revalidatePath('/playbook/[slug]', 'layout')
     

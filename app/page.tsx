@@ -80,7 +80,7 @@ export default function HomePage() {
             Detailed playbooks, live issues, and a community that ships.
           </motion.p>
           <motion.div variants={itemVariants} className="mt-12 flex flex-wrap justify-center gap-6">
-            <Link href="/orgs" className="group relative bg-primary text-primary-foreground font-black py-5 px-12 rounded-2xl hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-primary/40">
+            <Link href="/organizations" className="group relative bg-primary text-primary-foreground font-black py-5 px-12 rounded-2xl hover:bg-primary/90 transition-all duration-300 shadow-xl hover:shadow-primary/40">
               Explore Projects
               <span className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-ping" />
             </Link>
@@ -126,7 +126,7 @@ export default function HomePage() {
             ))}
           </div>
           <motion.div variants={itemVariants} className="mt-16 text-center">
-            <Link href="/orgs" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+            <Link href="/organizations" className="text-muted-foreground hover:text-primary transition-colors font-medium">
               View 180+ more organizations →
             </Link>
           </motion.div>
