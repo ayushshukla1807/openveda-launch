@@ -7,13 +7,25 @@ INSERT INTO organizations (name, slug, logo_url, tech_stack, program, descriptio
 VALUES 
 ('GNOME', 'gnome', 'https://upload.wikimedia.org/wikipedia/commons/3/3d/GNOME_logo.svg', ARRAY['C', 'Rust', 'Python', 'GTK'], 'Outreachy', 'The desktop environment for the Linux community.', 'GNOME/gnome-shell'),
 ('Fedora', 'fedora', 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fedora_logo.svg', ARRAY['Python', 'Shell', 'C', 'Ansible'], 'Outreachy', 'A community-driven Linux distribution and OS ecosystem.', 'fedora-infra/fedora-messaging'),
-('OpenTelemetry', 'opentelemetry', 'https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/icon.svg', ARRAY['Go', 'Java', 'Python', 'Collector'], 'Outreachy', 'A collection of tools, APIs, and SDKs for observability.', 'open-telemetry/opentelemetry-collector');
+('OpenTelemetry', 'opentelemetry', 'https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/icon.svg', ARRAY['Go', 'Java', 'Python', 'Collector'], 'Outreachy', 'A collection of tools, APIs, and SDKs for observability.', 'open-telemetry/opentelemetry-collector')
+ON CONFLICT (slug) DO UPDATE SET 
+  logo_url = EXCLUDED.logo_url,
+  tech_stack = EXCLUDED.tech_stack,
+  program = EXCLUDED.program,
+  description = EXCLUDED.description,
+  repo_path = EXCLUDED.repo_path;
 
 -- 2. Insert ESOC 2026 Organizations (EuroSocio-OpenSource)
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program, description, repo_path)
 VALUES 
 ('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2026', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
-('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2026', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline');
+('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2026', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
+ON CONFLICT (slug) DO UPDATE SET 
+  logo_url = EXCLUDED.logo_url,
+  tech_stack = EXCLUDED.tech_stack,
+  program = EXCLUDED.program,
+  description = EXCLUDED.description,
+  repo_path = EXCLUDED.repo_path;
 
 -- 3. Update Playbook for GNOME (Platinum)
 INSERT INTO playbooks (org_id, content_markdown)
