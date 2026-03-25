@@ -22,11 +22,11 @@ export default function CommandPalette() {
   }, [isOpen]);
 
   const commands = [
-    { name: 'Discover Organizations', href: '/orgs', icon: '🔭' },
+    { name: 'Discover Organizations', href: '/organizations', icon: '🔭' },
     { name: 'My Journey Dashboard', href: '/dashboard', icon: '🚀' },
     { name: 'Founder\'s Corner', href: '/founder', icon: '👤' },
     { name: 'The Master Journey', href: '/journey', icon: '📍' },
-    { name: 'GSoC 2026 Update', href: '/orgs?program=gsoc', icon: '🔥' },
+    { name: 'GSoC 2026 Update', href: '/organizations?program=gsoc', icon: '🔥' },
   ];
 
   const filtered = commands.filter(c => c.name.toLowerCase().includes(query.toLowerCase()));
