@@ -14,6 +14,16 @@ CREATE TABLE IF NOT EXISTS public.mentors (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- Ensure all columns exist (in case the table was created partially)
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS slug TEXT UNIQUE;
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS phonetic_name TEXT;
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS bio_summary TEXT[];
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS image_url TEXT;
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS timezone TEXT DEFAULT 'IST';
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS lofi_status TEXT DEFAULT 'OFF';
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS socials JSONB DEFAULT '{}';
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS calendly_url TEXT;
+
 -- Enable RLS
 ALTER TABLE public.mentors ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public read mentors" ON public.mentors FOR SELECT USING (true);
