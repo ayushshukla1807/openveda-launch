@@ -15,7 +15,9 @@ CREATE TABLE IF NOT EXISTS public.mentors (
 );
 
 -- Ensure all columns exist (in case the table was created partially)
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS name TEXT;
 ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS slug TEXT UNIQUE;
+ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS role TEXT;
 ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS phonetic_name TEXT;
 ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS bio_summary TEXT[];
 ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS image_url TEXT;
