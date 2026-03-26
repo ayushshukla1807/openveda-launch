@@ -1,5 +1,8 @@
--- Create Mentors Table
-CREATE TABLE IF NOT EXISTS public.mentors (
+-- 1. Nuclear Reset (Clears drift to ensure 100% compatibility)
+DROP TABLE IF EXISTS public.mentors CASCADE;
+
+-- 2. Clean Create with standard OpenVeda 2.0 Columns
+CREATE TABLE public.mentors (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name TEXT NOT NULL,
     slug TEXT UNIQUE NOT NULL,
@@ -8,29 +11,17 @@ CREATE TABLE IF NOT EXISTS public.mentors (
     bio_summary TEXT[],
     image_url TEXT,
     timezone TEXT DEFAULT 'IST',
-    lofi_status TEXT DEFAULT 'OFF',
+    lofi_status TEXT DEFAULT 'LOFI ♬',
     socials JSONB DEFAULT '{}',
     calendly_url TEXT,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Ensure all columns exist (in case the table was created partially)
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS name TEXT;
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS slug TEXT UNIQUE;
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS role TEXT;
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS phonetic_name TEXT;
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS bio_summary TEXT[];
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS image_url TEXT;
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS timezone TEXT DEFAULT 'IST';
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS lofi_status TEXT DEFAULT 'OFF';
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS socials JSONB DEFAULT '{}';
-ALTER TABLE public.mentors ADD COLUMN IF NOT EXISTS calendly_url TEXT;
-
--- Enable RLS
+-- 3. Security
 ALTER TABLE public.mentors ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public read mentors" ON public.mentors FOR SELECT USING (true);
 
--- Seed Initial Mentors
+-- 4. Seed Premium Data
 INSERT INTO public.mentors (name, slug, role, phonetic_name, bio_summary, image_url, timezone, lofi_status, socials, calendly_url)
 VALUES 
 (
@@ -64,14 +55,4 @@ VALUES
     'LOFI ♬',
     '{"github": "#", "linkedin": "#", "x": "#"}',
     '#'
-)
-ON CONFLICT (slug) DO UPDATE SET 
-    name = EXCLUDED.name,
-    role = EXCLUDED.role,
-    phonetic_name = EXCLUDED.phonetic_name,
-    bio_summary = EXCLUDED.bio_summary,
-    image_url = EXCLUDED.image_url,
-    timezone = EXCLUDED.timezone,
-    lofi_status = EXCLUDED.lofi_status,
-    socials = EXCLUDED.socials,
-    calendly_url = EXCLUDED.calendly_url;
+);
