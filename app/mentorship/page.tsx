@@ -7,16 +7,18 @@ import Image from 'next/image';
 const mentors = [
   {
     name: 'Ayush Shukla',
+    slug: 'ayush-shukla',
     role: 'Founder, OpenVeda',
     expertise: ['GSoC Strategy', 'Next.js', 'System Architecture'],
     image: 'https://i.postimg.cc/7LnSZn1Z/Ayush-Shukla.jpg',
     calendly: 'https://calendly.com/ayush-shukla-adypu/30min'
   },
   {
-    name: 'Raghav',
-    role: 'Open Source Veteran',
-    expertise: ['Community Management', 'Project Selection', 'Python/Django'],
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Raghav', // Placeholder
+    name: 'Kanishk Ranjan',
+    slug: 'kanishk-ranjan',
+    role: 'Open Source Contributor @ElectronJS',
+    expertise: ['Electron.js', 'Chromium', 'AI/ML'],
+    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Kanishk',
     calendly: '#'
   }
 ];
@@ -93,13 +95,21 @@ export default function MentorshipPage() {
                       <span key={skill} className="px-3 py-1 bg-muted rounded-full text-[10px] font-black uppercase tracking-widest text-muted-foreground">{skill}</span>
                     ))}
                   </div>
-                  <Link 
-                    href={mentor.calendly}
-                    target="_blank"
-                    className="inline-block bg-foreground text-background font-black px-10 py-5 rounded-3xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all mt-6 shadow-xl hover:shadow-primary/20"
-                  >
-                    Book Session →
-                  </Link>
+                  <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                    <Link 
+                      href={mentor.calendly}
+                      target="_blank"
+                      className="bg-foreground text-background font-black px-8 py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl hover:shadow-primary/20 text-center"
+                    >
+                      Book Session →
+                    </Link>
+                    <Link 
+                      href={`/mentorship/${mentor.slug}`}
+                      className="bg-muted border border-border text-foreground font-black px-8 py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-foreground hover:text-background transition-all text-center"
+                    >
+                      View Profile
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

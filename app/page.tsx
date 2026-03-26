@@ -1,6 +1,7 @@
 'use client';
 
 import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+import Image from 'next/image';
 import OrgCard from '@/components/ui/OrgCard';
 import ProgramCard from '@/components/ui/ProgramCard';
 import Link from 'next/link';
@@ -129,6 +130,65 @@ export default function HomePage() {
             <Link href="/organizations" className="text-muted-foreground hover:text-primary transition-colors font-medium">
               View 180+ more organizations →
             </Link>
+          </motion.div>
+        </section>
+
+        {/* Student Spotlight - New Premium Section */}
+        <section className="w-full max-w-7xl mb-48 px-4">
+          <motion.div variants={itemVariants} className="text-center mb-24">
+            <h2 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter mb-6 underline decoration-primary decoration-4 underline-offset-8">Student <span className="text-primary italic">Spotlight</span></h2>
+            <p className="text-xl text-muted-foreground font-medium max-w-2xl mx-auto italic">"Meet the trailblazers who transformed their passion into planetary impact."</p>
+          </motion.div>
+
+          <motion.div 
+            variants={itemVariants}
+            className="glass p-12 md:p-20 rounded-[4rem] border-primary/20 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden group hover:border-primary/40 transition-all duration-700"
+          >
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] pointer-events-none group-hover:bg-primary/10 transition-colors" />
+            
+            <div className="relative z-10 w-full lg:w-1/3">
+              <div className="relative mx-auto lg:mx-0 w-64 h-64 md:w-80 md:h-80">
+                <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <Image 
+                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kanishk"
+                  alt="Kanishk Ranjan"
+                  fill
+                  className="rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 object-cover border-4 border-border shadow-2xl scale-95 group-hover:scale-100"
+                />
+              </div>
+            </div>
+
+            <div className="relative z-10 w-full lg:w-2/3 space-y-8 text-center lg:text-left">
+              <div className="space-y-4">
+                <h3 className="text-5xl md:text-7xl font-black tracking-tighter leading-none">Kanishk Ranjan</h3>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-muted-foreground font-black text-[10px] uppercase tracking-[0.4em]">
+                  <span>/kʌn-ɪʃk/</span>
+                  <span className="opacity-30">•</span>
+                  <span>B.Tech AI/ML</span>
+                  <span className="opacity-30">•</span>
+                  <span className="text-primary italic">Electron.js & Chromium</span>
+                </div>
+              </div>
+
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium italic">
+                "Kanishk has bridged the gap between student exploration and core systems engineering, landing significant patches in the very browsers we use every day."
+              </p>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4">
+                <Link 
+                  href="/mentorship/kanishk-ranjan"
+                  className="bg-foreground text-background font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl hover:shadow-primary/20"
+                >
+                  View Full Profile
+                </Link>
+                <Link 
+                  href="/mentorship"
+                  className="bg-muted border border-border text-foreground font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-[0.2em] hover:bg-foreground hover:text-background transition-all"
+                >
+                  All Mentors
+                </Link>
+              </div>
+            </div>
           </motion.div>
         </section>
 
