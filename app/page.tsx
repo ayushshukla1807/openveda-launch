@@ -141,7 +141,10 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div 
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="glass p-12 md:p-20 rounded-[4rem] border-primary/20 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden group hover:border-primary/40 transition-all duration-700"
           >
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] pointer-events-none group-hover:bg-primary/10 transition-colors" />
