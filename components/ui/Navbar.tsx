@@ -84,6 +84,7 @@ export default function Navbar() {
                 key={item}
                 href={`/${item.toLowerCase()}`}
                 className="text-muted-foreground hover:text-foreground hover:bg-accent/50 px-5 py-2.5 rounded-2xl transition-all text-sm font-medium"
+                aria-label={`Go to ${item} page`}
               >
                 {item}
               </Link>
@@ -94,9 +95,10 @@ export default function Navbar() {
           <button 
             onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
             className="hidden lg:flex items-center gap-2 px-4 py-2 glass rounded-2xl text-[10px] font-black tracking-widest text-muted-foreground hover:text-foreground transition-all group"
+            aria-label="Open search command palette"
           >
             <span>SEARCH</span>
-            <span className="bg-muted px-2 py-0.5 rounded-lg text-[8px] group-hover:bg-primary group-hover:text-primary-foreground transition-colors">⌘K</span>
+            <span className="bg-muted px-2 py-0.5 rounded-lg text-[8px] group-hover:bg-primary group-hover:text-primary-foreground transition-colors" aria-hidden="true">⌘K</span>
           </button>
           <ThemeToggle />
           <AuthButton />
