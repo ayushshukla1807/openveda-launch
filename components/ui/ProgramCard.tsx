@@ -26,7 +26,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ name, slug, description, icon
         <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-3xl group-hover:bg-green-500/10 transition-colors duration-500" />
         
         <div className="flex items-center justify-between mb-8">
-          <div className="p-4 bg-white/5 rounded-2xl border border-white/10 group-hover:border-green-500/50 transition-colors duration-500">
+          <div className="p-4 bg-white/5 rounded-2xl border border-white/10 group-hover:border-green-500/50 transition-colors duration-500" title={`Explore projects for ${name}`}>
             <span className="text-4xl filter drop-shadow-lg">{icon || '🚀'}</span>
           </div>
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-green-400 font-black text-xl">
