@@ -1,44 +1,71 @@
-# OpenVeda
+# OpenVeda.in - The Premium Open Source Launchpad
 
-**Empowering India’s next generation of Open Source Leaders.**
+OpenVeda is a high-performance, minimalist launchpad designed to transform aspiring developers into elite open-source contributors. Built for the Indian developer ecosystem, it provides high-signal "Platinum Playbooks," 1-on-1 mentorship, and a direct bridge to prestigious programs like GSoC, LFX, Outreachy, and ESOC 2026.
 
-OpenVeda is a high-performance, community-driven launchpad designed to bridge the gap between "wanting to contribute" and "merging your first PR." Built with a focus on GSoC 2026 and major Indian open-source ecosystems like Appsmith, OpenVeda provides the tools, playbooks, and mentorship needed to scale your impact.
+## 🚀 Key Features
 
-## 🚀 Vision
-OpenVeda is built on the philosophy of **"Hand-holding at Scale."** We believe the biggest barrier to open-source contribution isn't a lack of skill—it's the "Wall of Chaos." Our platform dismantles this wall through:
-- **Platinum Playbooks**: Deep-dives into project architectures, unwritten community rules, and environment setup.
-- **GSoc Proposal Hooks**: Intelligent template generation to give your applications a competitive edge.
-- **Real-Time Synergy**: Live fetching of "Good First Issues" and direct mentor connections.
+- **Platinum Playbooks**: Deep-dive strategy guides for top organizations (Postman, Zerodha, GNOME, etc.).
+- **Mentorship Hub**: Connect directly with industry veterans and successful open-source alumni.
+- **Programs Launchpad**: A centralized portal for tracking and applying to world-class mentorship initiatives.
+- **Tactical Navigation**: Bespoke UI components for seamless profile and project exploration.
+- **Dual-Theme Fidelity**: A robust HSL-based design system supporting both professional dark and light modes.
 
-## 🛠️ Tech Stack
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Database/Auth**: [Supabase](https://supabase.com/) (PostgreSQL)
-- **Styling**: Vanilla Tailwind CSS + Custom "Modern Dark" Design System
-- **Animations**: Framer Motion for premium micro-interactions
+## 🛠 Tech Stack
 
-## 🏁 Getting Started
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + Framer Motion (Bespoke Animations)
+- **Backend & Auth**: Supabase (PostgreSQL)
+- **Infrastructure**: Vercel
 
-### 1. Environment Configuration
-Copy `.env.example` to `.env.local` and populate your Supabase credentials.
+## 📦 Getting Started
 
-```bash
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
+### Prerequisites
 
-### 2. Database Initialization
-Run the consolidated initialization script in your Supabase SQL Editor:
-- `init_db_complete.sql` (Located in the root)
+- Node.js 18+
+- npm / yarn / pnpm
+- Supabase Project (URL & Anon Key)
 
-### 3. Local Development
-```bash
-npm install
-npm run dev
-```
+### Installation
 
-## 📜 Dharma
-OpenVeda is developed with a "Contributor-First" mindset. We prioritize developer experience (DX) and high-signal information over generic tutorials.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ayushshukla1807/openveda.git
+   cd openveda
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**:
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. **Database Initialization**:
+   Run the SQL scripts located in the project root to seed your Supabase instance:
+   - `reconcile_db.sql` (Schema Reset)
+   - `update_programs.sql` (Program Metadata)
+   - `update_playbooks.sql` (Content)
+   - `supabase/migrations/create_mentors.sql` (Profiles)
+
+5. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+## 🤝 Contributing
+
+We welcome contributions from the community. Please see our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ---
-Built with Passion in India 🇮🇳
-© 2026 OpenVeda.in
+
+Built with ❤️ for the global contributor community.
