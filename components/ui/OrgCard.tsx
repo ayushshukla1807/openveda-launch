@@ -16,14 +16,16 @@ interface OrgCardProps {
 export default function OrgCard({ name, slug, logo_url, tech_stack, program }: OrgCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
       <Link 
         href={`/playbook/${slug}`} 
-        className="group block glass rounded-3xl p-6 relative overflow-hidden h-full border border-border hover:border-primary/30 transition-all duration-300"
+        className="group block glass rounded-[2.5rem] p-8 relative overflow-hidden h-full border border-border hover:border-primary/40 hover:shadow-[0_20px_50px_rgba(var(--primary-rgb),0.05)] transition-all duration-500"
       >
-        <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/10 blur-[80px] group-hover:bg-primary/20 transition-colors duration-700" />
         
         <div className="flex items-center gap-5 mb-6">
           <div className="relative h-14 w-14 flex-shrink-0 bg-muted rounded-2xl border border-border flex items-center justify-center p-2 group-hover:border-primary/30 transition-colors">
