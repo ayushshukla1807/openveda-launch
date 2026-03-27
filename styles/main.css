@@ -89,15 +89,15 @@
 
 /* Modern Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+  @apply bg-foreground/10 rounded-full hover:bg-foreground/20 transition-all;
 }
 
 /* Shimmer Animation */
