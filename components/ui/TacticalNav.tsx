@@ -23,7 +23,7 @@ export default function TacticalNav({ socials }: TacticalNavProps) {
       transition={{ delay: 0.5, type: 'spring', stiffness: 260, damping: 20 }}
       className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50"
     >
-      <div className="glass px-8 py-4 rounded-[2.5rem] border border-border shadow-2xl flex items-center gap-6 backdrop-blur-3xl bg-background/50">
+      <div className="glass px-10 py-5 rounded-[3rem] border border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] flex items-center gap-6 backdrop-blur-3xl bg-background/40">
         {/* Profile Switcher (Back Arrow) */}
         <Link 
           href="/mentorship"
