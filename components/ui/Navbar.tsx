@@ -83,7 +83,7 @@ export default function Navbar() {
               <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
-                className="text-muted-foreground hover:text-foreground hover:bg-accent/50 px-4 py-2 rounded-full transition-all text-sm font-medium"
+                className="text-muted-foreground hover:text-foreground hover:bg-accent/50 px-5 py-2.5 rounded-2xl transition-all text-sm font-medium"
               >
                 {item}
               </Link>
@@ -93,10 +93,10 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <button 
             onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
-            className="hidden lg:flex items-center gap-2 px-3 py-1.5 glass rounded-xl text-[10px] font-black tracking-widest text-muted-foreground hover:text-foreground transition-all group"
+            className="hidden lg:flex items-center gap-2 px-4 py-2 glass rounded-2xl text-[10px] font-black tracking-widest text-muted-foreground hover:text-foreground transition-all group"
           >
             <span>SEARCH</span>
-            <span className="bg-muted px-1.5 py-0.5 rounded text-[8px] group-hover:bg-primary group-hover:text-primary-foreground transition-colors">⌘K</span>
+            <span className="bg-muted px-2 py-0.5 rounded-lg text-[8px] group-hover:bg-primary group-hover:text-primary-foreground transition-colors">⌘K</span>
           </button>
           <ThemeToggle />
           <AuthButton />
