@@ -73,7 +73,7 @@ export default function ProgramsPage() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
           {programs.map((p) => (
             <motion.div key={p.slug} variants={itemVariants}>
