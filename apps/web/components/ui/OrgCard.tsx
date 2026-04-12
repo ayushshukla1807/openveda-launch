@@ -55,8 +55,8 @@ export default function OrgCard({ name, slug, logo_url, tech_stack, program, is_
             <div className="flex items-center gap-2 mt-1">
               {is_active_year_round ? (
                 <div className="flex items-center gap-1.5">
-                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                   <span className="text-[10px] font-black text-green-500 uppercase tracking-widest">Year-Round Active</span>
+                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                   <span className="text-[10px] font-black text-primary uppercase tracking-widest">Year-Round Active</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-1.5">

@@ -55,7 +55,7 @@ export default function AuthButton() {
       </Link>
       <Link
         href="/login"
-        className="bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-green-500/20"
+        className="bg-primary hover:bg-primary/90 text-white px-5 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-xl shadow-primary/20"
       >
         Sign Up
       </Link>

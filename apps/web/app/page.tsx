@@ -9,10 +9,30 @@ import { motion, Variants } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 
 const programs = [
-  { name: 'GSoC 2026', slug: 'GSoC 2026', description: 'The gold standard for open-source mentorship.', icon: '🎓' },
-  { name: 'LFX Mentorship', slug: 'LFX', description: 'Build the infrastructure of the internet.', icon: '🐧' },
-  { name: 'Outreachy', slug: 'Outreachy', description: 'Inclusive internships for underrepresented groups.', icon: '💜' },
-  { name: 'ESOC 2026', slug: 'ESOC 2026', description: 'EuroSocio-OpenSource for social impact.', icon: '🌍' }
+  { 
+    name: 'GSoC 2026', 
+    slug: 'GSoC 2026', 
+    description: 'The gold standard for open-source mentorship.', 
+    image_url: '/assets/gsoc_26.png' 
+  },
+  { 
+    name: 'LFX Mentorship', 
+    slug: 'LFX', 
+    description: 'Build the infrastructure of the internet.', 
+    image_url: '/assets/lfx_26.png' 
+  },
+  { 
+    name: 'Outreachy', 
+    slug: 'Outreachy', 
+    description: 'Inclusive internships for underrepresented groups.', 
+    image_url: '/assets/outreachy_26.png' 
+  },
+  { 
+    name: 'ESOC 2026', 
+    slug: 'ESOC 2026', 
+    description: 'EuroSocio-OpenSource for social impact.', 
+    image_url: '/assets/esoc_26.png' 
+  }
 ];
 
 const containerVariants: Variants = {
