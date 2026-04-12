@@ -13,7 +13,7 @@ We currently provide security updates for thefollowing versions:
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within this project, please report it privately to the founder at `ayush@openveda.in`. 
+If you discover a security vulnerability within this project, please report it privately to the security team. 
 
 Please include the following in your report:
 - A brief description of the vulnerability.

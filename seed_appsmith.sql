@@ -47,7 +47,7 @@ Appsmith''s community is their heart. Join Discord before you do anything else.
 - **Primary Channel**: [Join the Appsmith Discord Server](https://discord.gg/appsmith).
 - **Your First Action**: Join the `#contributor` channel and introduce yourself.
 - **Template**: 
-    > "Hey everyone! My name is Ayush, a CSE student from Pune. I’m a huge fan of what you’re building at Appsmith and I’m excited to start contributing. My background is in React and TypeScript. I’m going through the setup guide now. Glad to be here!"
+    > "Hey everyone! I’m a technical contributor and I’m a huge fan of what you’re building at Appsmith. I’m excited to start contributing. My background is in React and TypeScript. I’m going through the setup guide now. Glad to be here!"
 
 ### 3.2: The Foolproof Environment Setup
 - **Prerequisites**: Git, Java 17, Node.js, Yarn, and Docker.

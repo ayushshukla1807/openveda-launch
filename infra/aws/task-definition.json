@@ -1,0 +1,55 @@
+{
+    "family": "openveda-web",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "openveda-web",
+            "image": "<IMAGE_NAME>",
+            "cpu": 512,
+            "memory": 1024,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "NODE_ENV",
+                    "value": "production"
+                },
+                {
+                    "name": "AWS_REGION",
+                    "value": "ap-south-1"
+                }
+            ],
+            "secrets": [
+                {
+                    "name": "NEXT_PUBLIC_SUPABASE_URL",
+                    "valueFrom": "arn:aws:secretsmanager:ap-south-1:123456789012:secret:openveda/supabase-url"
+                },
+                {
+                    "name": "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+                    "valueFrom": "arn:aws:secretsmanager:ap-south-1:123456789012:secret:openveda/supabase-anon-key"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/openveda-web",
+                    "awslogs-region": "ap-south-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskRole"
+}

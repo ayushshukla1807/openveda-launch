@@ -10,11 +10,11 @@ Aspiring and experienced developers, particularly those in the Indian ecosystem,
 Check out our [GSoC Platinum Playbook](./playbook/gsoc-strategy) and join our Mentorship Hub for personalized 1-on-1 guidance.
 
 ## Is OpenVeda free?
-The core platform and playbooks are 100% free and open-source. Premium 1-on-1 mentorship sessions are managed directly by individual mentors.
+{{ ... }}
 
 ## Can I become a mentor?
 Absolutely! If you've successfully completed a major mentorship program, please reach out via the [Mentorship Hub](/mentorship).
 
 ---
 
-Have more questions? Contact us at `ayush@openveda.in`.
+Have more questions? Contact the mission team at `mission@openveda.in`.
