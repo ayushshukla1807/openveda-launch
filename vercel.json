@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd ../.. && npm install && cd apps/web && npm run build",
-  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm install --legacy-peer-deps --force && npx turbo build --filter=web && cd apps/web && next build",
+  "installCommand": "npm install --legacy-peer-deps --force",
   "framework": "nextjs",
   "outputDirectory": "apps/web/.next",
   "rootDirectory": "apps/web"
