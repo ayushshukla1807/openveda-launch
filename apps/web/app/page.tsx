@@ -8,13 +8,6 @@ import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 
-const supabase = createBrowserSupabaseClient(); 
-
-async function getFeaturedOrgs() {
-  const { data } = await supabase.from('organizations').select('name, slug, logo_url, tech_stack, program, is_active_year_round').limit(3);
-  return data || [];
-}
-
 const programs = [
   { name: 'GSoC 2026', slug: 'GSoC 2026', description: 'The gold standard for open-source mentorship.', icon: '🎓' },
   { name: 'LFX Mentorship', slug: 'LFX', description: 'Build the infrastructure of the internet.', icon: '🐧' },
@@ -48,7 +41,14 @@ export default function HomePage() {
   const [featuredOrgs, setFeaturedOrgs] = useState<any[]>([]);
 
   useEffect(() => {
-    getFeaturedOrgs().then(setFeaturedOrgs);
+    const fetchOrgs = async () => {
+      const { data } = await createBrowserSupabaseClient()
+        .from('organizations')
+        .select('name, slug, logo_url, tech_stack, program, is_active_year_round')
+        .limit(3);
+      setFeaturedOrgs(data || []);
+    };
+    fetchOrgs();
   }, []);
 
   return (
