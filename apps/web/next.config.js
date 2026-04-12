@@ -13,5 +13,8 @@ const nextConfig = {
       { protocol: 'https', hostname: 'i.postimg.cc' },
     ],
   },
+  generateBuildId: async () => {
+    return 'absolute-masterpiece-' + Date.now();
+  },
 };
 module.exports = nextConfig;
