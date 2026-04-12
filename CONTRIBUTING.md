@@ -36,7 +36,7 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 
 ## Questions?
 
-If you have any questions, feel free to reach out to the founder at `ayush@openveda.in`.
+If you discover a security vulnerability within this project, please report it privately to the security team.
 
 ---
 

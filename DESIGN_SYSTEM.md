@@ -1,6 +1,6 @@
 # OpenVeda Design System
 
-The OpenVeda design system is a bespoke, human-authored architecture built on HSL (Hue, Saturation, Lightness) CSS variables. This ensures perfect contrast, harmonious color transitions, and a premium "AI-free" aesthetic in both Dark and Light modes.
+The OpenVeda design system is a custom CSS architecture built on strict HSL (Hue, Saturation, Lightness) variables. This ensures perfect contrast and clean color transitions in both Dark and Light modes.
 
 ## Core Principles
 
@@ -20,7 +20,7 @@ The design system uses a unified set of HSL variables defined in `styles/main.cs
 - `--border`: Used for clean, minimalist dividers and interactive targets.
 
 ### Theming Mechanism
-Next.js `next-themes` manages the injection of the `.dark` class, which redefines these variables for a seamless transition.
+Next.js `next-themes` manages the injection of the `.dark` class, which redefines these variables for a smooth transition.
 
 ```css
 :root {

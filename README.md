@@ -1,14 +1,14 @@
-# OpenVeda.in - The Premium Open Source Launchpad
+# OpenVeda.in - Stop Guessing. Start Committing.
 
-OpenVeda is a high-performance, minimalist launchpad designed to transform aspiring developers into elite open-source contributors. Built for the Indian developer ecosystem, it provides high-signal "Platinum Playbooks," 1-on-1 mentorship, and a direct bridge to prestigious programs like GSoC, LFX, Outreachy, and ESOC 2026.
+OpenVeda is a practical, no-bullshit platform I built to help Indian students actually get into open-source without tearing their hair out. Instead of generic advice, it gives you exact playbooks, active issues, and brutally honest mentors who've already cracked GSoC, LFX, and Outreachy.
 
-## 🚀 Key Features
+## 🚀 What makes it different?
 
-- **Platinum Playbooks**: Deep-dive strategy guides for top organizations (Postman, Zerodha, GNOME, etc.).
-- **Mentorship Hub**: Connect directly with industry veterans and successful open-source alumni.
-- **Programs Launchpad**: A centralized portal for tracking and applying to world-class mentorship initiatives.
-- **Tactical Navigation**: Bespoke UI components for seamless profile and project exploration.
-- **Dual-Theme Fidelity**: A robust HSL-based design system supporting both professional dark and light modes.
+- **Exact Playbooks**: We tear down exactly how to get into orgs like Postman, Zerodha, and GNOME. No fluff.
+- **Real Mentors**: Connect 1-on-1 with developers who actually write code for a living, not just "influencers."
+- **Program Tracker**: Stop applying to everything. Track the mentorships that actually matter.
+- **Built for Developers**: Fast navigation, keyboard shortcuts, and a UI that stays out of your way.
+- **Dark Mode Default**: Because obviously.
 
 ## 🛠 Tech Stack
 
@@ -30,7 +30,7 @@ OpenVeda is a high-performance, minimalist launchpad designed to transform aspir
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/ayushshukla1807/openveda.git
+   git clone https://github.com/openveda-labs/openveda.git
    cd openveda
    ```
 
@@ -47,7 +47,7 @@ OpenVeda is a high-performance, minimalist launchpad designed to transform aspir
    ```
 
 4. **Database Initialization**:
-   Run the SQL scripts located in the project root to seed your Supabase instance:
+   Run the SQL scripts to seed your Supabase instance:
    - `reconcile_db.sql` (Schema Reset)
    - `update_programs.sql` (Program Metadata)
    - `update_playbooks.sql` (Content)
