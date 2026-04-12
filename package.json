@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "openveda-monorepo",
+  "name": "openveda",
   "workspaces": [
     "apps/*",
     "packages/*"
