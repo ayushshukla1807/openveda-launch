@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import ReadinessBadge from '@/components/ui/ReadinessBadge';
 
 interface MobileVerifyPageProps {
   params: { uuid: string };

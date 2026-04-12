@@ -5,7 +5,7 @@ import Image from 'next/image';
 import OrgCard from '@/components/ui/OrgCard';
 import ProgramCard from '@/components/ui/ProgramCard';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 
 const supabase = createBrowserSupabaseClient(); 
@@ -22,7 +22,7 @@ const programs = [
   { name: 'ESOC 2026', slug: 'ESOC 2026', description: 'EuroSocio-OpenSource for social impact.', icon: '🌍' }
 ];
 
-import { Variants } from 'framer-motion';
+
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

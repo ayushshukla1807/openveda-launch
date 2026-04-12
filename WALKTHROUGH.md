@@ -1,4 +1,7 @@
 # OpenVeda: Finalizing "The Contribution Engine"
+> [!NOTE]
+> **Deployment Status**: [SYNCING...] - Fresh Vercel build triggered to verify corrected configurations.
+
 
 We have successfully transitioned OpenVeda into a high-fidelity, year-round open-source mastery engine. The platform is now fully anonymized and production-ready for the post-GSoC 2026 climate.
 

@@ -2,6 +2,10 @@ import { PropsWithChildren } from 'react';
 import '../styles/main.css';
 import Navbar from '@/components/ui/Navbar';
 import Footer from '@/components/ui/Footer'; 
+import CommandPalette from '@/components/ui/CommandPalette';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const meta = {
   title: 'OpenVeda | The Contribution Engine',
@@ -25,9 +29,7 @@ export const metadata = {
   },
 };
 
-import CommandPalette from '@/components/ui/CommandPalette';
 
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 export default function RootLayout({
   children
@@ -51,6 +53,8 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
