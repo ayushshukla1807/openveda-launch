@@ -7,9 +7,9 @@
     /* Brand & Canvas */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
-    --primary: 142 76% 36%;
-    --primary-foreground: 355 100% 97.3%;
-    --primary-rgb: 22, 163, 74;
+    --primary: 15 100% 60%; /* #FF5733 - OpenVeda Orange */
+    --primary-foreground: 0 0% 100%;
+    --primary-rgb: 255, 87, 51;
 
     /* Components */
     --card: 0 0% 100%;
@@ -36,9 +36,9 @@
     /* Brand & Canvas (Dark) */
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --primary: 142 70% 50%;
-    --primary-foreground: 240 5.9% 10%;
-    --primary-rgb: 34, 197, 94;
+    --primary: 15 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-rgb: 255, 87, 51;
 
     /* Components (Dark) */
     --card: 240 10% 3.9%;
@@ -78,11 +78,11 @@
 
 /* Glassmorphism Utilities */
 .glass {
-  @apply bg-background/60 backdrop-blur-md border border-border;
+  @apply bg-background/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
 }
 
 .dark .glass {
-  @apply bg-card/40 border-border/50;
+  @apply bg-card/30 border-white/5 shadow-2xl;
 }
 
 .glass-hover {
