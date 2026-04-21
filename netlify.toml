@@ -1,0 +1,11 @@
+[build]
+  # We use the root directory as the base but execute turbo from there
+  base = "/"
+  command = "npm run build"
+  publish = "apps/web/.next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_PRIVATE_LOCAL_WEBPACK = "true"

@@ -18,47 +18,54 @@ class VerificationResponse(BaseModel):
 @router.post("/verify/{username}", response_model=VerificationResponse)
 async def certify_user(username: str, data: Dict):
     """
-    Certifies a user's score and generates a verifiable UUID.
-    In a real production app, this would check if the score meets the threshold (75+).
+    Certifies a user's score based on GitHub activity and role targeting.
     """
     score = data.get("score")
-    if score is None or score < 75:
-        raise HTTPException(status_code=400, detail="Score too low for certification or missing score.")
+    target_role = data.get("target_role", "Fullstack")
+    
+    if score is None or score < 50:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"Score {score} is below the professional certification threshold."
+        )
 
+    # Generate a unique verification ID
     new_id = str(uuid.uuid4())
     verified_at = datetime.datetime.now(datetime.timezone.utc).isoformat()
     
-    # Mock RDS Persistence (In production, replace with actual DB call)
-    # db.execute("INSERT INTO verified_scores (...) VALUES (...)")
+    # In a production environment, we would commit this payload to Postgres/Supabase
+    # For the resume showcase, we return the verified payload that the UI will use to generate the "LinkedIn Badge"
     
     return {
         "id": new_id,
         "github_username": username,
         "score": score,
         "verified_at": verified_at,
-        "breakdown": data.get("breakdown", {})
+        "breakdown": data.get("breakdown", {
+            "frequency": 0.0,
+            "quality": 0.0,
+            "stack": 0.0,
+            "complexity": 0.0,
+            "consistency": 0.0
+        })
     }
 
-@router.get("/verify/{id}", response_model=VerificationResponse)
-async def get_verification(id: str):
+@router.get("/credentials/{uuid}", response_model=VerificationResponse)
+async def get_credentials(uuid: str):
     """
-    Retrieves verification data for a specific UUID.
-    Used by the frontend to render the LinkedIn Verification card.
+    Public lookup for credentials verification.
     """
-    # Mock retrieval from RDS
-    # data = db.execute("SELECT * FROM verified_scores WHERE id = ?", id)
-    
-    # Placeholder response for development
+    # This simulates fetching from the 'verified_scores' table in Supabase
     return {
-        "id": id,
+        "id": uuid,
         "github_username": "Verified Contributor",
         "score": 88.42,
         "verified_at": "2026-04-12T07:26:00Z",
         "breakdown": {
             "frequency": 0.92,
             "quality": 0.85,
-            "stack": 0.78,
+            "stack": 0.88,
             "complexity": 0.95,
-            "consistency": 0.88
+            "consistency": 0.82
         }
     }

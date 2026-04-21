@@ -1,21 +1,10 @@
-import { createServerSupabaseClient } from '@/lib/supabase/server-client';
+import { createServerSupabaseClient } from '@/lib/supabase/client';
 import { notFound } from 'next/navigation';
 import PlaybookClient from './PlaybookClient';
 
-// Enable Incremental Static Regeneration (ISR)
-export const revalidate = 120;
-
-export async function generateStaticParams() {
-  const supabase = createServerSupabaseClient();
-  const { data: orgs } = await supabase
-    .from('organizations')
-    .select('slug')
-    .limit(100); // Pre-render top 100 orgs
-
-  return orgs?.map((org) => ({
-    slug: org.slug,
-  })) || [];
-}
+// Force dynamic rendering — skip SSG entirely to avoid build-time prerender errors
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface PlaybookPageProps {
   params: { slug: string };

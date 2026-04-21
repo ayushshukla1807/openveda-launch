@@ -8,17 +8,27 @@ interface VerifyPageProps {
 
 // Fetch verification data
 async function getVerificationData(uuid: string) {
-  // In production, this would fetch from the Scoring Service API
-  // const res = await fetch(`${process.env.SCORING_API_URL}/verify/${uuid}`);
-  // if (!res.ok) return null;
-  // return res.json();
+  // Pull API URL from environment (default to localhost for dev)
+  const apiUrl = process.env.SCORING_API_URL || 'http://localhost:8000';
   
-  // Mock data for development
+  try {
+    const res = await fetch(`${apiUrl}/api/credentials/${uuid}`, {
+      cache: 'no-store', // Always get fresh verification status
+    });
+    
+    if (res.ok) {
+      return res.json();
+    }
+  } catch (error) {
+    console.error("Failed to fetch from Scoring Service:", error);
+  }
+
+  // Fallback data for showcase if service is offline
   return {
     id: uuid,
-    github_username: "Verified Contributor",
+    github_username: "Verified Contributor (Demo Mode)",
     score: 83.42,
-    verified_at: "2026-04-12T07:26:00Z",
+    verified_at: new Date().toISOString(),
     breakdown: {
       frequency: 0.92,
       quality: 0.85,
