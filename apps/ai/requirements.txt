@@ -1,4 +1,4 @@
-langchain==0.2.1
+lanfix(ai): cleanup requirements.txt and use faiss-cpulangchain==0.2.1
 langchain-openai==0.1.8
 faiss-cpu
 python-dotenv==1.0.1
