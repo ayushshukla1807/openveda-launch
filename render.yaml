@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: openveda-scoring-api
+    env: python
+    region: ohio
+    buildCommand: "cd apps/scoring && pip install -r requirements.txt"
+    startCommand: "cd apps/scoring && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      
+  - type: web
+    name: openveda-ai-rag
+    env: python
+    region: ohio
+    buildCommand: "cd apps/ai && pip install -r requirements.txt"
+    startCommand: "cd apps/ai && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: OPENAI_API_KEY
+        sync: false
