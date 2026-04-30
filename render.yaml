@@ -22,3 +22,27 @@ services:
         value: 3.10.0
       - key: OPENAI_API_KEY
         sync: false
+
+  - type: web
+    name: openveda-ayush
+    env: node
+    region: ohio
+    buildCommand: "npm install && npm run build:prod"
+    startCommand: "npm start --workspace=web"
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: NEXT_PUBLIC_SCORING_API_URL
+        fromService:
+          type: web
+          name: openveda-scoring-api
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: NEXT_PUBLIC_AI_API_URL
+        fromService:
+          type: web
+          name: openveda-ai-rag
+          envVarKey: RENDER_EXTERNAL_URL

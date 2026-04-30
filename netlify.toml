@@ -1,10 +1,10 @@
 [build]
-  base = "apps/web"
-  command = "npm run build"
-  publish = ".next"
+  command = "npm run build:prod"
+  publish = "apps/web/.next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NEXT_PRIVATE_LOCAL_WEBPACK = "true"
+  NEXT_USE_LIB64 = "true"
+  NODE_VERSION = "20"
