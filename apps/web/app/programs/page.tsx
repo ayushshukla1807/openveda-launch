@@ -9,25 +9,25 @@ const programs = [
     name: 'GSoC 2027', 
     slug: 'GSoC 2027', 
     description: 'The gold standard for global open-source mentorship. Focuses on student developers.', 
-    icon: '🎓' 
+    image_url: '/assets/gsoc_26.png' 
   },
   { 
     name: 'LFX Mentorship', 
     slug: 'LFX', 
     description: 'Infrastructure and networking projects under the Linux Foundation.', 
-    icon: '🐧' 
+    image_url: '/assets/lfx_26.png' 
   },
   { 
     name: 'Outreachy', 
     slug: 'Outreachy', 
     description: 'Internships for people from groups underrepresented in free and open source software.', 
-    icon: '💜' 
+    image_url: '/assets/outreachy_26.png' 
   },
   { 
     name: 'ESOC 2027', 
     slug: 'ESOC 2027', 
     description: 'EuroSocio-OpenSource: Leveraging technology for social and ecological impact.', 
-    icon: '🌍' 
+    image_url: '/assets/esoc_26.png' 
   }
 ];
 

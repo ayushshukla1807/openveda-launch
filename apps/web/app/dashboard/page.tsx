@@ -100,14 +100,52 @@ export default function DashboardPage() {
 
   // Activity Log State
   const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
-  const addActivityLog = (event: string, type: ActivityLog['type']) => {
-    const log: ActivityLog = {
-      id: Math.random().toString(36).substring(2, 9),
-      event,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-      type
+
+  useEffect(() => {
+    const loadLogs = () => {
+      const stored = localStorage.getItem('openveda_logs') || '[]';
+      try {
+        const parsed = JSON.parse(stored);
+        const mapped = parsed.map((item: any) => ({
+          id: item.id || Math.random().toString(36).substring(2, 9),
+          event: item.text || item.event || '',
+          timestamp: item.created_at 
+            ? new Date(item.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) 
+            : item.timestamp || '',
+          type: item.type || 'progress'
+        }));
+        setActivityLogs(mapped);
+      } catch (e) {
+        console.error("Error parsing logs", e);
+      }
     };
-    setActivityLogs(prev => [log, ...prev.slice(0, 7)]);
+    loadLogs();
+  }, []);
+
+  const addActivityLog = (event: string, type: ActivityLog['type']) => {
+    const newLog = {
+      id: 'log-uuid-' + Date.now(),
+      text: event,
+      type,
+      created_at: new Date().toISOString()
+    };
+    const stored = localStorage.getItem('openveda_logs') || '[]';
+    try {
+      const logs = JSON.parse(stored);
+      logs.unshift(newLog);
+      const trimmed = logs.slice(0, 10);
+      localStorage.setItem('openveda_logs', JSON.stringify(trimmed));
+      
+      const mapped = trimmed.map((item: any) => ({
+        id: item.id,
+        event: item.text || item.event || '',
+        timestamp: new Date(item.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+        type: item.type
+      }));
+      setActivityLogs(mapped);
+    } catch (e) {
+      console.error("Error adding log", e);
+    }
   };
 
   // Chatbot Drawer State
@@ -680,7 +718,7 @@ export default function DashboardPage() {
                     <span className="text-5xl mb-6 block grayscale opacity-30">🔭</span>
                     <h3 className="text-xl font-black text-foreground mb-2 italic">Target grid offline</h3>
                     <p className="text-muted-foreground text-xs font-medium max-w-xs mx-auto mb-8 leading-relaxed">
-                       शॉर्टलिस्ट a target organization to dynamically display real-time contribution checklists.
+                       Star a target organization on the discovery page to dynamically analyze active playbooks.
                     </p>
                     <Link href="/organizations" className="bg-foreground text-background font-black px-8 py-4 rounded-xl text-[10px] uppercase tracking-widest hover:scale-105 transition-all">
                       Begin Exploration
