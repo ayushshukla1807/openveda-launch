@@ -6,8 +6,8 @@ import ProgramCard from '@/components/ui/ProgramCard';
 
 const programs = [
   { 
-    name: 'GSoC 2026', 
-    slug: 'GSoC 2026', 
+    name: 'GSoC 2027', 
+    slug: 'GSoC 2027', 
     description: 'The gold standard for global open-source mentorship. Focuses on student developers.', 
     icon: '🎓' 
   },
@@ -24,8 +24,8 @@ const programs = [
     icon: '💜' 
   },
   { 
-    name: 'ESOC 2026', 
-    slug: 'ESOC 2026', 
+    name: 'ESOC 2027', 
+    slug: 'ESOC 2027', 
     description: 'EuroSocio-OpenSource: Leveraging technology for social and ecological impact.', 
     icon: '🌍' 
   }

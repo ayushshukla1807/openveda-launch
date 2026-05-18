@@ -68,13 +68,13 @@ const staticProgramsOrgs = [
     description: 'A collection of tools, APIs, and SDKs to capture cloud-native observability metrics.',
     repo_path: 'open-telemetry/opentelemetry-collector'
   },
-  // ESOC 2026
+  // ESOC 2027
   {
     name: 'OpenSource Health',
     slug: 'os-health',
     logo_url: 'https://api.dicebear.com/7.x/initials/svg?seed=OH',
     tech_stack: ['React', 'Node.js', 'PostgreSQL'],
-    program: 'ESOC 2026',
+    program: 'ESOC 2027',
     description: 'Building open tools for community healthcare and patient records in Europe.',
     repo_path: 'os-health/core'
   },
@@ -83,13 +83,13 @@ const staticProgramsOrgs = [
     slug: 'greencode',
     logo_url: 'https://api.dicebear.com/7.x/initials/svg?seed=GC',
     tech_stack: ['Python', 'D3.js', 'EarthData'],
-    program: 'ESOC 2026',
+    program: 'ESOC 2027',
     description: 'Open data pipelines and mapping platforms for environmental and climate monitoring.',
     repo_path: 'greencode/pipeline'
   }
 ];
 
-// Clean GSoC 2026 JSON seed mappings
+// Clean GSoC 2027 JSON seed mappings
 const parsedGsocOrgs = gsocOrgsRaw.map((org: any) => ({
   name: org.name,
   slug: org.slug,
@@ -99,9 +99,9 @@ const parsedGsocOrgs = gsocOrgsRaw.map((org: any) => ({
   tech_stack: org.slug === 'appsmith' 
     ? ['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB']
     : (org.tech_stack || []),
-  program: 'GSoC 2026',
+  program: 'GSoC 2027',
   is_active_year_round: true,
-  description: `Master high-impact contributions to ${org.name} for GSoC 2026 and standard release cycles.`,
+  description: `Master high-impact contributions to ${org.name} for GSoC 2027 and standard release cycles.`,
   repo_path: org.slug === 'appsmith' ? 'appsmithorg/appsmith' : null
 }));
 
@@ -215,7 +215,7 @@ function OrgsContent() {
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl font-medium leading-relaxed">
           Find the perfect organization for your open-source journey. 
-          Expertly curated for GSoC 2026, LFX, Outreachy, and ESOC.
+          Expertly curated for GSoC 2027, LFX, Outreachy, and ESOC.
         </p>
       </motion.div>
 
@@ -243,10 +243,10 @@ function OrgsContent() {
             className="w-full lg:w-auto bg-muted/50 glass px-12 py-6 rounded-3xl text-foreground outline-none focus:ring-2 focus:ring-primary/50 appearance-none font-black text-lg cursor-pointer min-w-[300px] border-border"
           >
             <option value="">All Programs</option>
-            <option value="GSoC 2026">GSoC 2026</option>
+            <option value="GSoC 2027">GSoC 2027</option>
             <option value="LFX">LFX Mentorship</option>
             <option value="Outreachy">Outreachy</option>
-            <option value="ESOC 2026">ESOC 2026</option>
+            <option value="ESOC 2027">ESOC 2027</option>
           </select>
           <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

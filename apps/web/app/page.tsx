@@ -10,8 +10,8 @@ import React, { useState, useEffect } from 'react';
 
 const programs = [
   { 
-    name: 'GSoC 2026', 
-    slug: 'GSoC 2026', 
+    name: 'GSoC 2027', 
+    slug: 'GSoC 2027', 
     description: 'The gold standard for open-source mentorship.', 
     image_url: '/assets/gsoc_26.png' 
   },
@@ -28,8 +28,8 @@ const programs = [
     image_url: '/assets/outreachy_26.png' 
   },
   { 
-    name: 'ESOC 2026', 
-    slug: 'ESOC 2026', 
+    name: 'ESOC 2027', 
+    slug: 'ESOC 2027', 
     description: 'EuroSocio-OpenSource for social impact.', 
     image_url: '/assets/esoc_26.png' 
   }
@@ -90,7 +90,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-6 py-2 mb-10 text-[10px] font-black tracking-[0.3em] text-primary uppercase bg-primary/5 border border-primary/20 backdrop-blur-xl rounded-full"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            LIVE STATUS: APRIL 2026 • THE CONTRIBUTION ENGINE
+            LIVE STATUS: MAY 2026 • THE GSOC 2027 PREP STATION
           </motion.div>
           
           <motion.h1 variants={itemVariants} className="text-8xl md:text-[11rem] font-black text-white leading-[0.85] tracking-[-0.05em] mb-12">
@@ -111,7 +111,7 @@ export default function HomePage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[60px] group-hover:bg-primary/20 transition-all" />
                 <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">PHASE A: BONDING</span>
                 <h3 className="text-3xl font-black italic mt-4 text-white">I Got Accepted</h3>
-                <p className="text-slate-400 mt-6 font-medium leading-relaxed">Master the 2026 Community Bonding period. Learn maintainer communication, roadmap finalization, and upstream cultural sync.</p>
+                <p className="text-slate-400 mt-6 font-medium leading-relaxed">Master the GSoC 2027 Community Bonding period. Learn maintainer communication, roadmap finalization, and upstream cultural sync.</p>
                 <Link href="/playbook/community-bonding" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
                   Access Handbook <span className="text-lg">→</span>
                 </Link>

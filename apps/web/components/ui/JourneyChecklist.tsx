@@ -14,7 +14,7 @@ interface Step {
 
 const JOURNEY_STEPS: Step[] = [
   { id: 'step_1', title: 'Create OpenVeda Account', description: 'Your progress is securely saved.' },
-  { id: 'step_2', title: 'Select Target GSoC Organization', description: 'Browse the 2026 updated orgs and pick your focus.' },
+  { id: 'step_2', title: 'Select Target GSoC Organization', description: 'Browse the GSoC 2027 updated orgs and pick your focus.' },
   { id: 'step_3', title: 'Read Platinum Playbook', description: 'Master the unwritten rules and architecture.' },
   { id: 'step_4', title: 'Setup Local Environment', description: 'Fork, clone, and build the project locally.' },
   { id: 'step_5', title: 'Book a Mentor Session (Optional)', description: 'Get unblocked by an org specialist.' },

@@ -119,8 +119,8 @@ export default function PlaybookClient({ data }: { data: PlaybookData }) {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user || !data) return;
     
-    const proposalTitle = `GSoC 2026 Proposal Draft: ${data.name}`;
-    const proposalContent = `# GSoC 2026 Proposal Checklist: ${data.name}\n\nGenerated via OpenVeda.in - The GSoC Launchpad\n\n## 1. Project Selection\n- [ ] Research the 2026 projects list for ${data.name}\n- [ ] Identify a project that matches your tech stack\n\n## 2. Architecture Analysis (Pre-filled for ${data.name})\n${data.content.split('## 2.')[1]?.split('---')[0] || ''}\n\n## 3. The Unwritten Rules\n${data.content.split('## 7.')[1] || ''}`;
+    const proposalTitle = `GSoC 2027 Proposal Draft: ${data.name}`;
+    const proposalContent = `# GSoC 2027 Proposal Checklist: ${data.name}\n\nGenerated via OpenVeda.in - The GSoC Launchpad\n\n## 1. Project Selection\n- [ ] Research the GSoC 2027 projects list for ${data.name}\n- [ ] Identify a project that matches your tech stack\n\n## 2. Architecture Analysis (Pre-filled for ${data.name})\n${data.content.split('## 2.')[1]?.split('---')[0] || ''}\n\n## 3. The Unwritten Rules\n${data.content.split('## 7.')[1] || ''}`;
 
     await supabase.from('user_proposals').upsert({
       user_id: user.id,
@@ -179,7 +179,7 @@ export default function PlaybookClient({ data }: { data: PlaybookData }) {
                   <div className="w-2 h-2 rounded-full bg-primary" /> Community Verified
                 </span>
                 <span>•</span>
-                <span>Updated Feb 2026</span>
+                <span>Updated Feb 2027</span>
               </div>
             </div>
 
@@ -205,7 +205,7 @@ export default function PlaybookClient({ data }: { data: PlaybookData }) {
             <div className="mt-32 p-12 glass rounded-[3rem] border-primary/20 text-center relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] group-hover:bg-primary/20 transition-colors" />
               <h2 className="text-4xl font-black mb-6 italic tracking-tight underline cursor-pointer decoration-primary decoration-4 underline-offset-8">
-                Ready to apply for GSoC 2026?
+                Ready to apply for GSoC 2027?
               </h2>
               <p className="text-xl text-muted-foreground max-w-xl mx-auto mb-10 font-medium">
                 Generating a professional proposal is the hardest part. Let us do the heavy lifting for you.
@@ -215,7 +215,7 @@ export default function PlaybookClient({ data }: { data: PlaybookData }) {
                 <button 
                   onClick={async () => {
                     await saveProposal();
-                    const b = new Blob([`# GSoC 2026 Proposal Checklist: ${data.name}\n\nGenerated via OpenVeda.in - The GSoC Launchpad\n\n## 1. Project Selection\n- [ ] Research the 2026 projects list for ${data.name}\n- [ ] Identify a project that matches your tech stack\n\n## 2. Architecture Analysis (Pre-filled for ${data.name})\n${data.content.split('## 2.')[1]?.split('---')[0] || ''}\n\n## 3. The Unwritten Rules\n${data.content.split('## 7.')[1] || ''}`], { type: 'text/markdown' });
+                    const b = new Blob([`# GSoC 2027 Proposal Checklist: ${data.name}\n\nGenerated via OpenVeda.in - The GSoC Launchpad\n\n## 1. Project Selection\n- [ ] Research the GSoC 2027 projects list for ${data.name}\n- [ ] Identify a project that matches your tech stack\n\n## 2. Architecture Analysis (Pre-filled for ${data.name})\n${data.content.split('## 2.')[1]?.split('---')[0] || ''}\n\n## 3. The Unwritten Rules\n${data.content.split('## 7.')[1] || ''}`], { type: 'text/markdown' });
                     const u = URL.createObjectURL(b);
                     const a = document.createElement('a');
                     a.href = u;
