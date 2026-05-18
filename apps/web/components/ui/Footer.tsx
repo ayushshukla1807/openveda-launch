@@ -24,17 +24,19 @@ export default function Footer() {
             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground/30 italic">Navigation</h4>
             <div className="flex flex-col gap-4">
               <Link href="/organizations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Organizations</Link>
-              <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Dashboard</Link>
-              <Link href="/login" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Contribution Login</Link>
+              <Link href="/journey" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Roadmap Tracker</Link>
+              <Link href="/curriculum" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Systems Syllabus</Link>
+              <Link href="/founder" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Founder's Corner</Link>
+              <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Command Dashboard</Link>
             </div>
           </div>
 
           <div className="space-y-8">
             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground/30 italic">Connect</h4>
             <div className="flex flex-col gap-4">
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">GitHub <span className="text-[8px] opacity-30">#</span></Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">LinkedIn <span className="text-[8px] opacity-30">#</span></Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">Twitter / X <span className="text-[8px] opacity-30">#</span></Link>
+              <Link href="https://github.com/ayushshukla1807" target="_blank" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">GitHub <span className="text-[8px] opacity-30">@ayushshukla1807</span></Link>
+              <Link href="https://linkedin.com/in/ayushshukla1807" target="_blank" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">LinkedIn <span className="text-[8px] opacity-30">@ayushshukla1807</span></Link>
+              <Link href="https://x.com/ayushshukla1807" target="_blank" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px] flex items-center gap-2">Twitter / X <span className="text-[8px] opacity-30">@ayushshukla1807</span></Link>
             </div>
           </div>
 

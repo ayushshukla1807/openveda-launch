@@ -1,7 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+
+const supabase = createBrowserSupabaseClient();
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -9,7 +13,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.3,
+      delayChildren: 0.2,
     },
   },
 };
@@ -19,62 +23,211 @@ const itemVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { stiffness: 100 },
+    transition: { type: 'spring', stiffness: 100 },
   },
 };
 
-export default function MissionPage() {
+export default function FounderPage() {
+  const [question, setQuestion] = useState('');
+  const [isQuerying, setIsQuerying] = useState(false);
+  const [founderResponse, setFounderResponse] = useState<string | null>(null);
+  const [previousQueries, setPreviousQueries] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function loadQueries() {
+      const { data } = await supabase.from('founder_queries').select('*');
+      if (data) {
+        setPreviousQueries(data.sort((a: any, b: any) => b.created_at.localeCompare(a.created_at)));
+      }
+    }
+    loadQueries();
+  }, [founderResponse]);
+
+  const handleAskFounder = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!question) return;
+
+    setIsQuerying(true);
+    setFounderResponse(null);
+
+    // High-end cognitive calibration delay
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const q = question.toLowerCase();
+    let response = "In open source, impact is the only currency. Stop reading. Start forking. Write the code. Merge the patch.";
+
+    if (q.includes('gsoc') || q.includes('lfx') || q.includes('outreachy') || q.includes('program')) {
+      response = "Focus on high-quality pull requests in sandbox repositories first. Getting a PR merged on a sandbox system shows you can navigate real complexity. Proposals are secondary—code speaks first.";
+    } else if (q.includes('rust') || q.includes('c') || q.includes('go') || q.includes('kernel') || q.includes('system')) {
+      response = "Systems languages are the ultimate career leverage. Spend time reading the source code of projects like Envoy, containerd, or etcd. That is where real engineering mastery is born.";
+    } else if (q.includes('tutorial') || q.includes('project') || q.includes('clone') || q.includes('begin')) {
+      response = "Tutorial hell is the single biggest blocker for developer growth. Stop building clones. Fork containerd, write a custom plugin, trace the system calls—that is how you stand out from the 99%.";
+    }
+
+    const { data: { user } } = await supabase.auth.getUser();
+    await supabase.from('founder_queries').insert({
+      user_id: user?.id || 'anonymous-user',
+      query: question,
+      response: response
+    });
+
+    setFounderResponse(response);
+    setQuestion('');
+    setIsQuerying(false);
+  };
+
   return (
-    <main className="min-h-screen bg-background relative overflow-hidden">
-      {/* Mesh Background */}
+    <main className="min-h-screen bg-[#030305] text-[#f8fafc] relative overflow-hidden font-sans">
+      {/* High-Fi Ambient Lights */}
       <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
-        <div className="absolute top-[10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 blur-[180px] rounded-full animate-mesh-gradient" />
-        <div className="absolute bottom-[20%] right-[-5%] w-[40%] h-[40%] bg-blue-500/10 blur-[150px] rounded-full animate-mesh-gradient [animation-delay:4s]" />
+        <div className="absolute top-[10%] left-[-10%] w-[50%] h-[50%] bg-[#00f0ff]/10 blur-[180px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[20%] right-[-5%] w-[40%] h-[40%] bg-[#7000ff]/10 blur-[150px] rounded-full animate-pulse [animation-delay:4s]" />
       </div>
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-5xl mx-auto px-4 py-32"
+        className="relative z-10 max-w-5xl mx-auto px-6 py-32 space-y-32"
       >
-        <div className="mb-24">
-          <motion.span variants={itemVariants} className="text-primary font-black text-xs uppercase tracking-[0.4em] mb-4 block">The OpenVeda Collective</motion.span>
-          <motion.h1 variants={itemVariants} className="text-7xl md:text-9xl font-black tracking-tighter leading-none mb-12 italic">
-            Empower. <br />
-            <span className="text-foreground/20">Scale.</span> Impact.
+        {/* Hero directive header */}
+        <div className="mb-24 space-y-8">
+          <motion.span variants={itemVariants} className="text-[#00f0ff] font-black text-xs uppercase tracking-[0.4em] mb-4 block">
+            Founder's Corner
+          </motion.span>
+          <motion.h1 variants={itemVariants} className="text-7xl md:text-9xl font-black tracking-tighter leading-none italic text-white">
+            Stop Clones. <br />
+            <span className="text-foreground/20">Write Systems.</span>
           </motion.h1>
-          <motion.p variants={itemVariants} className="text-2xl text-muted-foreground font-medium max-w-3xl italic leading-relaxed">
-            "We are a collective of open-source veterans and industry engineers dedicated to bridging the gap between academic learning and real-world production impact."
+          <motion.p variants={itemVariants} className="text-2xl text-gray-400 font-medium max-w-3xl italic leading-relaxed">
+            "Tutorials are a comfortable trap. The elite 1% of engineers aren't built by watching videos—they are forged in the trenches of real, production-scale codebases."
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-          <motion.div variants={itemVariants} className="space-y-8">
-            <h2 className="text-4xl font-black tracking-tight underline decoration-primary decoration-4 underline-offset-8">Our Vision</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed font-medium">
-              OpenVeda was founded on a simple insight: Indian developers are brilliant, but they are often stuck in a cycle of surface-level tutorials. Our vision is to transform the ecosystem by providing the same tools, playbooks, and mentorship used by the top 1% of contributors at Google, Red Hat, and the Linux Foundation.
+        {/* The Directive Editorial Note */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h2 className="text-4xl font-black tracking-tight text-white underline decoration-[#00f0ff] decoration-4 underline-offset-8">
+              The Manifesto
+            </h2>
+            <p className="text-lg text-gray-400 leading-relaxed font-medium">
+              OpenVeda was founded on a simple, uncompromising directive: Indian developers are brilliant, but they are often trapped in surface-level tutorial cycles. They build clones of clones, hoping to stand out. 
+            </p>
+            <p className="text-lg text-gray-400 leading-relaxed font-medium">
+              We are tearing down that paradigm. By mapping out active playbooks for GSoC 2027, LFX, and Outreachy, we show you exactly how to read massive source codebases, find real issues, and submit merged patches to Linux, Kubernetes, Next.js, and other infrastructure stacks.
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="space-y-8">
-            <h2 className="text-4xl font-black tracking-tight underline decoration-primary decoration-4 underline-offset-8">The Strategy</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed font-medium">
-              We focus on deep-tech contributions. Whether it's the Chromium engine, Linux Kernel, or Next.js core—we believe that getting your code into production-grade infrastructure is the ultimate career accelerator.
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h2 className="text-4xl font-black tracking-tight text-white underline decoration-[#7000ff] decoration-4 underline-offset-8">
+              The Engineering Creed
+            </h2>
+            <p className="text-lg text-gray-400 leading-relaxed font-medium">
+              In this ecosystem, we measure readiness by actual compiler errors resolved, memory layouts optimized, and pull requests merged.
+            </p>
+            <p className="text-lg text-gray-400 leading-relaxed font-medium">
+              Whether you are preparing for GSoC 2027, striving for fellowships, or looking to scale engineering products at world-class levels, the directive is simple: Read code. Fork. Merge. Repeat.
             </p>
           </motion.div>
         </div>
 
-        <motion.div variants={itemVariants} className="mt-32 p-16 glass rounded-[4rem] border-primary/20 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
-            <h2 className="text-5xl font-black tracking-tighter mb-8 leading-none italic">Join the Collective.</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mb-12 font-medium leading-relaxed">
-              We aren't defined by names or identities. We are defined by the pull requests we merge and the systems we scale.
-            </p>
-            <div className="flex flex-wrap gap-8">
-                <Link href="/organizations" className="bg-foreground text-background font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Explore Projects</Link>
-                <Link href="/mentorship" className="bg-muted border border-border text-foreground font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-foreground hover:text-background transition-all">Meet the Mentors</Link>
+        {/* Ask the Founder Interactive AI Sandbox */}
+        <motion.div 
+          variants={itemVariants}
+          className="p-12 md:p-16 glass rounded-[4rem] border-white/10 relative overflow-hidden group shadow-2xl"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#00f0ff]/5 blur-[100px] pointer-events-none" />
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="flex flex-col items-center sm:items-start gap-4">
+              <h2 className="text-4xl font-black tracking-tight text-white leading-none">
+                Interactive <span className="italic text-[#00f0ff]">Manifesto Sandbox</span>
+              </h2>
+              <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                Submit your query directly to the Founder's neural index to calculate systems guidelines and strategic pointers.
+              </p>
             </div>
+
+            <form onSubmit={handleAskFounder} className="flex flex-col sm:flex-row gap-4 items-center">
+              <input
+                type="text"
+                required
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="Ask about GSoC 2027 strategy, systems stacks, or escaping tutorial hell..."
+                className="flex-1 w-full bg-white/[0.03] border border-white/15 px-8 py-5 rounded-3xl font-bold text-base focus:outline-none focus:ring-2 focus:ring-[#00f0ff]/30 transition-all placeholder:text-gray-700"
+              />
+              <button
+                type="submit"
+                disabled={isQuerying}
+                className="w-full sm:w-auto bg-[#00f0ff] text-black font-black px-12 py-5 rounded-3xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)] disabled:opacity-50"
+              >
+                {isQuerying ? 'Querying Index...' : 'Query Founder'}
+              </button>
+            </form>
+
+            <AnimatePresence mode="wait">
+              {isQuerying && (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center justify-center gap-3 py-6"
+                >
+                  <div className="w-5 h-5 border-t-2 border-[#00f0ff] rounded-full animate-spin" />
+                  <span className="text-[10px] font-mono text-[#00f0ff] tracking-widest uppercase">Consulting founder's directive logs...</span>
+                </motion.div>
+              )}
+
+              {founderResponse && !isQuerying && (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  className="p-8 bg-[#00f0ff]/5 border border-[#00f0ff]/20 rounded-[2.5rem] relative overflow-hidden"
+                >
+                  <span className="text-[9px] font-black uppercase tracking-widest text-[#00f0ff] block mb-2">Neural Directive Response</span>
+                  <p className="text-lg md:text-xl font-bold italic leading-relaxed text-gray-200">
+                    "{founderResponse}"
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Previous Queries Log */}
+            {previousQueries.length > 0 && (
+              <div className="pt-10 border-t border-white/5 space-y-6">
+                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-gray-500 italic">Directive ledger logs</h3>
+                <div className="max-h-[250px] overflow-y-auto pr-4 space-y-4 scrollbar-hide">
+                  {previousQueries.map((item) => (
+                    <div key={item.id} className="p-5 bg-white/[0.01] border border-white/5 rounded-2xl space-y-2">
+                      <div className="flex justify-between items-center text-[8px] font-mono text-gray-600">
+                        <span>QUERY SYNC</span>
+                        <span>{new Date(item.created_at).toLocaleString()}</span>
+                      </div>
+                      <p className="text-xs font-black text-white">Q: {item.query}</p>
+                      <p className="text-xs font-medium text-gray-400 italic">Founder: "{item.response}"</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
+
+        {/* Call to Action Card */}
+        <motion.div 
+          variants={itemVariants} 
+          className="p-16 glass rounded-[4rem] border-primary/20 relative overflow-hidden group text-center"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+          <h2 className="text-5xl font-black tracking-tighter mb-8 leading-none italic">Escaped the Sandbox. Join the Collective.</h2>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+            We are defined solely by our pull requests and sandbox systems.
+          </p>
+          <div className="flex flex-wrap gap-6 justify-center">
+            <Link href="/organizations" className="bg-foreground text-background font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">Explore Playbooks</Link>
+            <Link href="/journey" className="bg-muted border border-border text-foreground font-black px-12 py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-foreground hover:text-background transition-all">Track Your Milestones</Link>
+          </div>
         </motion.div>
       </motion.div>
     </main>

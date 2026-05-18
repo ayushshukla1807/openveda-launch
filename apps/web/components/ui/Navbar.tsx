@@ -79,14 +79,19 @@ export default function Navbar() {
             </span>
           </Link>
           <div className="hidden md:flex items-center space-x-1">
-            {['Organizations', 'Programs', 'Mentorship', 'Curriculum'].map((item) => (
+            {[
+              { name: 'Organizations', href: '/organizations' },
+              { name: 'Roadmap', href: '/journey' },
+              { name: 'Syllabus', href: '/curriculum' },
+              { name: 'Mentorship', href: '/mentorship' }
+            ].map((item) => (
               <Link
-                key={item}
-                href={`/${item.toLowerCase()}`}
+                key={item.name}
+                href={item.href}
                 className="text-muted-foreground hover:text-foreground hover:bg-accent/50 px-5 py-2.5 rounded-2xl transition-all text-sm font-medium"
-                aria-label={`Go to ${item} page`}
+                aria-label={`Go to ${item.name} page`}
               >
-                {item}
+                {item.name}
               </Link>
             ))}
           </div>

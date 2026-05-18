@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
 import OrgCard from '@/components/ui/OrgCard';
 import { motion } from 'framer-motion';
-import { FixedSizeList as List } from 'react-window';
 import gsocOrgsRaw from '../../../../gsoc_2026_orgs.json';
 
 const supabase = createBrowserSupabaseClient();
@@ -108,38 +107,7 @@ const parsedGsocOrgs = gsocOrgsRaw.map((org: any) => ({
 // Master Seed List combining all sources
 const MASTER_ORGS_LIST = [...staticProgramsOrgs, ...parsedGsocOrgs];
 
-// High-performance virtualized grid for 200+ orgs
-function VirtualizedOrgGrid({ orgs }: { orgs: any[] }) {
-  const columnCount = 3; // Standard for desktop
-  const rowCount = Math.ceil(orgs.length / columnCount);
 
-  const Row = ({ index, style }: any) => {
-    const startIndex = index * columnCount;
-    const rowOrgs = orgs.slice(startIndex, startIndex + columnCount);
-
-    return (
-      <div style={style} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
-        {rowOrgs.map((org) => (
-          <div key={org.slug} className="h-full">
-            <OrgCard {...org} />
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  return (
-    <List
-      height={900}
-      itemCount={rowCount}
-      itemSize={480} // Approx size of OrgCard + gap
-      width="100%"
-      className="scrollbar-hide"
-    >
-      {Row}
-    </List>
-  );
-}
 
 function OrgsContent() {
   const searchParams = useSearchParams();
@@ -263,9 +231,15 @@ function OrgsContent() {
           ))}
         </div>
       ) : (
-        <div className="h-[900px] w-full mt-10">
+        <div className="mt-10">
           {filteredOrgs.length > 0 ? (
-            <VirtualizedOrgGrid orgs={filteredOrgs} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {filteredOrgs.map((org) => (
+                <div key={org.slug} className="h-full">
+                  <OrgCard {...org} />
+                </div>
+              ))}
+            </div>
           ) : null}
         </div>
       )}

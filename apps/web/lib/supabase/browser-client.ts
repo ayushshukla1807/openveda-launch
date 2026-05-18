@@ -179,9 +179,71 @@ class QueryBuilder {
       } 
       
       else if (this.table === 'user_progress') {
-        const progressCookie = document.cookie.split('; ').find(row => row.startsWith('openveda_progress='));
-        const completed = progressCookie ? JSON.parse(decodeURIComponent(progressCookie.split('=')[1])) : [];
-        data = { completed_steps: completed };
+        if (this.operation === 'upsert' || this.operation === 'insert') {
+          const completed = this.payload.completed_steps || [];
+          document.cookie = `openveda_progress=${encodeURIComponent(JSON.stringify(completed))}; path=/; max-age=31536000; SameSite=Lax`;
+          localStorage.setItem('openveda_progress', JSON.stringify(completed));
+          data = { completed_steps: completed };
+        } else {
+          const progressCookie = document.cookie.split('; ').find(row => row.startsWith('openveda_progress='));
+          let completed = [];
+          if (progressCookie) {
+            completed = JSON.parse(decodeURIComponent(progressCookie.split('=')[1]));
+          } else {
+            const local = localStorage.getItem('openveda_progress');
+            if (local) completed = JSON.parse(local);
+          }
+          data = { completed_steps: completed };
+        }
+      }
+      
+      else if (this.table === 'mentor_bookings') {
+        const stored = localStorage.getItem('openveda_bookings') || '[]';
+        let bookings = JSON.parse(stored);
+        if (this.operation === 'select') {
+          const userFilter = this.filters.find(f => f.field === 'user_id');
+          if (userFilter) {
+            bookings = bookings.filter((b: any) => b.user_id === userFilter.val);
+          }
+          data = bookings;
+        } else if (this.operation === 'insert') {
+          const newBooking = {
+            id: 'booking-uuid-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+            created_at: new Date().toISOString(),
+            ...this.payload
+          };
+          bookings.push(newBooking);
+          localStorage.setItem('openveda_bookings', JSON.stringify(bookings));
+          
+          // Also append to the activity logs in localStorage so it appears in the dashboard logs!
+          const logsStr = localStorage.getItem('openveda_logs') || '[]';
+          const logs = JSON.parse(logsStr);
+          logs.unshift({
+            id: 'log-uuid-' + Date.now(),
+            text: `Booked Mentor Session: ${this.payload.mentor_name} at ${this.payload.slot}`,
+            type: 'progress',
+            created_at: new Date().toISOString()
+          });
+          localStorage.setItem('openveda_logs', JSON.stringify(logs.slice(0, 10)));
+          
+        }
+      }
+      
+      else if (this.table === 'founder_queries') {
+        const stored = localStorage.getItem('openveda_founder_queries') || '[]';
+        let queries = JSON.parse(stored);
+        if (this.operation === 'select') {
+          data = queries;
+        } else if (this.operation === 'insert') {
+          const newQuery = {
+            id: 'query-uuid-' + Date.now(),
+            created_at: new Date().toISOString(),
+            ...this.payload
+          };
+          queries.push(newQuery);
+          localStorage.setItem('openveda_founder_queries', JSON.stringify(queries));
+          data = [newQuery];
+        }
       }
     } catch (err: any) {
       error = err;
