@@ -10,7 +10,8 @@ import ReadinessBadge from '@/components/ui/ReadinessBadge';
 import ProjectShowcase from '@/components/ui/ProjectShowcase';
 import { 
   Plus, Search, Edit3, Trash2, Download, CheckCircle, X, Send, 
-  MessageSquare, Star, ArrowUpRight, Activity, BookOpen, Clock
+  MessageSquare, Star, ArrowUpRight, Activity, BookOpen, Clock,
+  Sparkles, ShieldCheck, MapPin, Cpu, BarChart2, DollarSign
 } from 'lucide-react';
 
 const supabase = createBrowserSupabaseClient();
@@ -76,6 +77,32 @@ export default function DashboardPage() {
   const [journeyProgress, setJourneyProgress] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  // Active Tab Manager
+  const [activeTab, setActiveTab] = useState<'milestones' | 'systemsLab'>('milestones');
+
+  // 1. Blinkit / Zepto Proximity Router
+  const [routingHub, setRoutingHub] = useState('Delhi-NCR');
+  const [orderDensity, setOrderDensity] = useState(100);
+  const [routingState, setRoutingState] = useState<'idle' | 'computing' | 'done'>('idle');
+  const [routingLog, setRoutingLog] = useState<string[]>([]);
+  const [routingAdherence, setRoutingAdherence] = useState(0);
+
+  // 2. InShorts AI Filter
+  const [recommenderQuery, setRecommenderQuery] = useState('systems, rust');
+  const [recommenderState, setRecommenderState] = useState<'idle' | 'filtering' | 'done'>('idle');
+  const [recommendedFeed, setRecommendedFeed] = useState<any[]>([]);
+
+  // 3. eBay Bid Mutex
+  const [auctionBid, setAuctionBid] = useState(1420);
+  const [userBidValue, setUserBidValue] = useState('');
+  const [auctionLogs, setAuctionLogs] = useState<string[]>([
+    "[SYSTEM INITIALIZED] Concurrent bidders listening on port 8081",
+    "[LISTENER] thread-04 connected. Initial bid registered at $1,400"
+  ]);
+
+  // 4. Spark Telemetry
+  const [cpuPulse, setCpuPulse] = useState<number[]>([42, 45, 48, 52, 58, 62, 55, 52, 48, 51]);
+
   // Search, Filter, Sort States for Proposals
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -97,6 +124,14 @@ export default function DashboardPage() {
       setToasts(prev => prev.filter(t => t.id !== id));
     }, 4000);
   };
+
+  // Chatbot Drawer State
+  const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<any[]>([
+    { sender: 'ai', text: "Welcome to OpenVeda Command AI. Ask me about your target programs (GSoC 2027, LFX), playbook architectures, or how to submit your first proactive PR!" }
+  ]);
+  const [chatInput, setChatInput] = useState('');
+  const [chatLoading, setChatLoading] = useState(false);
 
   // Activity Log State
   const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
@@ -147,14 +182,6 @@ export default function DashboardPage() {
       console.error("Error adding log", e);
     }
   };
-
-  // Chatbot Drawer State
-  const [chatbotOpen, setChatbotOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState<any[]>([
-    { sender: 'ai', text: "Welcome to OpenVeda Command AI. Ask me about your target programs (GSoC 2027, LFX), playbook architectures, or how to submit your first proactive PR!" }
-  ]);
-  const [chatInput, setChatInput] = useState('');
-  const [chatLoading, setChatLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -219,6 +246,103 @@ export default function DashboardPage() {
     }
     fetchData();
   }, [router]);
+
+  // Real-time Spark pulses simulated
+  useEffect(() => {
+    if (activeTab !== 'systemsLab') return;
+    const interval = setInterval(() => {
+      setCpuPulse(prev => {
+        const nextVal = Math.min(100, Math.max(10, prev[prev.length - 1] + (Math.random() > 0.5 ? 8 : -8)));
+        return [...prev.slice(1), Math.round(nextVal)];
+      });
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [activeTab]);
+
+  // 1. Dijkstra Solver execution
+  const runDijkstraRouter = async () => {
+    setRoutingState('computing');
+    setRoutingLog([]);
+    const logs = [
+      `[Dijkstra] Initializing routing graph for hub: ${routingHub}`,
+      `[Spatial Index] Loading ${orderDensity} proximity nodes...`,
+      `[priority-queue] Selecting optimal partition weights...`,
+      `[Graph Traverse] Scanning delivery coordinates...`,
+      `[SUCCESS] Path computed in 842ms.`
+    ];
+
+    for (let i = 0; i < logs.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, 400));
+      setRoutingLog(prev => [...prev, logs[i]]);
+    }
+
+    setRoutingAdherence(Math.round(92 + Math.random() * 7));
+    setRoutingState('done');
+    addActivityLog(`Simulated Last-Mile Router calculation at ${routingHub}`, "progress");
+  };
+
+  // 2. Collaborative Filtering Engine
+  const runCollaborativeFiltering = async () => {
+    setRecommenderState('filtering');
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    const lowercase = recommenderQuery.toLowerCase();
+    let feeds = [
+      { title: "Distributed Consensus & Raft Log compaction", tags: "systems, go", match: 98.4 },
+      { title: "Building swc_core Rust AST transformer plugins", tags: "rust, compiler", match: 94.2 },
+      { title: "Linux socket flow monitoring via eBPF probes", tags: "c, kernel", match: 89.1 }
+    ];
+
+    if (lowercase.includes("python") || lowercase.includes("ml") || lowercase.includes("ai")) {
+      feeds = [
+        { title: "Vector embeddings Cosine similarity math models", tags: "math, ai", match: 99.1 },
+        { title: "Spark streaming telemetry logs monitoring", tags: "spark, telemetry", match: 92.5 },
+        { title: "Collab filtering models on InShorts pipelines", tags: "python, databases", match: 88.7 }
+      ];
+    } else if (lowercase.includes("react") || lowercase.includes("ui") || lowercase.includes("frontend")) {
+      feeds = [
+        { title: "Next.js RSC Hydration & Rehydration Engine", tags: "react, ui", match: 97.8 },
+        { title: "WebAssembly bundler transforms speed metrics", tags: "javascript, wasm", match: 91.2 },
+        { title: "Responsive bento UI grids for analytics portals", tags: "ui/ux, css", match: 86.4 }
+      ];
+    }
+
+    setRecommendedFeed(feeds);
+    setRecommenderState('done');
+    addActivityLog(`Ran AI InShorts collaborative filter calculations`, "progress");
+  };
+
+  // 3. eBay Concurrency Bid Mutex
+  const handlePlaceAuctionBid = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const bidVal = parseFloat(userBidValue);
+    if (isNaN(bidVal) || bidVal <= auctionBid) {
+      showToast("Bid must be strictly higher than current price", "error");
+      return;
+    }
+
+    setUserBidValue('');
+    setAuctionBid(bidVal);
+    
+    // Log User Transaction
+    setAuctionLogs(prev => [
+      `[MUTEX LOCKED] Connection thread secured database write-lock`,
+      `[TX COMPLETED] Ayush bid accepted: $${bidVal}`,
+      `[MUTEX RELEASED] Database lock successfully freed. Index synced.`,
+      ...prev
+    ]);
+    addActivityLog(`Submitted concurrent eBay bid of $${bidVal}`, "crud");
+
+    // Simulate concurrent outbid from mock threads after 1.5s
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    const counterBid = bidVal + 50;
+    setAuctionBid(counterBid);
+    setAuctionLogs(prev => [
+      `[CONCURRENCY MATCH] Thread-11 bid intercepted`,
+      `[TX COMPLETED] Thread-11 placed concurrent bid: $${counterBid}`,
+      ...prev
+    ]);
+  };
 
   // Dynamic Toggle for Roadmap Checklist
   const handleToggleStep = async (stepId: string, stepTitle: string) => {
@@ -385,7 +509,7 @@ export default function DashboardPage() {
     }
   };
 
-  // Handle AI Chatbot Submission with Fallback
+  // Handle AI Chatbot Submission
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!chatInput.trim()) return;
@@ -396,7 +520,6 @@ export default function DashboardPage() {
     setChatLoading(true);
 
     try {
-      // Simulate network request delay for premium feel
       await new Promise(resolve => setTimeout(resolve, 800));
 
       const lower = userMessage.toLowerCase();
@@ -523,209 +646,456 @@ export default function DashboardPage() {
           {/* Main Dashboard Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
-            {/* Left Columns - Proposals & Stars */}
+            {/* Left Columns - Tab Switcher */}
             <div className="lg:col-span-2 space-y-16">
               
-              {/* Proposals Section (CRUD) */}
-              <motion.div variants={itemVariants} className="space-y-10">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="space-y-1">
-                    <h2 className="text-4xl font-black tracking-tight">Technical <span className="text-muted-foreground">Proposals</span></h2>
-                    <p className="text-sm text-muted-foreground">Secure database records. Create, update, or export draft blueprints.</p>
-                  </div>
-                  <button 
-                    onClick={() => {
-                      setActiveProposal({ title: '', org_id: '', content_markdown: '', status: 'draft' });
-                      setFormError('');
-                      setIsModalOpen(true);
-                    }}
-                    className="bg-primary text-primary-foreground font-black px-6 py-4 rounded-xl text-[10px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 self-start sm:self-auto"
-                  >
-                    <Plus className="w-4 h-4" />
-                    <span>Create Draft</span>
-                  </button>
-                </div>
+              {/* Systems Lab Tab Switcher */}
+              <div className="flex gap-6 border-b border-border/40 pb-4">
+                <button
+                  onClick={() => setActiveTab('milestones')}
+                  className={`pb-2 text-xs font-black uppercase tracking-widest transition-all relative ${
+                    activeTab === 'milestones'
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  Milestones & Proposals
+                </button>
+                <button
+                  onClick={() => setActiveTab('systemsLab')}
+                  className={`pb-2 text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 relative ${
+                    activeTab === 'systemsLab'
+                      ? 'text-[#00f0ff] border-b-2 border-[#00f0ff]'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#00f0ff] animate-pulse" />
+                  <span>Systems Lab (Newton Showcase)</span>
+                </button>
+              </div>
 
-                {/* Search & Status Filters */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="relative flex-1">
-                    <input
-                      type="text"
-                      placeholder="Search proposal or org..."
-                      value={searchQuery}
-                      onChange={e => setSearchQuery(e.target.value)}
-                      className="w-full bg-muted/30 glass px-6 py-4 rounded-xl text-xs text-foreground placeholder-muted-foreground focus:ring-1 focus:ring-primary outline-none border-border"
-                    />
-                    <Search className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  </div>
-                  <select
-                    value={statusFilter}
-                    onChange={e => setStatusFilter(e.target.value)}
-                    className="bg-muted/30 glass px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest text-foreground outline-none cursor-pointer border-border min-w-[160px]"
+              <AnimatePresence mode="wait">
+                {activeTab === 'milestones' ? (
+                  <motion.div
+                    key="milestones"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    className="space-y-16"
                   >
-                    <option value="all">All Drafts</option>
-                    <option value="draft">Drafting</option>
-                    <option value="submitted">Submitted</option>
-                    <option value="approved">Approved</option>
-                  </select>
-                </div>
-
-                {/* Proposals Interactive List */}
-                {filteredProposals.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <AnimatePresence mode="popLayout">
-                      {filteredProposals.map((proposal) => (
-                        <motion.div 
-                          key={proposal.id} 
-                          layout
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          className="p-8 glass rounded-[2.5rem] border-border hover:border-primary/30 transition-all flex flex-col justify-between group relative overflow-hidden"
+                    {/* Proposals Section (CRUD) */}
+                    <div className="space-y-10">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="space-y-1">
+                          <h2 className="text-4xl font-black tracking-tight">Technical <span className="text-muted-foreground">Proposals</span></h2>
+                          <p className="text-sm text-muted-foreground">Secure database records. Create, update, or export draft blueprints.</p>
+                        </div>
+                        <button 
+                          onClick={() => {
+                            setActiveProposal({ title: '', org_id: '', content_markdown: '', status: 'draft' });
+                            setFormError('');
+                            setIsModalOpen(true);
+                          }}
+                          className="bg-primary text-primary-foreground font-black px-6 py-4 rounded-xl text-[10px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 self-start sm:self-auto"
                         >
-                          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
-                          <div>
-                            <div className="flex items-center justify-between mb-6">
-                              <span className="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-lg">
-                                {proposal.organizations?.name || 'GSoC Blueprint'}
-                              </span>
-                              <span className={`text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md border ${
-                                proposal.status === 'approved' ? 'text-green-400 border-green-500/20 bg-green-500/5' :
-                                proposal.status === 'submitted' ? 'text-blue-400 border-blue-500/20 bg-blue-500/5' :
-                                'text-amber-500 border-amber-500/20 bg-amber-500/5'
-                              }`}>
-                                {proposal.status}
-                              </span>
-                            </div>
-                            <h3 className="text-xl font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{proposal.title}</h3>
-                            <p className="text-[10px] text-muted-foreground font-mono mb-8">
-                              Last sync: {new Date(proposal.updated_at).toLocaleString()}
-                            </p>
-                          </div>
-                          <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-auto">
-                            <button 
-                              onClick={() => {
-                                const blob = new Blob([proposal.content_markdown], { type: 'text/markdown' });
-                                const url = URL.createObjectURL(blob);
-                                const a = document.createElement('a');
-                                a.href = url;
-                                a.download = `OpenVeda_${proposal.title.replace(/\s+/g, '_')}.md`;
-                                a.click();
-                                showToast("Markdown report generated!");
-                                addActivityLog(`Exported proposal: ${proposal.title}`, "crud");
-                              }}
-                              className="text-[9px] font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+                          <Plus className="w-4 h-4" />
+                          <span>Create Draft</span>
+                        </button>
+                      </div>
+
+                      {/* Search & Status Filters */}
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="relative flex-1">
+                          <input
+                            type="text"
+                            placeholder="Search proposal or org..."
+                            value={searchQuery}
+                            onChange={e => setSearchQuery(e.target.value)}
+                            className="w-full bg-muted/30 glass px-6 py-4 rounded-xl text-xs text-foreground placeholder-muted-foreground focus:ring-1 focus:ring-primary outline-none border-border"
+                          />
+                          <Search className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        </div>
+                        <select
+                          value={statusFilter}
+                          onChange={e => setStatusFilter(e.target.value)}
+                          className="bg-muted/30 glass px-6 py-4 rounded-xl text-xs font-black uppercase tracking-widest text-foreground outline-none cursor-pointer border-border min-w-[160px]"
+                        >
+                          <option value="all">All Drafts</option>
+                          <option value="draft">Drafting</option>
+                          <option value="submitted">Submitted</option>
+                          <option value="approved">Approved</option>
+                        </select>
+                      </div>
+
+                      {/* Proposals Interactive List */}
+                      {filteredProposals.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          {filteredProposals.map((proposal) => (
+                            <div 
+                              key={proposal.id} 
+                              className="p-8 glass rounded-[2.5rem] border-border hover:border-primary/30 transition-all flex flex-col justify-between group relative overflow-hidden"
                             >
-                              <Download className="w-3.5 h-3.5" />
-                              <span>Export</span>
-                            </button>
-                            <div className="flex items-center gap-3">
-                              <button 
-                                onClick={() => handleEditProposal(proposal)}
-                                className="p-2 hover:bg-muted rounded-lg transition-all text-muted-foreground hover:text-primary"
-                                title="Edit Blueprint"
-                              >
-                                <Edit3 className="w-3.5 h-3.5" />
-                              </button>
-                              <button 
-                                onClick={() => handleDeleteProposalClick(proposal.id)}
-                                className="p-2 hover:bg-red-500/10 rounded-lg transition-all text-muted-foreground hover:text-red-500"
-                                title="Delete Blueprint"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <div className="p-16 glass rounded-[3rem] border-dashed border-border border-2 text-center">
-                    <BookOpen className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
-                    <p className="text-muted-foreground font-bold italic">No proposals match current filters. Generate or edit a proposal draft to get started.</p>
-                  </div>
-                )}
-              </motion.div>
-
-              {/* Starred Organizations Bookmark List */}
-              <motion.div variants={itemVariants} className="space-y-10">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-4xl font-black tracking-tight">Locked <span className="text-muted-foreground">Targets</span></h2>
-                    <p className="text-sm text-muted-foreground">Bookmarked organizations sync state. Click to enter playbooks.</p>
-                  </div>
-                  <Link href="/organizations" className="text-muted-foreground hover:text-primary transition-colors text-[10px] font-black uppercase tracking-widest">
-                    Manage Starred
-                  </Link>
-                </div>
-                
-                {starredOrgs.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <AnimatePresence>
-                      {starredOrgs.map((org: any) => (
-                        <motion.div 
-                          key={org.slug} 
-                          layout
-                          exit={{ opacity: 0, scale: 0.9 }}
-                          className="glass rounded-[2.5rem] p-8 border border-border relative overflow-hidden group hover:border-primary/30 transition-all flex flex-col justify-between"
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <div className="flex items-start gap-4 justify-between mb-6">
-                            <div className="flex items-center gap-4">
-                              <div className="relative h-12 w-12 shrink-0 bg-muted rounded-xl border border-border flex items-center justify-center p-2">
-                                {org.logo_url ? (
-                                  <Image src={org.logo_url} alt={`${org.name}`} fill className="rounded-lg object-contain p-1" />
-                                ) : (
-                                  <span className="text-lg font-black text-muted-foreground">{org.name.charAt(0)}</span>
-                                )}
-                              </div>
+                              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
                               <div>
-                                <h3 className="text-lg font-black text-foreground group-hover:text-primary transition-colors leading-tight line-clamp-1">{org.name}</h3>
-                                <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest mt-1">{org.program || 'GSoC 2027'}</p>
+                                <div className="flex items-center justify-between mb-6">
+                                  <span className="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-lg">
+                                    {proposal.organizations?.name || 'GSoC Blueprint'}
+                                  </span>
+                                  <span className={`text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md border ${
+                                    proposal.status === 'approved' ? 'text-green-400 border-green-500/20 bg-green-500/5' :
+                                    proposal.status === 'submitted' ? 'text-blue-400 border-blue-500/20 bg-blue-500/5' :
+                                    'text-amber-500 border-amber-500/20 bg-amber-500/5'
+                                  }`}>
+                                    {proposal.status}
+                                  </span>
+                                </div>
+                                <h3 className="text-xl font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{proposal.title}</h3>
+                                <p className="text-[10px] text-muted-foreground font-mono mb-8">
+                                  Last sync: {new Date(proposal.updated_at).toLocaleString()}
+                                </p>
+                              </div>
+                              <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-auto">
+                                <button 
+                                  onClick={() => {
+                                    const blob = new Blob([proposal.content_markdown], { type: 'text/markdown' });
+                                    const url = URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.href = url;
+                                    a.download = `OpenVeda_${proposal.title.replace(/\s+/g, '_')}.md`;
+                                    a.click();
+                                    showToast("Markdown report generated!");
+                                    addActivityLog(`Exported proposal: ${proposal.title}`, "crud");
+                                  }}
+                                  className="text-[9px] font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+                                >
+                                  <Download className="w-3.5 h-3.5" />
+                                  <span>Export</span>
+                                </button>
+                                <div className="flex items-center gap-3">
+                                  <button 
+                                    onClick={() => handleEditProposal(proposal)}
+                                    className="p-2 hover:bg-muted rounded-lg transition-all text-muted-foreground hover:text-primary"
+                                    title="Edit Blueprint"
+                                  >
+                                    <Edit3 className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button 
+                                    onClick={() => handleDeleteProposalClick(proposal.id)}
+                                    className="p-2 hover:bg-red-500/10 rounded-lg transition-all text-muted-foreground hover:text-red-500"
+                                    title="Delete Blueprint"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                            <button
-                              onClick={(e) => handleUnstarOrg(org.id, org.name, e)}
-                              className="p-2 bg-muted hover:bg-red-500/10 hover:text-red-500 rounded-lg transition-all"
-                              title="Unstar Organization"
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-16 glass rounded-[3rem] border-dashed border-border border-2 text-center">
+                          <BookOpen className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                          <p className="text-muted-foreground font-bold italic">No proposals match current filters. Generate or edit a proposal draft to get started.</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Starred Organizations */}
+                    <div className="space-y-10">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h2 className="text-4xl font-black tracking-tight">Locked <span className="text-muted-foreground">Targets</span></h2>
+                          <p className="text-sm text-muted-foreground">Bookmarked organizations sync state. Click to enter playbooks.</p>
+                        </div>
+                        <Link href="/organizations" className="text-muted-foreground hover:text-primary transition-colors text-[10px] font-black uppercase tracking-widest">
+                          Manage Starred
+                        </Link>
+                      </div>
+                      
+                      {starredOrgs.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                          {starredOrgs.map((org: any) => (
+                            <div 
+                              key={org.slug} 
+                              className="glass rounded-[2.5rem] p-8 border border-border relative overflow-hidden group hover:border-primary/30 transition-all flex flex-col justify-between"
                             >
-                              <Star className="w-3.5 h-3.5 fill-primary text-primary hover:fill-none hover:text-red-500 transition-all" />
-                            </button>
+                              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="flex items-start gap-4 justify-between mb-6">
+                                <div className="flex items-center gap-4">
+                                  <div className="relative h-12 w-12 shrink-0 bg-muted rounded-xl border border-border flex items-center justify-center p-2">
+                                    {org.logo_url ? (
+                                      <Image src={org.logo_url} alt={`${org.name}`} fill className="rounded-lg object-contain p-1" />
+                                    ) : (
+                                      <span className="text-lg font-black text-muted-foreground">{org.name.charAt(0)}</span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    <h3 className="text-lg font-black text-foreground group-hover:text-primary transition-colors leading-tight line-clamp-1">{org.name}</h3>
+                                    <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest mt-1">{org.program || 'GSoC 2027'}</p>
+                                  </div>
+                                </div>
+                                <button
+                                  onClick={(e) => handleUnstarOrg(org.id, org.name, e)}
+                                  className="p-2 bg-muted hover:bg-red-500/10 hover:text-red-500 rounded-lg transition-all"
+                                  title="Unstar Organization"
+                                >
+                                  <Star className="w-3.5 h-3.5 fill-primary text-primary hover:fill-none hover:text-red-500 transition-all" />
+                                </button>
+                              </div>
+                              
+                              <div className="flex flex-wrap gap-1.5 mb-6">
+                                {org.tech_stack?.slice(0, 3).map((tech: string) => (
+                                  <span key={tech} className="bg-muted/50 border border-border text-muted-foreground text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md">
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+
+                              <Link 
+                                href={`/playbook/${org.slug}`}
+                                className="w-full bg-muted border border-border group-hover:bg-primary group-hover:text-primary-foreground font-black py-3.5 rounded-xl text-[9px] uppercase tracking-widest hover:scale-[1.02] transition-all text-center flex items-center justify-center gap-1.5"
+                              >
+                                <span>Open Playbook</span>
+                                <ArrowUpRight className="w-3.5 h-3.5" />
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="glass rounded-[3rem] p-16 text-center border-dashed border-border border-2">
+                          <span className="text-5xl mb-6 block grayscale opacity-30">🔭</span>
+                          <h3 className="text-xl font-black text-foreground mb-2 italic">Target grid offline</h3>
+                          <p className="text-muted-foreground text-xs font-medium max-w-xs mx-auto mb-8 leading-relaxed">
+                             Star a target organization on the discovery page to dynamically analyze active playbooks.
+                          </p>
+                          <Link href="/organizations" className="bg-foreground text-background font-black px-8 py-4 rounded-xl text-[10px] uppercase tracking-widest hover:scale-105 transition-all">
+                            Begin Exploration
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="systemsLab"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    {/* 1. Blinkit / Zepto Proximity Router Simulator */}
+                    <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-start">
+                          <span className="text-[8px] font-mono font-black text-[#00f0ff] uppercase tracking-widest bg-[#00f0ff]/10 px-3 py-1 rounded">
+                            Spatial routing • Go/C++
+                          </span>
+                          <span className="text-[7px] font-black text-gray-500 uppercase tracking-widest">NST Sem-3</span>
+                        </div>
+                        <h3 className="text-2xl font-black text-white italic">🚚 Last-Mile Router Simulator</h3>
+                        <p className="text-xs text-gray-400 leading-relaxed font-medium">
+                          Optimise Blinkit & Zepto delivery paths. This algorithm runs modified Dijkstra proximity matrices.
+                        </p>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-[8px] font-black text-gray-500 uppercase tracking-widest">Hub Center</label>
+                            <select
+                              value={routingHub}
+                              onChange={e => setRoutingHub(e.target.value)}
+                              className="w-full bg-black/40 border border-white/10 p-2 text-xs font-bold text-white rounded-lg outline-none"
+                            >
+                              <option value="Delhi-NCR">Delhi-NCR Hub</option>
+                              <option value="Bangalore-East">Bangalore East</option>
+                              <option value="Mumbai-South">Mumbai South</option>
+                            </select>
                           </div>
-                          
-                          <div className="flex flex-wrap gap-1.5 mb-6">
-                            {org.tech_stack?.slice(0, 3).map((tech: string) => (
-                              <span key={tech} className="bg-muted/50 border border-border text-muted-foreground text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md">
-                                {tech}
-                              </span>
+                          <div className="space-y-1">
+                            <label className="text-[8px] font-black text-gray-500 uppercase tracking-widest">Order Density</label>
+                            <input
+                              type="number"
+                              value={orderDensity}
+                              onChange={e => setOrderDensity(parseInt(e.target.value) || 10)}
+                              className="w-full bg-black/40 border border-white/10 p-2 text-xs font-bold text-white rounded-lg outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Interactive Console Output */}
+                        {routingLog.length > 0 && (
+                          <div className="font-mono text-[9px] bg-black/60 p-4 rounded-xl max-h-[120px] overflow-y-auto text-[#00f0ff] space-y-1 scrollbar-none">
+                            {routingLog.map((log, i) => (
+                              <div key={i}>{log}</div>
                             ))}
                           </div>
+                        )}
 
-                          <Link 
-                            href={`/playbook/${org.slug}`}
-                            className="w-full bg-muted border border-border group-hover:bg-primary group-hover:text-primary-foreground font-black py-3.5 rounded-xl text-[9px] uppercase tracking-widest hover:scale-[1.02] transition-all text-center flex items-center justify-center gap-1.5"
+                        {routingState === 'done' && (
+                          <div className="p-4 bg-[#00f0ff]/5 border border-[#00f0ff]/20 rounded-xl flex items-center justify-between text-xs font-bold text-gray-300">
+                            <span>SLA Adherence Ratio:</span>
+                            <span className="text-[#00f0ff] font-black">{routingAdherence}% (Optimal)</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={runDijkstraRouter}
+                        disabled={routingState === 'computing'}
+                        className="w-full bg-white text-black font-black py-4 rounded-xl text-[9px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all"
+                      >
+                        {routingState === 'computing' ? 'Running Dijkstra Queue...' : 'Optimize Spatial Route'}
+                      </button>
+                    </div>
+
+                    {/* 2. InShorts AI Filter Simulator */}
+                    <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-start">
+                          <span className="text-[8px] font-mono font-black text-purple-400 uppercase tracking-widest bg-purple-500/10 px-3 py-1 rounded">
+                            Collaborative Filtering • Python/ML
+                          </span>
+                          <span className="text-[7px] font-black text-gray-500 uppercase tracking-widest">NST Sem-4</span>
+                        </div>
+                        <h3 className="text-2xl font-black text-white italic">📰 Recommendation Vector Engine</h3>
+                        <p className="text-xs text-gray-400 leading-relaxed font-medium">
+                          Build InShorts news recommendations. Enter vector interests (e.g. `systems`, `react`, `ml`) to match documents via Cosine Similarity.
+                        </p>
+
+                        <div className="space-y-1">
+                          <label className="text-[8px] font-black text-gray-500 uppercase tracking-widest">Interests Vector Tags</label>
+                          <input
+                            type="text"
+                            value={recommenderQuery}
+                            onChange={e => setRecommenderQuery(e.target.value)}
+                            placeholder="e.g. systems, rust"
+                            className="w-full bg-black/40 border border-white/10 p-2 px-3 text-xs font-bold text-white rounded-lg outline-none"
+                          />
+                        </div>
+
+                        {recommenderState === 'filtering' && (
+                          <div className="flex items-center justify-center py-6 gap-2 text-[9px] font-mono text-purple-400 tracking-widest uppercase">
+                            <div className="w-3 h-3 border-t-2 border-purple-400 rounded-full animate-spin" />
+                            <span>Computing Cosine Matrices...</span>
+                          </div>
+                        )}
+
+                        {recommenderState === 'done' && recommendedFeed.length > 0 && (
+                          <div className="space-y-2">
+                            {recommendedFeed.map((item, i) => (
+                              <div key={i} className="p-3 bg-white/[0.02] border border-white/5 rounded-xl flex items-center justify-between">
+                                <div>
+                                  <h4 className="text-[10px] font-black text-white line-clamp-1">{item.title}</h4>
+                                  <span className="text-[7px] font-mono text-purple-400 uppercase">{item.tags}</span>
+                                </div>
+                                <span className="text-[9px] font-mono font-black text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">
+                                  {item.match}%
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={runCollaborativeFiltering}
+                        disabled={recommenderState === 'filtering'}
+                        className="w-full bg-white text-black font-black py-4 rounded-xl text-[9px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all"
+                      >
+                        Compute Recommender Feed
+                      </button>
+                    </div>
+
+                    {/* 3. eBay Concurrency Mutex Simulator */}
+                    <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-start">
+                          <span className="text-[8px] font-mono font-black text-amber-500 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded">
+                            Mutex Lock-Free • Node/Kafka
+                          </span>
+                          <span className="text-[7px] font-black text-gray-500 uppercase tracking-widest">NST Sem-2</span>
+                        </div>
+                        <h3 className="text-2xl font-black text-white italic">🔨 eBay Auction Bidding Mutex</h3>
+                        <p className="text-xs text-gray-400 leading-relaxed font-medium">
+                          Demonstrate distributed transaction safety. Place a bid higher than the current value to locking concurrent database threads.
+                        </p>
+
+                        <div className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-between">
+                          <div>
+                            <span className="text-[7px] font-mono text-gray-500 uppercase block">Current Bid Price</span>
+                            <span className="text-3xl font-black text-amber-500">${auctionBid}</span>
+                          </div>
+                          <span className="text-[8px] font-black bg-amber-500/10 text-amber-500 px-3 py-1 rounded-md">
+                            14 Threads Active
+                          </span>
+                        </div>
+
+                        <form onSubmit={handlePlaceAuctionBid} className="flex gap-2">
+                          <input
+                            type="number"
+                            required
+                            placeholder={`e.g. ${auctionBid + 10}`}
+                            value={userBidValue}
+                            onChange={e => setUserBidValue(e.target.value)}
+                            className="flex-1 bg-black/40 border border-white/10 p-2 text-xs font-bold text-white rounded-lg outline-none"
+                          />
+                          <button
+                            type="submit"
+                            className="bg-amber-500 text-black font-black px-4 rounded-lg text-[9px] uppercase tracking-widest hover:scale-105 transition-all"
                           >
-                            <span>Open Playbook</span>
-                            <ArrowUpRight className="w-3.5 h-3.5" />
-                          </Link>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <div className="glass rounded-[3rem] p-16 text-center border-dashed border-border border-2">
-                    <span className="text-5xl mb-6 block grayscale opacity-30">🔭</span>
-                    <h3 className="text-xl font-black text-foreground mb-2 italic">Target grid offline</h3>
-                    <p className="text-muted-foreground text-xs font-medium max-w-xs mx-auto mb-8 leading-relaxed">
-                       Star a target organization on the discovery page to dynamically analyze active playbooks.
-                    </p>
-                    <Link href="/organizations" className="bg-foreground text-background font-black px-8 py-4 rounded-xl text-[10px] uppercase tracking-widest hover:scale-105 transition-all">
-                      Begin Exploration
-                    </Link>
-                  </div>
+                            Place Bid
+                          </button>
+                        </form>
+
+                        <div className="font-mono text-[8px] bg-black/60 p-4 rounded-xl max-h-[100px] overflow-y-auto text-amber-500/70 space-y-1 scrollbar-none">
+                          {auctionLogs.map((log, i) => (
+                            <div key={i}>{log}</div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 4. Spark Observability Real-time Telemetry */}
+                    <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-start">
+                          <span className="text-[8px] font-mono font-black text-green-400 uppercase tracking-widest bg-green-500/10 px-3 py-1 rounded">
+                            Spark Engine • Hadoop HDFS
+                          </span>
+                          <span className="text-[7px] font-black text-gray-500 uppercase tracking-widest">NST Sem-4</span>
+                        </div>
+                        <h3 className="text-2xl font-black text-white italic">📊 Spark Observability Pulse</h3>
+                        <p className="text-xs text-gray-400 leading-relaxed font-medium">
+                          Visual analytics metric feed. Pulsing live container partition CPU usage from dynamic execution clusters.
+                        </p>
+
+                        {/* Real-time Telemetry SVG Graph */}
+                        <div className="h-[80px] w-full bg-black/40 border border-white/10 rounded-xl p-3 flex items-end gap-1.5 relative overflow-hidden">
+                          {cpuPulse.map((pulse, i) => (
+                            <div 
+                              key={i} 
+                              className="bg-green-400/80 w-full rounded-t transition-all duration-1000"
+                              style={{ height: `${pulse}%` }}
+                            />
+                          ))}
+                          <div className="absolute top-2 right-2 text-[8px] font-mono text-green-400 tracking-widest uppercase">
+                            LIVE CLUSTER INGEST: {cpuPulse[cpuPulse.length - 1]}%
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4 text-center">
+                          <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl">
+                            <span className="text-[7px] text-gray-500 uppercase block font-mono">Hadoop HDFS Blocks</span>
+                            <span className="text-xs font-black text-white">4096 Replicas</span>
+                          </div>
+                          <div className="p-3 bg-white/[0.02] border border-white/5 rounded-xl">
+                            <span className="text-[7px] text-gray-500 uppercase block font-mono">Spark Job SLA</span>
+                            <span className="text-xs font-black text-white">99.98% OK</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 )}
-              </motion.div>
+              </AnimatePresence>
 
             </div>
 
@@ -756,7 +1126,7 @@ export default function DashboardPage() {
                       >
                         <div className="pt-0.5">
                           <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
-                            isCompleted ? 'bg-primary border-primary text-primary-foreground' : 'border-border bg-background'
+                            isCompleted ? 'bg-primary border-primary text-primary-foreground' : 'border-primary bg-background'
                           }`}>
                             {isCompleted && <CheckCircle className="w-4 h-4 fill-primary text-primary-foreground" />}
                           </div>
@@ -788,19 +1158,16 @@ export default function DashboardPage() {
                   <AnimatePresence initial={false}>
                     {activityLogs.length > 0 ? (
                       activityLogs.map(log => (
-                        <motion.div
+                        <div
                           key={log.id}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0 }}
-                          className="text-[10px] border-b border-border/40 pb-3 flex items-start justify-between gap-4 font-mono"
+                          className="text-[10px] border-b border-border/40 pb-3 flex items-start justify-between gap-4 font-mono animate-fade-in"
                         >
                           <div className="flex items-start gap-2">
                             <span className="text-primary font-black">[{log.type.toUpperCase()}]</span>
                             <span className="text-muted-foreground leading-normal">{log.event}</span>
                           </div>
                           <span className="text-gray-500 shrink-0">{log.timestamp}</span>
-                        </motion.div>
+                        </div>
                       ))
                     ) : (
                       <div className="text-[10px] text-muted-foreground font-mono italic text-center py-8">
