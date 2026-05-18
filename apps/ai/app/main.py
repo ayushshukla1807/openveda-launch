@@ -34,9 +34,17 @@ async def chat(request: ChatRequest):
     Handles user questions about open-source programs and playbooks.
     """
     if not os.getenv("OPENAI_API_KEY"):
-        # Fallback for resume showcase if key is missing
+        # Intelligent fallback for resume showcase
+        q = request.question.lower()
+        if "what is openveda" in q:
+            return {"answer": "OpenVeda is 'The Contribution Engine' designed to bridge the gap between students and top-tier open-source programs like LFX, GSoC, and Outreachy through AI-powered playbooks and mentorship."}
+        if "lfx" in q or "linux foundation" in q:
+            return {"answer": "LFX Mentorship is a prestigious program by the Linux Foundation. OpenVeda helps you dominated this program by auditing CNCF projects and submitting proactive PRs before the application window even opens."}
+        if "gsoc" in q or "google summer of code" in q:
+            return {"answer": "GSoC 2026 is the gold standard for global open-source mentorship. Our playbooks focus on high-impact projects like Wikimedia and Microcks, helping you secure selection through veteran-authored proposals."}
+        
         return {
-            "answer": "OpenVeda AI is currently in 'Showcase Mode'. To enable live RAG responses, please provide an OPENAI_API_KEY in the environment."
+            "answer": "OpenVeda AI is currently in 'Showcase Mode'. While I'm ready to answer complex RAG queries with an API key, my current core mission is to guide you through the OpenVeda ecosystem. Try asking about 'LFX' or 'What is OpenVeda'!"
         }
     
     try:

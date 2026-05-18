@@ -11,7 +11,8 @@
     --primary-foreground: 0 0% 100%;
     --primary-rgb: 255, 87, 51;
 
-    /* Components */
+    --secondary: 215 100% 45%; /* Cobalt Blue */
+    --secondary-foreground: 0 0% 100%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
@@ -40,7 +41,8 @@
     --primary-foreground: 0 0% 100%;
     --primary-rgb: 255, 87, 51;
 
-    /* Components (Dark) */
+    --secondary: 215 100% 50%; /* Vibrant Cobalt for Dark Mode */
+    --secondary-foreground: 0 0% 100%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
@@ -94,7 +96,7 @@
   @apply bg-background;
   background-image: 
     radial-gradient(at 0% 0%, hsla(var(--primary), 0.15) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(217, 91%, 60%, 0.1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(var(--secondary), 0.1) 0, transparent 50%), 
     radial-gradient(at 100% 0%, hsla(271, 91%, 65%, 0.1) 0, transparent 50%);
   background-size: 200% 200%;
 }
