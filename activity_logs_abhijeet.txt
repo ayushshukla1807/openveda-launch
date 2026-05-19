@@ -216,3 +216,4 @@ System Optimization Node Sync Event #214 - Latency Check: OK
 System Optimization Node Sync Event #215 - Latency Check: OK
 System Optimization Node Sync Event #216 - Latency Check: OK
 System Optimization Node Sync Event #217 - Latency Check: OK
+System Optimization Node Sync Event #218 - Latency Check: OK
