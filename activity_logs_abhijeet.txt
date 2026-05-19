@@ -205,3 +205,4 @@ System Optimization Node Sync Event #203 - Latency Check: OK
 System Optimization Node Sync Event #204 - Latency Check: OK
 System Optimization Node Sync Event #205 - Latency Check: OK
 System Optimization Node Sync Event #206 - Latency Check: OK
+System Optimization Node Sync Event #207 - Latency Check: OK
