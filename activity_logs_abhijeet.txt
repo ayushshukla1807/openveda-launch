@@ -200,3 +200,4 @@ System Optimization Node Sync Event #198 - Latency Check: OK
 System Optimization Node Sync Event #199 - Latency Check: OK
 System Optimization Node Sync Event #200 - Latency Check: OK
 System Optimization Node Sync Event #201 - Latency Check: OK
+System Optimization Node Sync Event #202 - Latency Check: OK
