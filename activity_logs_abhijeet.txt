@@ -116,3 +116,4 @@ System Optimization Node Sync Event #114 - Latency Check: OK
 System Optimization Node Sync Event #115 - Latency Check: OK
 System Optimization Node Sync Event #116 - Latency Check: OK
 System Optimization Node Sync Event #117 - Latency Check: OK
+System Optimization Node Sync Event #118 - Latency Check: OK
