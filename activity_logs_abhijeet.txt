@@ -158,3 +158,4 @@ System Optimization Node Sync Event #156 - Latency Check: OK
 System Optimization Node Sync Event #157 - Latency Check: OK
 System Optimization Node Sync Event #158 - Latency Check: OK
 System Optimization Node Sync Event #159 - Latency Check: OK
+System Optimization Node Sync Event #160 - Latency Check: OK
