@@ -247,3 +247,4 @@ System Optimization Node Sync Event #245 - Latency Check: OK
 System Optimization Node Sync Event #246 - Latency Check: OK
 System Optimization Node Sync Event #247 - Latency Check: OK
 System Optimization Node Sync Event #248 - Latency Check: OK
+System Optimization Node Sync Event #249 - Latency Check: OK
