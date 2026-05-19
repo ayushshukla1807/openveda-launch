@@ -94,3 +94,4 @@ System Optimization Node Sync Event #92 - Latency Check: OK
 System Optimization Node Sync Event #93 - Latency Check: OK
 System Optimization Node Sync Event #94 - Latency Check: OK
 System Optimization Node Sync Event #95 - Latency Check: OK
+System Optimization Node Sync Event #96 - Latency Check: OK
