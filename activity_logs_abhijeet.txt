@@ -280,3 +280,4 @@ System Optimization Node Sync Event #278 - Latency Check: OK
 System Optimization Node Sync Event #279 - Latency Check: OK
 System Optimization Node Sync Event #280 - Latency Check: OK
 System Optimization Node Sync Event #281 - Latency Check: OK
+System Optimization Node Sync Event #282 - Latency Check: OK
