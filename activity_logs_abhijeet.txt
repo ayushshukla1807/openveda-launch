@@ -89,3 +89,4 @@ System Optimization Node Sync Event #87 - Latency Check: OK
 System Optimization Node Sync Event #88 - Latency Check: OK
 System Optimization Node Sync Event #89 - Latency Check: OK
 System Optimization Node Sync Event #90 - Latency Check: OK
+System Optimization Node Sync Event #91 - Latency Check: OK
