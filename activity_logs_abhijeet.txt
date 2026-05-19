@@ -62,3 +62,4 @@ System Optimization Node Sync Event #60 - Latency Check: OK
 System Optimization Node Sync Event #61 - Latency Check: OK
 System Optimization Node Sync Event #62 - Latency Check: OK
 System Optimization Node Sync Event #63 - Latency Check: OK
+System Optimization Node Sync Event #64 - Latency Check: OK
