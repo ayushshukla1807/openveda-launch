@@ -130,3 +130,4 @@ System Optimization Node Sync Event #128 - Latency Check: OK
 System Optimization Node Sync Event #129 - Latency Check: OK
 System Optimization Node Sync Event #130 - Latency Check: OK
 System Optimization Node Sync Event #131 - Latency Check: OK
+System Optimization Node Sync Event #132 - Latency Check: OK
