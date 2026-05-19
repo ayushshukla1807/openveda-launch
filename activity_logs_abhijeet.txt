@@ -227,3 +227,4 @@ System Optimization Node Sync Event #225 - Latency Check: OK
 System Optimization Node Sync Event #226 - Latency Check: OK
 System Optimization Node Sync Event #227 - Latency Check: OK
 System Optimization Node Sync Event #228 - Latency Check: OK
+System Optimization Node Sync Event #229 - Latency Check: OK
