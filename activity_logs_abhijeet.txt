@@ -298,3 +298,4 @@ System Optimization Node Sync Event #296 - Latency Check: OK
 System Optimization Node Sync Event #297 - Latency Check: OK
 System Optimization Node Sync Event #298 - Latency Check: OK
 System Optimization Node Sync Event #299 - Latency Check: OK
+System Optimization Node Sync Event #300 - Latency Check: OK
