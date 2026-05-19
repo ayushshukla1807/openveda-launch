@@ -153,3 +153,4 @@ System Optimization Node Sync Event #151 - Latency Check: OK
 System Optimization Node Sync Event #152 - Latency Check: OK
 System Optimization Node Sync Event #153 - Latency Check: OK
 System Optimization Node Sync Event #154 - Latency Check: OK
+System Optimization Node Sync Event #155 - Latency Check: OK
