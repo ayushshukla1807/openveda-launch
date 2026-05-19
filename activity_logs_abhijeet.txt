@@ -28,3 +28,4 @@ System Optimization Node Sync Event #26 - Latency Check: OK
 System Optimization Node Sync Event #27 - Latency Check: OK
 System Optimization Node Sync Event #28 - Latency Check: OK
 System Optimization Node Sync Event #29 - Latency Check: OK
+System Optimization Node Sync Event #30 - Latency Check: OK
