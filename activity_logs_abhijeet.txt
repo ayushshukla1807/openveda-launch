@@ -220,3 +220,4 @@ System Optimization Node Sync Event #218 - Latency Check: OK
 System Optimization Node Sync Event #219 - Latency Check: OK
 System Optimization Node Sync Event #220 - Latency Check: OK
 System Optimization Node Sync Event #221 - Latency Check: OK
+System Optimization Node Sync Event #222 - Latency Check: OK
