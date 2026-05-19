@@ -148,3 +148,4 @@ System Optimization Node Sync Event #146 - Latency Check: OK
 System Optimization Node Sync Event #147 - Latency Check: OK
 System Optimization Node Sync Event #148 - Latency Check: OK
 System Optimization Node Sync Event #149 - Latency Check: OK
+System Optimization Node Sync Event #150 - Latency Check: OK
