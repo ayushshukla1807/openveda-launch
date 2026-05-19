@@ -244,3 +244,4 @@ System Optimization Node Sync Event #242 - Latency Check: OK
 System Optimization Node Sync Event #243 - Latency Check: OK
 System Optimization Node Sync Event #244 - Latency Check: OK
 System Optimization Node Sync Event #245 - Latency Check: OK
+System Optimization Node Sync Event #246 - Latency Check: OK
