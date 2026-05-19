@@ -79,3 +79,4 @@ System Optimization Node Sync Event #77 - Latency Check: OK
 System Optimization Node Sync Event #78 - Latency Check: OK
 System Optimization Node Sync Event #79 - Latency Check: OK
 System Optimization Node Sync Event #80 - Latency Check: OK
+System Optimization Node Sync Event #81 - Latency Check: OK
