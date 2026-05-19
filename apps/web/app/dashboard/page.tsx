@@ -11,7 +11,8 @@ import ProjectShowcase from '@/components/ui/ProjectShowcase';
 import { 
   Plus, Search, Edit3, Trash2, Download, CheckCircle, X, Send, 
   MessageSquare, Star, ArrowUpRight, Activity, BookOpen, Clock,
-  Sparkles, ShieldCheck, MapPin, Cpu, BarChart2, DollarSign
+  Sparkles, ShieldCheck, MapPin, Cpu, BarChart2, DollarSign,
+  Globe, Store, Share2, Info
 } from 'lucide-react';
 
 const supabase = createBrowserSupabaseClient();
@@ -77,8 +78,220 @@ export default function DashboardPage() {
   const [journeyProgress, setJourneyProgress] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // Active Tab Manager
-  const [activeTab, setActiveTab] = useState<'milestones' | 'systemsLab'>('milestones');
+  const [activeTab, setActiveTab] = useState<'milestones' | 'systemsLab' | 'infiniteHub' | 'websitesSme'>('milestones');
+
+  // Websites.co.in SME Website Builder States
+  const [gstin, setGstin] = useState('27AAACT1111A1Z1');
+  const [smeBizName, setSmeBizName] = useState('Maharashtra Agro Foods');
+  const [smeCategory, setSmeCategory] = useState('Organic Farm Produce & Wholesale');
+  const [smeAddress, setSmeAddress] = useState('APMC Market, Vashi, Navi Mumbai, Maharashtra - 400703');
+  const [smePhone, setSmePhone] = useState('+91 98765 43210');
+  const [smeTheme, setSmeTheme] = useState('#7c3aed'); // Violet default
+  const [smeTemplate, setSmeTemplate] = useState<'bento' | 'glass' | 'store'>('bento');
+  const [smeWhatsappEnabled, setSmeWhatsappEnabled] = useState(true);
+  const [smeCatalog, setSmeCatalog] = useState([
+    { id: '1', name: 'Raw Organic Honey (500g)', price: 350, desc: 'Pure wild forest honey harvested sustainably.' },
+    { id: '2', name: 'Cold Pressed Mustard Oil (1L)', price: 240, desc: 'Traditionally extracted mustard seed oil.' },
+    { id: '3', name: 'Organic Turmeric Powder (250g)', price: 120, desc: 'High curcumin content handground spice.' }
+  ]);
+  const [gstinParsing, setGstinParsing] = useState(false);
+  const [smeAILoading, setSmeAILoading] = useState(false);
+  const [smeAIPrompt, setSmeAIPrompt] = useState('Premium Alphonso Mangoes box');
+  const [builderLogs, setBuilderLogs] = useState<string[]>([
+    '[INIT] SME Website Engine initialized.',
+    '[SYSTEM] Ready for GSTIN registration query.'
+  ]);
+  const [previewDevice, setPreviewDevice] = useState<'mobile' | 'desktop'>('mobile');
+  const [previewCartCount, setPreviewCartCount] = useState(0);
+
+  // Infinite Systems Hub States & Helpers
+  const [hubCategory, setHubCategory] = useState<'network' | 'dbms' | 'ai' | 'hiring' | 'nst' | 'git'>('network');
+  const [tcpState, setTcpState] = useState<'CLOSED' | 'SYN_SENT' | 'ESTABLISHED'>('CLOSED');
+  const [dnsInput, setDnsInput] = useState('openveda.in');
+  const [dnsResult, setDnsResult] = useState('');
+  const [socketPayload, setSocketPayload] = useState('{"event":"ping","timestamp":1776763122}');
+  const [ebpfHooksCount, setEbpfHooksCount] = useState(4);
+  const [packetSize, setPacketSize] = useState(1500);
+  const [quicCongestion, setQuicCongestion] = useState(64);
+  const [bTreeKeys, setBTreeKeys] = useState(250);
+  const [dbDeadlockStatus, setDbDeadlockStatus] = useState('No deadlocks detected');
+  const [redisPolicy, setRedisPolicy] = useState('allkeys-lru');
+  const [redisEvicted, setRedisEvicted] = useState(0);
+  const [vectorA, setVectorA] = useState('1, 0, 1, 0, 1');
+  const [vectorB, setVectorB] = useState('0, 1, 1, 0, 0');
+  const [cosineScore, setCosineScore] = useState<number | null>(null);
+  const [llmTemp, setLlmTemp] = useState(0.7);
+  const [resumeText, setResumeText] = useState('');
+  const [atsScore, setAtsScore] = useState<number | null>(null);
+  const [editorCode, setEditorCode] = useState('// Newton Systems compiler\nconsole.log("Systems OK!");');
+  const [editorConsole, setEditorConsole] = useState('');
+  const [attendancePercent, setAttendancePercent] = useState(85);
+  const [currentCgpa, setCurrentCgpa] = useState(8.8);
+  const [predictedCgpa, setPredictedCgpa] = useState('N/A');
+  const [gitBranch, setGitBranch] = useState('main');
+  const [gitOutput, setGitOutput] = useState('');
+
+  const runDnsResolve = () => {
+    if (!dnsInput) return;
+    setDnsResult(`Resolving DNS for ${dnsInput}... \nDNS A Record: 104.21.78.118 (Cloudflare edge proxy)`);
+  };
+
+  const calculateCosineSimilarity = () => {
+    const vecA = vectorA.split(',').map(Number);
+    const vecB = vectorB.split(',').map(Number);
+    if (vecA.length !== vecB.length) {
+      showToast("Vectors must have matching dimensional lengths!", "error");
+      return;
+    }
+    let dot = 0, normA = 0, normB = 0;
+    for (let i = 0; i < vecA.length; i++) {
+      dot += vecA[i] * vecB[i];
+      normA += vecA[i] * vecA[i];
+      normB += vecB[i] * vecB[i];
+    }
+    if (normA === 0 || normB === 0) {
+      setCosineScore(0);
+      return;
+    }
+    const score = dot / (Math.sqrt(normA) * Math.sqrt(normB));
+    setCosineScore(Math.round(score * 100));
+    showToast("Cosine Similarity calculated successfully!", "success");
+  };
+
+  const runAtsAudit = () => {
+    if (!resumeText) {
+      showToast("Please enter resume contents to audit!", "error");
+      return;
+    }
+    const keywords = ['react', 'next.js', 'systems', 'sharding', 'mysql', 'dsa', 'vector', 'docker', 'lfx', 'gsoc'];
+    let matches = 0;
+    keywords.forEach(kw => {
+      if (resumeText.toLowerCase().includes(kw)) matches++;
+    });
+    const finalScore = Math.min(100, Math.round((matches / keywords.length) * 100) + 15);
+    setAtsScore(finalScore);
+    showToast("ATS Audit complete!", "success");
+  };
+
+  const compileEditorCode = () => {
+    try {
+      // safe simulation of javascript compilation
+      setEditorConsole(`Compiling source buffer...\n-------------------------------\n[SUCCESS] Code compiled with 0 warnings.\n[OUTPUT] Systems OK!`);
+      showToast("Mock JavaScript compiler execution success!", "success");
+    } catch (e: any) {
+      setEditorConsole(`[COMPILE ERROR] ${e.message}`);
+    }
+  };
+
+  const calculateCgpaProjection = () => {
+    if (attendancePercent < 75) {
+      setPredictedCgpa('Safety buffer breached (<75% attendance). Estimated CGPA: 7.2');
+      showToast("Attendance below 75% warning flag raised!", "error");
+    } else {
+      const projected = Math.min(10.0, currentCgpa + (attendancePercent / 1000));
+      setPredictedCgpa(projected.toFixed(2));
+      showToast("CGPA path projected!", "success");
+    }
+  };
+
+  const runGitMockCommand = (cmd: 'commit' | 'rebase' | 'merge') => {
+    if (cmd === 'commit') {
+      setGitOutput(`$ git add . && git commit -m "feat: sharded connection pool metrics"\n[${gitBranch} 4b8c9d1] feat: sharded connection pool metrics\n 2 files changed, 48 insertions(+)\n Create connection_pool_shard.go`);
+      showToast("Git commit ledger updated!", "success");
+    } else if (cmd === 'rebase') {
+      setGitOutput(`$ git rebase master\nFirst, rewinding head to replay your work on top of it...\nApplying: feat: sharded connection pool metrics\nSuccessful rebase on refs/heads/master`);
+      showToast("Clean Git Rebase completed!", "success");
+    } else if (cmd === 'merge') {
+      setGitOutput(`$ git merge ${gitBranch}\nUpdating 4b8c9d1..8f1a2c5\nFast-forward\n connection_pool_shard.go | 12 +++++++++++\n 1 file changed, 12 insertions(+)`);
+      showToast("Git merge fast-forward complete!", "success");
+    }
+  };
+
+  const handleGstinQuery = async () => {
+    if (!gstin || gstin.trim().length < 15) {
+      showToast("Please enter a valid 15-character GSTIN", "error");
+      return;
+    }
+    setGstinParsing(true);
+    setBuilderLogs(prev => [...prev, `[QUERY] Initiated GSTIN audit on registration ledger: "${gstin.toUpperCase()}"`]);
+    
+    // Simulate real GSTIN validation API call
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    
+    const code = gstin.substring(0, 2);
+    let state = "Maharashtra";
+    let biz = "Maharashtra Agro Foods";
+    let addr = "APMC Market, Vashi, Navi Mumbai, Maharashtra - 400703";
+    let cat = "Organic Farm Produce & Wholesale";
+    
+    if (code === '07') {
+      state = "Delhi";
+      biz = "Delhi AI Tech Labs";
+      addr = "E-Block, Connaught Place, New Delhi - 110001";
+      cat = "Information Technology & Software Services";
+    } else if (code === '09') {
+      state = "Uttar Pradesh";
+      biz = "UP Handicrafts & Handlooms";
+      addr = "Ghat Road, Varanasi, Uttar Pradesh - 221001";
+      cat = "Handicrafts, Art & Retail";
+    } else if (code === '19') {
+      state = "West Bengal";
+      biz = "Kolkata Sweet & Confectionery Mart";
+      addr = "Salt Lake Sector 5, Kolkata, West Bengal - 700091";
+      cat = "Food Products & Hospitality";
+    } else if (code === '33') {
+      state = "Tamil Nadu";
+      biz = "Chennai Textiles Consortium";
+      addr = "T. Nagar, Chennai, Tamil Nadu - 600017";
+      cat = "Textiles & Garments";
+    } else {
+      // Default fallback
+      biz = "Global Trade Solutions";
+      addr = "Industrial Tech Hub, State Code " + code;
+      cat = "Retail & Distribution";
+    }
+    
+    setSmeBizName(biz);
+    setSmeCategory(cat);
+    setSmeAddress(addr);
+    setGstinParsing(false);
+    setBuilderLogs(prev => [
+      ...prev,
+      `[PARSER] State Code detected: ${code} (${state})`,
+      `[PARSER] Verified Entity PAN: ${gstin.substring(2, 12).toUpperCase()}`,
+      `[DATABASE] Autocompleted Trade Name: "${biz}"`,
+      `[SUCCESS] Metadata synced to Websites.co.in engine!`
+    ]);
+    showToast("GSTIN parsed & business profile synced successfully!", "success");
+  };
+
+  const handleGenerateAiCatalog = async () => {
+    if (!smeAIPrompt.trim()) {
+      showToast("Please enter a product description or title prompt!", "error");
+      return;
+    }
+    setSmeAILoading(true);
+    setBuilderLogs(prev => [...prev, `[AI] Generating copy and pricing structures for prompt: "${smeAIPrompt}"`]);
+    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    const randomPrice = Math.floor(Math.random() * 450) + 150;
+    const newProduct = {
+      id: Math.random().toString(36).substring(2, 9),
+      name: smeAIPrompt,
+      price: randomPrice,
+      desc: `Premium quality ${smeAIPrompt.toLowerCase()}. Sourced responsibly, quality tested, and packed with high standards for direct consumer delivery.`
+    };
+    
+    setSmeCatalog(prev => [...prev, newProduct]);
+    setSmeAILoading(false);
+    setBuilderLogs(prev => [
+      ...prev,
+      `[AI SUCCESS] Generated item catalog: "${newProduct.name}" for ₹${newProduct.price}`,
+      `[SYSTEM] Recompiled template preview cache.`
+    ]);
+    showToast(`AI created catalog item: ${newProduct.name}!`, "success");
+  };
 
   // 1. Blinkit / Zepto Proximity Router
   const [routingHub, setRoutingHub] = useState('Delhi-NCR');
@@ -672,6 +885,28 @@ export default function DashboardPage() {
                   <Sparkles className="w-3.5 h-3.5 text-[#00f0ff] animate-pulse" />
                   <span>Systems Lab (Newton Showcase)</span>
                 </button>
+                <button
+                  onClick={() => setActiveTab('infiniteHub')}
+                  className={`pb-2 text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 relative ${
+                    activeTab === 'infiniteHub'
+                      ? 'text-purple-400 border-b-2 border-purple-400'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <Cpu className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Infinite Systems Hub (60 features)</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('websitesSme')}
+                  className={`pb-2 text-xs font-black uppercase tracking-widest transition-all flex items-center gap-2 relative ${
+                    activeTab === 'websitesSme'
+                      ? 'text-green-400 border-b-2 border-green-400 font-black'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <Globe className="w-3.5 h-3.5 text-green-400 animate-pulse" />
+                  <span>SME Web Builder (Websites.co.in Prototype)</span>
+                </button>
               </div>
 
               <AnimatePresence mode="wait">
@@ -874,7 +1109,7 @@ export default function DashboardPage() {
                       )}
                     </div>
                   </motion.div>
-                ) : (
+                ) : activeTab === 'systemsLab' ? (
                   <motion.div
                     key="systemsLab"
                     initial={{ opacity: 0, y: 15 }}
@@ -1090,6 +1325,1109 @@ export default function DashboardPage() {
                             <span className="text-[7px] text-gray-500 uppercase block font-mono">Spark Job SLA</span>
                             <span className="text-xs font-black text-white">99.98% OK</span>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : activeTab === 'infiniteHub' ? (
+                  <motion.div
+                    key="infiniteHub"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    className="space-y-10"
+                  >
+                    {/* Infinite Hub Bento Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                      {/* Sidebar Category Navigation */}
+                      <div className="md:col-span-1 space-y-4">
+                        <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-2 font-mono">Systems Modules</div>
+                        <button
+                          onClick={() => setHubCategory('network')}
+                          className={`w-full text-left p-4 rounded-2xl border transition-all text-xs font-black uppercase tracking-widest flex items-center gap-3 ${
+                            hubCategory === 'network'
+                              ? 'border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold'
+                              : 'border-white/5 bg-white/[0.01] text-gray-400 hover:bg-white/5'
+                          }`}
+                        >
+                          🌐 1. Network & OS
+                        </button>
+                        <button
+                          onClick={() => setHubCategory('dbms')}
+                          className={`w-full text-left p-4 rounded-2xl border transition-all text-xs font-black uppercase tracking-widest flex items-center gap-3 ${
+                            hubCategory === 'dbms'
+                              ? 'border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold'
+                              : 'border-white/5 bg-white/[0.01] text-gray-400 hover:bg-white/5'
+                          }`}
+                        >
+                          🗄️ 2. DBMS & Sharding
+                        </button>
+                        <button
+                          onClick={() => setHubCategory('ai')}
+                          className={`w-full text-left p-4 rounded-2xl border transition-all text-xs font-black uppercase tracking-widest flex items-center gap-3 ${
+                            hubCategory === 'ai'
+                              ? 'border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold'
+                              : 'border-white/5 bg-white/[0.01] text-gray-400 hover:bg-white/5'
+                          }`}
+                        >
+                          🧠 3. AI & Vector Space
+                        </button>
+                        <button
+                          onClick={() => setHubCategory('hiring')}
+                          className={`w-full text-left p-4 rounded-2xl border transition-all text-xs font-black uppercase tracking-widest flex items-center gap-3 ${
+                            hubCategory === 'hiring'
+                              ? 'border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold'
+                              : 'border-white/5 bg-white/[0.01] text-gray-400 hover:bg-white/5'
+                          }`}
+                        >
+                          👔 4. Interview Prep
+                        </button>
+                        <button
+                          onClick={() => setHubCategory('nst')}
+                          className={`w-full text-left p-4 rounded-2xl border transition-all text-xs font-black uppercase tracking-widest flex items-center gap-3 ${
+                            hubCategory === 'nst'
+                              ? 'border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold'
+                              : 'border-white/5 bg-white/[0.01] text-gray-400 hover:bg-white/5'
+                          }`}
+                        >
+                          🎓 5. NST Curriculum
+                        </button>
+                        <button
+                          onClick={() => setHubCategory('git')}
+                          className={`w-full text-left p-4 rounded-2xl border transition-all text-xs font-black uppercase tracking-widest flex items-center gap-3 ${
+                            hubCategory === 'git'
+                              ? 'border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold'
+                              : 'border-white/5 bg-white/[0.01] text-gray-400 hover:bg-white/5'
+                          }`}
+                        >
+                          🐙 6. Git & Open Source
+                        </button>
+                      </div>
+
+                      {/* Active Module Playground */}
+                      <div className="md:col-span-3 space-y-8">
+                        {hubCategory === 'network' && (
+                          <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-white italic">🌐 Network & Operating Systems Toolkit (10 Features)</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                              {/* 1. TCP 3-Way Handshake */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">1. TCP Handshake Sequence</span>
+                                <h4 className="text-xs font-black text-white">Connection State: {tcpState}</h4>
+                                <button
+                                  onClick={() => {
+                                    if (tcpState === 'CLOSED') {
+                                      setTcpState('SYN_SENT');
+                                      setTimeout(() => setTcpState('ESTABLISHED'), 800);
+                                    } else {
+                                      setTcpState('CLOSED');
+                                    }
+                                  }}
+                                  className="text-[8px] font-black bg-white/5 hover:bg-white/10 text-white px-3 py-1.5 rounded-lg uppercase tracking-wider transition-all"
+                                >
+                                  {tcpState === 'CLOSED' ? 'SYN (Connect)' : 'Disconnect'}
+                                </button>
+                              </div>
+
+                              {/* 2. DNS resolver */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">2. DNS Lookup Resolver</span>
+                                <div className="flex gap-2">
+                                  <input
+                                    type="text"
+                                    value={dnsInput}
+                                    onChange={e => setDnsInput(e.target.value)}
+                                    className="flex-1 bg-black/40 border border-white/10 p-1.5 text-[10px] font-bold text-white rounded-lg outline-none"
+                                  />
+                                  <button onClick={runDnsResolve} className="text-[8px] font-black bg-purple-500 text-white px-3 rounded-lg uppercase tracking-wider">
+                                    Resolve
+                                  </button>
+                                </div>
+                                {dnsResult && <p className="text-[9px] font-mono text-purple-400">{dnsResult}</p>}
+                              </div>
+
+                              {/* 3. Socket Frame Buffer */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">3. Socket Buffer Analyzer</span>
+                                <input
+                                  type="text"
+                                  value={socketPayload}
+                                  onChange={e => setSocketPayload(e.target.value)}
+                                  className="w-full bg-black/40 border border-white/10 p-1.5 text-[10px] font-bold text-white rounded-lg outline-none"
+                                />
+                                <span className="text-[8px] font-mono text-gray-500">Payload length: {new Blob([socketPayload]).size} bytes</span>
+                              </div>
+
+                              {/* 4. eBPF Trace Hook */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">4. eBPF Hook Injector</span>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-[10px] font-mono text-purple-400">{ebpfHooksCount} hooks active</span>
+                                  <button onClick={() => setEbpfHooksCount(prev => prev + 1)} className="text-[8px] font-black bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg uppercase">
+                                    Inject Hook
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* 5. Packet Fragmentation */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">5. IP Packet Fragmentation</span>
+                                <div className="space-y-1">
+                                  <label className="text-[8px] text-gray-500 block">Packet Length (MTU): {packetSize} bytes</label>
+                                  <input
+                                    type="range"
+                                    min="576"
+                                    max="9000"
+                                    value={packetSize}
+                                    onChange={e => setPacketSize(Number(e.target.value))}
+                                    className="w-full accent-purple-500"
+                                  />
+                                </div>
+                                <span className="text-[8px] font-mono text-purple-400 block font-mono">Requires {Math.ceil(packetSize / 1500)} Ethernet Frames</span>
+                              </div>
+
+                              {/* 6. ARP Cache */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">6. ARP Cache Table Mapper</span>
+                                <div className="text-[8px] font-mono text-gray-400 space-y-1 bg-black/30 p-2 rounded-lg">
+                                  <div>192.168.1.1 &rarr; 00-14-22-01-23-45 (Static)</div>
+                                  <div>192.168.1.185 &rarr; Dynamic Cache Shard</div>
+                                </div>
+                              </div>
+
+                              {/* 7. HTTP/3 QUIC Congestion */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">7. HTTP/3 QUIC Congestion Window</span>
+                                <div className="space-y-1">
+                                  <label className="text-[8px] text-gray-500 block">CWND Threshold: {quicCongestion} KB</label>
+                                  <input
+                                    type="range"
+                                    min="16"
+                                    max="256"
+                                    value={quicCongestion}
+                                    onChange={e => setQuicCongestion(Number(e.target.value))}
+                                    className="w-full accent-purple-500"
+                                  />
+                                </div>
+                                <span className="text-[8px] font-mono text-purple-400 block font-mono">{Math.round(quicCongestion * 1.5)} Multiplexed Streams</span>
+                              </div>
+
+                              {/* 8. ICMP Latency */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">8. ICMP Latency ping</span>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-xs font-black text-green-400 animate-pulse font-mono">12ms (RTT SLA Excellent)</span>
+                                </div>
+                              </div>
+
+                              {/* 9. Linux CPU Scheduler */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">9. Linux CPU Task Scheduler</span>
+                                <div className="text-[8px] font-mono text-gray-400 bg-black/30 p-2 rounded-lg">
+                                  <div>Active: Completely Fair Scheduler (CFS)</div>
+                                  <div>Time slice: 6ms dynamic runtime</div>
+                                </div>
+                              </div>
+
+                              {/* 10. Virtual Memory Page Table */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3 col-span-1 sm:col-span-2">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">10. Virtual Memory Page Table Mapping</span>
+                                <div className="text-[8px] font-mono text-gray-400 grid grid-cols-3 gap-2 bg-black/30 p-2 rounded-lg text-center">
+                                  <div>Virtual Page #02 &rarr; Frame #12</div>
+                                  <div>Virtual Page #05 &rarr; Frame #41</div>
+                                  <div>Virtual Page #185 &rarr; Frame #88</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {hubCategory === 'dbms' && (
+                          <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-white italic">🗄️ Relational DBMS & Sharding Console (10 Features)</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                              {/* 1. B+ Tree depth */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">1. B+ Tree Depth Estimator</span>
+                                <label className="text-[8px] text-gray-500 block">Total Record Keys: {bTreeKeys}k</label>
+                                <input
+                                  type="range"
+                                  min="10"
+                                  max="1000"
+                                  value={bTreeKeys}
+                                  onChange={e => setBTreeKeys(Number(e.target.value))}
+                                  className="w-full accent-purple-500"
+                                />
+                                <span className="text-[8px] font-mono text-purple-400 block font-mono">Estimated B+ Tree Depth: {bTreeKeys > 500 ? 4 : 3} index levels</span>
+                              </div>
+
+                              {/* 2. Consistent Hashing Shard Router */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">2. Consistent Hashing Ring Router</span>
+                                <div className="text-[8px] font-mono text-gray-400 space-y-1 bg-black/30 p-2 rounded-lg">
+                                  <div>Key `proposals_db` &rarr; Shard Node B (port 3307)</div>
+                                  <div>Hashing Algorithm: MD5-Range (Virtual Nodes: 32)</div>
+                                </div>
+                              </div>
+
+                              {/* 3. DB connection leaks */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">3. DB Connection Pool Monitor</span>
+                                <div className="flex justify-between items-center text-[10px]">
+                                  <span className="font-mono text-green-400">Pool Health: OK</span>
+                                  <span className="font-bold font-mono">14 / 50 Active threads</span>
+                                </div>
+                              </div>
+
+                              {/* 4. Deadlock resolver */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">4. ACID Mutex Deadlock Monitor</span>
+                                <div className="flex justify-between items-center">
+                                  <span className="text-[9px] font-mono text-yellow-400">{dbDeadlockStatus}</span>
+                                  <button
+                                    onClick={() => {
+                                      setDbDeadlockStatus('Locks cleared');
+                                      showToast("Lock wait graph resolved safely!", "success");
+                                    }}
+                                    className="text-[8px] font-black bg-white/5 hover:bg-white/10 px-3 py-1 rounded uppercase font-mono"
+                                  >
+                                    Resolve Graph
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* 5. SQL rewrite parser */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">5. SQL Rewrite Parser Optimizer</span>
+                                <div className="text-[8px] font-mono text-gray-400 bg-black/30 p-2 rounded-lg space-y-1">
+                                  <div className="text-red-400 line-through">SELECT * FROM proposals;</div>
+                                  <div className="text-green-400">SELECT id, title, status FROM proposals; (Optimized)</div>
+                                </div>
+                              </div>
+
+                              {/* 6. Redo Log sync */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">6. Redo Log InnoDB Latency</span>
+                                <span className="text-xs font-black text-purple-400 font-mono block">Binlog Sync: ACTIVE (pos: 48512)</span>
+                              </div>
+
+                              {/* 7. Redis LRU Eviction */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">7. Redis LRU Cache Eviction Policy</span>
+                                <div className="flex gap-2">
+                                  <select
+                                    value={redisPolicy}
+                                    onChange={e => setRedisPolicy(e.target.value)}
+                                    className="bg-black border border-white/10 p-1 text-[9px] font-mono text-white rounded-lg outline-none cursor-pointer"
+                                  >
+                                    <option value="allkeys-lru">allkeys-lru</option>
+                                    <option value="volatile-lru">volatile-lru</option>
+                                    <option value="noeviction">noeviction</option>
+                                  </select>
+                                  <button onClick={() => setRedisEvicted(prev => prev + 12)} className="text-[8px] bg-purple-500 text-white px-2 rounded-lg uppercase font-bold font-mono">
+                                    Evict
+                                  </button>
+                                </div>
+                                <span className="text-[8px] font-mono text-gray-500">{redisEvicted} keys evicted under policy</span>
+                              </div>
+
+                              {/* 8. Partition Hashing */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">8. Partition Key Range Hashing</span>
+                                <div className="text-[8px] font-mono text-gray-400 bg-black/30 p-2 rounded-lg">
+                                  <div>Range bounds: ID #1 to #5000 &rarr; Shard 01</div>
+                                </div>
+                              </div>
+
+                              {/* 9. Row-level Lock Mutex */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">9. Row-level Lock Mutex Monitor</span>
+                                <span className="text-xs font-black text-green-500 block font-mono">Row lock timeout: 50s max</span>
+                              </div>
+
+                              {/* 10. MVCC Version Trace */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">10. MVCC Transaction Version Trace</span>
+                                <div className="text-[8px] font-mono text-purple-400 block bg-black/30 p-2 rounded-lg">
+                                  Tx v185 read-view: visible records &lt; v185
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {hubCategory === 'ai' && (
+                          <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-white italic">🧠 AI & Vector Embedding Workspace (10 Features)</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                              {/* 1. Cosine similarity */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3 col-span-1 sm:col-span-2">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">1. Cosine Similarity Dot Product</span>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <input
+                                    type="text"
+                                    value={vectorA}
+                                    onChange={e => setVectorA(e.target.value)}
+                                    placeholder="Vector A (e.g. 1, 0, 1)"
+                                    className="bg-black/40 border border-white/10 p-2 text-xs font-bold text-white rounded-lg outline-none"
+                                  />
+                                  <input
+                                    type="text"
+                                    value={vectorB}
+                                    onChange={e => setVectorB(e.target.value)}
+                                    placeholder="Vector B (e.g. 0, 1, 1)"
+                                    className="bg-black/40 border border-white/10 p-2 text-xs font-bold text-white rounded-lg outline-none"
+                                  />
+                                </div>
+                                <button onClick={calculateCosineSimilarity} className="w-full text-[9px] font-black bg-purple-500 text-white py-2 rounded-xl uppercase tracking-wider">
+                                  Solve Cosine Similarity
+                                </button>
+                                {cosineScore !== null && (
+                                  <p className="text-xs font-bold text-[#00f0ff] font-mono text-center">Score Result: {cosineScore}% Alignment</p>
+                                )}
+                              </div>
+
+                              {/* 2. Text tokenization */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">2. Text Tokenization Parser</span>
+                                <div className="text-[8px] font-mono text-purple-400 bg-black/30 p-2 rounded-lg">
+                                  ["openveda", "systems", "lab", "neural"]
+                                </div>
+                              </div>
+
+                              {/* 3. PCA Dimension */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">3. Vector Dimension PCA Sim</span>
+                                <div className="flex justify-between items-center text-[10px]">
+                                  <span className="font-mono text-gray-400">1536 dims &rarr; 3 dims (Compressed)</span>
+                                </div>
+                              </div>
+
+                              {/* 4. KNN Classification */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">4. K-Nearest Neighbors Classifier</span>
+                                <span className="text-[9px] font-mono text-green-400 block font-mono">K=5 neighbor vectors selected</span>
+                              </div>
+
+                              {/* 5. Neural Layers weights */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">5. Neural Weight Bias Index</span>
+                                <span className="text-[9px] font-mono text-gray-400 block font-mono">Hidden layers activation: ReLU</span>
+                              </div>
+
+                              {/* 6. LLM Temperature */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">6. LLM Temperature: {llmTemp}</span>
+                                <input
+                                  type="range"
+                                  min="0"
+                                  max="1.5"
+                                  step="0.1"
+                                  value={llmTemp}
+                                  onChange={e => setLlmTemp(Number(e.target.value))}
+                                  className="w-full accent-purple-500"
+                                />
+                                <span className="text-[8px] font-mono text-gray-500 block">
+                                  {llmTemp > 1.0 ? "Creative & Randomized outputs" : "Highly deterministic"}
+                                </span>
+                              </div>
+
+                              {/* 7. Guardrails */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">7. Prompt Injection Guardrails</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">FIREWALL ACTIVE (0 malicious logs)</span>
+                              </div>
+
+                              {/* 8. Semantic chunking */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">8. Semantic Sentence Splitting</span>
+                                <span className="text-[8px] font-mono text-gray-400 block font-mono">Overlap: 20 tokens</span>
+                              </div>
+
+                              {/* 9. Vector index build */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">9. Vector DB Index Builder</span>
+                                <span className="text-[9px] font-mono text-purple-400 block font-mono">HNSW Graphs compiled successfully</span>
+                              </div>
+
+                              {/* 10. RAG Context accuracy */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">10. RAG Relevance Evaluator</span>
+                                <span className="text-xs font-black text-white block">Retrieval Accuracy: 98.42%</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {hubCategory === 'hiring' && (
+                          <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-white italic">👔 Placement & Interview Prep Workspace (10 Features)</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                              {/* 1. ATS keyword auditor */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3 col-span-1 sm:col-span-2">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">1. ATS Resume Keyword Match Auditor</span>
+                                <textarea
+                                  value={resumeText}
+                                  onChange={e => setResumeText(e.target.value)}
+                                  placeholder="Paste your technical resume text contents here to evaluate match index..."
+                                  rows={3}
+                                  className="w-full bg-black/40 border border-white/10 p-3 text-xs font-bold text-white rounded-xl outline-none"
+                                />
+                                <button onClick={runAtsAudit} className="w-full text-[9px] font-black bg-purple-500 text-white py-2.5 rounded-xl uppercase tracking-wider font-mono">
+                                  Run Resume ATS Audit
+                                </button>
+                                {atsScore !== null && (
+                                  <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl text-center">
+                                    <span className="text-xs font-black text-[#00f0ff] font-mono">ATS Compatibility Score: {atsScore}% MATCH!</span>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* 2. Mock Question Generator */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">2. Mock Question Generator</span>
+                                <div className="text-[8px] font-mono text-gray-400 bg-black/30 p-2 rounded-lg">
+                                  "Explain the Raft state-machine consensus loop and how leader elections resolve network splits."
+                                </div>
+                              </div>
+
+                              {/* 3. Speaking Pace */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">3. Speaking Pace Auditor</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">130 WPM (Ideal Tempo)</span>
+                              </div>
+
+                              {/* 4. Code Editor */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3 col-span-1 sm:col-span-2">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">4. Isolated Systems JS Compiler Code Editor</span>
+                                <textarea
+                                  value={editorCode}
+                                  onChange={e => setEditorCode(e.target.value)}
+                                  rows={3}
+                                  className="w-full bg-black/50 border border-white/10 p-3 font-mono text-[9px] text-white rounded-xl outline-none"
+                                />
+                                <button onClick={compileEditorCode} className="w-full text-[8px] font-black bg-white/5 hover:bg-white/10 text-white py-2 rounded-xl uppercase font-mono">
+                                  Compile Code Chunk
+                                </button>
+                                {editorConsole && (
+                                  <pre className="p-3 bg-black/80 border border-white/10 rounded-xl text-[8px] font-mono text-[#00f0ff]">{editorConsole}</pre>
+                                )}
+                              </div>
+
+                              {/* 5. System Design Architect */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">5. System Design Architect Layouts</span>
+                                <span className="text-[8px] font-mono text-purple-400 block bg-black/30 p-2 rounded-lg">
+                                  Active Layout: Distributed Lock Manager with Redis Sentinel
+                                </span>
+                              </div>
+
+                              {/* 6. Placement MCQ */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">6. Placement Mock MCQ</span>
+                                <div className="text-[9px] space-y-2">
+                                  <p className="font-bold text-white">What is InnoDB lock escalation?</p>
+                                  <span className="text-[8px] bg-green-500/10 text-green-400 px-2 py-0.5 rounded block">Row locks promoted to page locks</span>
+                                </div>
+                              </div>
+
+                              {/* 7. Salary Estimator */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">7. Salary Projection Path</span>
+                                <span className="text-xs font-black text-white block font-mono">Projected Track: ₹18 - ₹24 LPA base</span>
+                              </div>
+
+                              {/* 8. HR STAR */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">8. HR Behavior STAR Framework helper</span>
+                                <span className="text-[8px] font-mono text-gray-400 block">Situation &rarr; Task &rarr; Action &rarr; Result</span>
+                              </div>
+
+                              {/* 9. Session Recorder */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">9. Interview Session Sandbox Recorder</span>
+                                <span className="text-xs font-black text-red-500 block font-mono animate-pulse">● RECORDING OFF</span>
+                              </div>
+
+                              {/* 10. DSA complexity */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">10. DSA Complexity Optimizer</span>
+                                <span className="text-[8px] font-mono text-purple-400 block bg-black/30 p-2 rounded-lg">
+                                  Binary Search Trees &rarr; O(log N) optimal lookup cost
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {hubCategory === 'nst' && (
+                          <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-white italic">🎓 Newton School Curriculum Tracker (10 Features)</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                              {/* 1. CGPA Predictor */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">1. CGPA Predictor Tool</span>
+                                <div className="grid grid-cols-2 gap-3 text-xs font-bold text-white">
+                                  <div>
+                                    <label className="text-[7px] block">Attendance %</label>
+                                    <input
+                                      type="number"
+                                      value={attendancePercent}
+                                      onChange={e => setAttendancePercent(Number(e.target.value))}
+                                      className="w-full bg-black/40 border border-white/10 p-1.5 rounded outline-none"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="text-[7px] block">Current CGPA</label>
+                                    <input
+                                      type="number"
+                                      step="0.1"
+                                      value={currentCgpa}
+                                      onChange={e => setCurrentCgpa(Number(e.target.value))}
+                                      className="w-full bg-black/40 border border-white/10 p-1.5 rounded outline-none"
+                                    />
+                                  </div>
+                                </div>
+                                <button onClick={calculateCgpaProjection} className="w-full text-[8px] font-black bg-purple-500 text-white py-1.5 rounded-lg uppercase font-mono">
+                                  Project Grade Path
+                                </button>
+                                <p className="text-[10px] font-mono text-purple-400 text-center">Predicted Grade CGPA: {predictedCgpa}</p>
+                              </div>
+
+                              {/* 2. Portfolio Audit */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">2. Portfolio Audit Checklist</span>
+                                <div className="text-[8px] font-mono text-gray-400 space-y-1 bg-black/30 p-2 rounded-lg">
+                                  <div className="text-green-400">&#10003; Year-1: systems basic</div>
+                                  <div className="text-green-400">&#10003; Year-2: ML & sharding</div>
+                                </div>
+                              </div>
+
+                              {/* 3. Streaks grid */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">3. Coding Streak Blocks Grid</span>
+                                <div className="flex gap-1.5 flex-wrap">
+                                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(s => (
+                                    <div key={s} className="w-3.5 h-3.5 bg-green-500 rounded-sm" />
+                                  ))}
+                                </div>
+                                <span className="text-[8px] font-mono text-gray-500 block">10-day active streak record sync</span>
+                              </div>
+
+                              {/* 4. Attendance buffer */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">4. Attendance Safety Buffer</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">14 classes safe to skip</span>
+                              </div>
+
+                              {/* 5. Placement readiness card */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">5. Placement Readiness Index</span>
+                                <span className="text-xs font-black text-white block font-mono">Ready Tier: Elite track</span>
+                              </div>
+
+                              {/* 6. Mentor sync reservation */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">6. Mentor Sync Reservation</span>
+                                <button className="text-[8px] font-black bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg uppercase tracking-wider block w-full font-mono">
+                                  Sync slots ledger
+                                </button>
+                              </div>
+
+                              {/* 7. RSVP Masterclass */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">7. Industry Masterclass RSVP</span>
+                                <button onClick={() => showToast("RSVP registered successfully!", "success")} className="text-[8px] font-black bg-purple-500 text-white px-3 py-1.5 rounded-lg uppercase tracking-wider block w-full font-mono">
+                                  Confirm RSVP Slot
+                                </button>
+                              </div>
+
+                              {/* 8. Internship Evaluation checklist */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">8. Internship Evaluation Checklist</span>
+                                <span className="text-[8px] font-mono text-purple-400 block">SLA Metrics sync ready</span>
+                              </div>
+
+                              {/* 9. Alumni Messaging */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">9. Alumni Network Messaging Directory</span>
+                                <span className="text-[8px] font-mono text-gray-400 block">18+ Alumni online in systems track</span>
+                              </div>
+
+                              {/* 10. Capstone tracking */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">10. Capstone Project Progress Tracker</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">100% OK (Complete)</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {hubCategory === 'git' && (
+                          <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-white italic">🐙 Git & Open Source Nexus (10 Features)</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                              {/* 1. PR flow generator */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3 col-span-1 sm:col-span-2">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">1. Proactive Contribution PR Flow Generator</span>
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div>
+                                    <label className="text-[7px] block text-gray-500">Active Branch</label>
+                                    <input
+                                      type="text"
+                                      value={gitBranch}
+                                      onChange={e => setGitBranch(e.target.value)}
+                                      className="bg-black/40 border border-white/10 p-2 text-xs font-bold text-white rounded-lg outline-none w-full"
+                                    />
+                                  </div>
+                                  <div className="flex gap-2 items-end">
+                                    <button onClick={() => runGitMockCommand('commit')} className="flex-1 text-[8px] font-black bg-white/5 hover:bg-white/10 text-white py-2 rounded-lg uppercase font-mono">
+                                      Commit
+                                    </button>
+                                    <button onClick={() => runGitMockCommand('rebase')} className="flex-1 text-[8px] font-black bg-purple-500 text-white py-2 rounded-lg uppercase font-mono">
+                                      Rebase
+                                    </button>
+                                    <button onClick={() => runGitMockCommand('merge')} className="flex-1 text-[8px] font-black bg-white/5 hover:bg-white/10 text-white py-2 rounded-lg uppercase font-mono">
+                                      Merge
+                                    </button>
+                                  </div>
+                                </div>
+                                {gitOutput && (
+                                  <pre className="p-3 bg-black/80 border border-white/10 rounded-xl text-[8px] font-mono text-[#00f0ff] whitespace-pre-wrap">{gitOutput}</pre>
+                                )}
+                              </div>
+
+                              {/* 2. Rebase merge sim */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">2. Git Rebase vs Merge Visualizer</span>
+                                <div className="text-[8px] font-mono text-gray-400 bg-black/30 p-2 rounded-lg">
+                                  <div>Active Mode: LOCK-STEP REBASE</div>
+                                  <div>Branch history linear check: OK</div>
+                                </div>
+                              </div>
+
+                              {/* 3. License compliance */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">3. License Compliance Auditor</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">&#10003; Apache 2.0 Compliant</span>
+                              </div>
+
+                              {/* 4. Cover email generator */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">4. Maintainer Cover Email Drafter</span>
+                                <button onClick={() => showToast("Draft email copied to clipboard!", "success")} className="text-[8px] font-black bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg uppercase tracking-wider block w-full font-mono">
+                                  DRAFT EMAIL TEMPLATE
+                                </button>
+                              </div>
+
+                              {/* 5. Good first issue */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">5. Good First Issue Scraper</span>
+                                <span className="text-[8px] font-mono text-purple-400 block bg-black/30 p-2 rounded-lg">
+                                  Found issue #412: "Fix memory leaks in socket multiplexer buffer"
+                                </span>
+                              </div>
+
+                              {/* 6. Contributions booster */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">6. Contribution Graph Streaks booster</span>
+                                <span className="text-xs font-black text-green-500 block font-mono">148 Commits Sync Ledger</span>
+                              </div>
+
+                              {/* 7. CLA signer */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">7. Contributor License Agreement (CLA)</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">&#10003; CLA SIGNED ACTIVE</span>
+                              </div>
+
+                              {/* 8. Issue template */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">8. Issue Template Architect</span>
+                                <span className="text-[8px] font-mono text-gray-400 block font-mono">System bug templates compiled</span>
+                              </div>
+
+                              {/* 9. Docker architect */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">9. Docker Containerization Architect</span>
+                                <code className="text-[8px] font-mono text-purple-400 block">FROM alpine:3.18 RUN apk add</code>
+                              </div>
+
+                              {/* 10. CI/CD actions */}
+                              <div className="p-6 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                                <span className="text-[7px] font-mono text-gray-500 uppercase block">10. CI/CD GitHub Actions Pipeline</span>
+                                <span className="text-xs font-black text-green-400 block font-mono">● PIPELINE PASSED OK</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="websitesSme"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    className="space-y-10"
+                  >
+                    {/* GSTIN & Engine Header Card */}
+                    <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-green-500/5 blur-[80px] pointer-events-none" />
+                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div className="space-y-1 text-left">
+                          <span className="text-[8px] font-mono font-black text-green-400 uppercase tracking-widest bg-green-400/10 px-3 py-1 rounded">
+                            MVP DEMO • GSTIN & STORE BUILDER ENGINE
+                          </span>
+                          <h3 className="text-3xl font-black text-white italic mt-2">🏪 SME Instant Storefront Generator</h3>
+                          <p className="text-xs text-gray-400 max-w-xl leading-relaxed">
+                            Simulate Websites.co.in's core customer acquisition loop. Input an Indian business GSTIN to auto-fetch corporate entities, customize features, and preview the generated website in real-time.
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white/[0.02] border border-white/5 px-4 py-2 rounded-xl text-[10px] font-mono text-gray-400">
+                          <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                          <span>Engine Live v1.0.4</span>
+                        </div>
+                      </div>
+
+                      {/* Onboarding Input Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
+                        <div className="space-y-2">
+                          <label className="text-[9px] font-black uppercase tracking-widest text-gray-500 block">Enter Business GSTIN</label>
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              value={gstin}
+                              onChange={(e) => setGstin(e.target.value.toUpperCase())}
+                              placeholder="e.g. 27AAACT1111A1Z1"
+                              maxLength={15}
+                              className="bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-green-500/40 flex-1"
+                            />
+                            <button
+                              onClick={handleGstinQuery}
+                              disabled={gstinParsing}
+                              className="bg-green-500 hover:bg-green-600 text-black font-black text-[10px] uppercase tracking-wider px-4 py-3 rounded-xl transition-all disabled:opacity-50"
+                            >
+                              {gstinParsing ? 'Syncing...' : 'Fetch'}
+                            </button>
+                          </div>
+                          <p className="text-[8px] text-gray-500 font-medium">Try state codes: 07 (Delhi), 09 (UP), 19 (WB), 33 (TN), or 27 (MH) to auto-fill details.</p>
+                        </div>
+
+                        <div className="space-y-2">
+                          <label className="text-[9px] font-black uppercase tracking-widest text-gray-500 block">Corporate Trade Name</label>
+                          <input
+                            type="text"
+                            value={smeBizName}
+                            onChange={(e) => setSmeBizName(e.target.value)}
+                            className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-xs text-white focus:outline-none focus:border-green-500/40"
+                          />
+                        </div>
+
+                        <div className="space-y-2">
+                          <label className="text-[9px] font-black uppercase tracking-widest text-gray-500 block">Business Category</label>
+                          <input
+                            type="text"
+                            value={smeCategory}
+                            onChange={(e) => setSmeCategory(e.target.value)}
+                            className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-xs text-white focus:outline-none focus:border-green-500/40"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Core Customization & Live Mock Screen Split */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                      {/* Left: Design and AI settings */}
+                      <div className="space-y-8">
+                        {/* Customization Settings */}
+                        <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6">
+                          <h4 className="text-lg font-black text-white flex items-center gap-2">
+                            <Store className="w-5 h-5 text-green-400" />
+                            <span>Web Engine Customizer</span>
+                          </h4>
+
+                          <div className="space-y-4">
+                            {/* Theme Color Picker */}
+                            <div className="space-y-2">
+                              <label className="text-[9px] font-black uppercase tracking-widest text-gray-500 block">Brand Palette Theme</label>
+                              <div className="flex gap-3">
+                                {[
+                                  { name: 'Violet', value: '#7c3aed', bg: 'bg-violet-600' },
+                                  { name: 'Indigo', value: '#4f46e5', bg: 'bg-indigo-600' },
+                                  { name: 'Emerald', value: '#059669', bg: 'bg-emerald-600' },
+                                  { name: 'Rose', value: '#e11d48', bg: 'bg-rose-600' },
+                                  { name: 'Amber', value: '#d97706', bg: 'bg-amber-600' }
+                                ].map((c) => (
+                                  <button
+                                    key={c.value}
+                                    onClick={() => {
+                                      setSmeTheme(c.value);
+                                      showToast(`Theme updated to ${c.name}!`, "info");
+                                    }}
+                                    className={`w-6 h-6 rounded-full ${c.bg} transition-all duration-200 relative ${
+                                      smeTheme === c.value ? 'ring-2 ring-white ring-offset-2 ring-offset-black scale-110' : 'hover:scale-105'
+                                    }`}
+                                    title={c.name}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Template selector */}
+                            <div className="grid grid-cols-3 gap-2">
+                              {[
+                                { id: 'bento', label: 'Bento Grid' },
+                                { id: 'glass', label: 'Glassmorphic' },
+                                { id: 'store', label: 'E-Shop' }
+                              ].map((tmpl) => (
+                                <button
+                                  key={tmpl.id}
+                                  onClick={() => setSmeTemplate(tmpl.id as any)}
+                                  className={`p-3 rounded-xl border text-[10px] font-black uppercase tracking-wider transition-all text-center ${
+                                    smeTemplate === tmpl.id
+                                      ? 'bg-white/10 border-white/20 text-white'
+                                      : 'bg-black/20 border-white/5 text-gray-500 hover:text-white'
+                                  }`}
+                                >
+                                  {tmpl.label}
+                                </button>
+                              ))}
+                            </div>
+
+                            {/* Toggles */}
+                            <div className="flex items-center justify-between p-3 bg-white/[0.01] border border-white/5 rounded-xl">
+                              <div className="space-y-1">
+                                <span className="text-xs font-black text-white block font-sans">WhatsApp Checkout API</span>
+                                <p className="text-[9px] text-gray-500">Automatically bundle cart orders to direct WhatsApp messages.</p>
+                              </div>
+                              <input
+                                type="checkbox"
+                                checked={smeWhatsappEnabled}
+                                onChange={(e) => setSmeWhatsappEnabled(e.target.checked)}
+                                className="w-4 h-4 accent-green-500"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Generative AI Copilot (SME copywriter) */}
+                        <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6">
+                          <div className="space-y-1">
+                            <h4 className="text-lg font-black text-white flex items-center gap-2">
+                              <Cpu className="w-5 h-5 text-purple-400" />
+                              <span>AI Product Copywriter</span>
+                            </h4>
+                            <p className="text-[10px] text-gray-400 leading-normal">Generate storefront products & copywriting copy for your store catalog instantly.</p>
+                          </div>
+
+                          <div className="space-y-3">
+                            <input
+                              type="text"
+                              value={smeAIPrompt}
+                              onChange={(e) => setSmeAIPrompt(e.target.value)}
+                              placeholder="e.g. Handcrafted wooden toys"
+                              className="w-full bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-xs text-white focus:outline-none focus:border-purple-500/40"
+                            />
+                            <button
+                              onClick={handleGenerateAiCatalog}
+                              disabled={smeAILoading}
+                              className="w-full bg-purple-500 hover:bg-purple-600 text-black font-black text-[10px] uppercase tracking-wider py-3 rounded-xl transition-all disabled:opacity-50"
+                            >
+                              {smeAILoading ? 'Synthesizing...' : 'Generate Catalog & Copy'}
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Interactive Console Logs */}
+                        <div className="p-6 bg-black/50 rounded-3xl border border-white/5 space-y-3 font-mono">
+                          <span className="text-[8px] text-gray-500 uppercase tracking-widest block font-bold">Execution Logs</span>
+                          <div className="space-y-1 max-h-[120px] overflow-y-auto pr-2">
+                            {builderLogs.map((log, idx) => (
+                              <div key={idx} className="text-[9px] text-gray-400 text-left">
+                                {log}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Live Responsive Preview (Simulated Browser / Mobile) */}
+                      <div className="space-y-4 flex flex-col">
+                        <div className="flex justify-between items-center bg-white/[0.02] border border-white/5 p-3 rounded-2xl">
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => setPreviewDevice('mobile')}
+                              className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase transition-all ${
+                                previewDevice === 'mobile' ? 'bg-white/10 text-white' : 'text-gray-500'
+                              }`}
+                            >
+                              Mobile Screen
+                            </button>
+                            <button
+                              onClick={() => setPreviewDevice('desktop')}
+                              className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase transition-all ${
+                                previewDevice === 'desktop' ? 'bg-white/10 text-white' : 'text-gray-500'
+                              }`}
+                            >
+                              Desktop Screen
+                            </button>
+                          </div>
+                          <span className="text-[9px] font-mono text-gray-400">Preview: {smeBizName.toLowerCase().replace(/\s+/g, '-')}.websites.co.in</span>
+                        </div>
+
+                        {/* Screen container */}
+                        <div className="flex-1 flex justify-center items-start w-full">
+                          <div
+                            className={`transition-all duration-300 bg-neutral-900 border-4 border-neutral-800 rounded-[2.5rem] overflow-hidden shadow-2xl relative flex flex-col ${
+                              previewDevice === 'mobile' ? 'w-[280px] h-[500px]' : 'w-full h-[500px]'
+                            }`}
+                          >
+                            {/* Screen status bar for mobile */}
+                            {previewDevice === 'mobile' && (
+                              <div className="bg-neutral-950 px-6 py-2 flex justify-between items-center text-[8px] text-gray-500 font-mono">
+                                <span>9:41 AM</span>
+                                <div className="flex gap-1.5">
+                                  <span>5G</span>
+                                  <span>100%</span>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Simulated browser header */}
+                            <div className="bg-neutral-950/80 px-4 py-2 border-b border-white/5 flex items-center justify-between">
+                              <div className="flex gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                              </div>
+                              <span className="text-[8px] text-gray-500 font-mono overflow-hidden truncate max-w-[150px] ml-2">
+                                {smeBizName.toLowerCase().replace(/\s+/g, '-')}.websites.co.in
+                              </span>
+                              <div className="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center text-[9px] text-white">
+                                🛒 {previewCartCount}
+                              </div>
+                            </div>
+
+                            {/* Live Site Preview Renders */}
+                            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black select-none text-left">
+                              {/* Store / Business Identity Header */}
+                              <div className="text-center py-6 border-b border-white/5 space-y-2">
+                                <h5 className="text-xl font-black" style={{ color: smeTheme }}>
+                                  {smeBizName}
+                                </h5>
+                                <span className="inline-block text-[8px] font-mono font-bold uppercase tracking-wider bg-white/5 text-gray-400 px-2.5 py-0.5 rounded">
+                                  {smeCategory}
+                                </span>
+                                <p className="text-[8px] text-gray-500 italic max-w-[180px] mx-auto leading-normal mt-1">
+                                  {smeAddress}
+                                </p>
+                              </div>
+
+                              {/* Layout Render logic */}
+                              {smeTemplate === 'bento' && (
+                                <div className="grid grid-cols-2 gap-2 text-white">
+                                  <div className="col-span-2 p-3 bg-neutral-900 border border-white/5 rounded-xl space-y-1">
+                                    <span className="text-[7px] text-gray-500 block uppercase font-bold">About Us</span>
+                                    <p className="text-[8px] text-gray-300 leading-normal">Welcome to {smeBizName}. We provide premium services in {smeCategory} track. Contact us for direct orders!</p>
+                                  </div>
+                                  <div className="p-3 bg-neutral-900 border border-white/5 rounded-xl space-y-1">
+                                    <span className="text-[7px] text-gray-500 block uppercase font-bold">Phone</span>
+                                    <span className="text-[8px] font-mono text-gray-300 truncate block">{smePhone}</span>
+                                  </div>
+                                  <div className="p-3 bg-neutral-900 border border-white/5 rounded-xl space-y-1 flex flex-col justify-between">
+                                    <span className="text-[7px] text-gray-500 block uppercase font-bold font-sans">Checkout Status</span>
+                                    <span className="text-[8px] text-green-400">WhatsApp Live</span>
+                                  </div>
+                                </div>
+                              )}
+
+                              {smeTemplate === 'glass' && (
+                                <div className="space-y-2">
+                                  <div className="p-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl text-white space-y-2">
+                                    <h6 className="text-[9px] font-black uppercase text-green-400 tracking-wider">Premium Experience</h6>
+                                    <p className="text-[8px] text-gray-300 leading-normal">
+                                      This website is generated instantly via Websites.co.in's proprietary server-side renderer. Minimal layout overhead guarantees a 99+ Lighthouse performance score.
+                                    </p>
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Catalog rendering - E-Shop template */}
+                              <div className="space-y-2">
+                                <span className="text-[8px] font-mono text-gray-500 uppercase tracking-widest block font-bold">
+                                  Store Catalog ({smeCatalog.length} Items)
+                                </span>
+                                <div className="space-y-2">
+                                  {smeCatalog.map((item) => (
+                                    <div key={item.id} className="p-3 bg-neutral-900/60 border border-white/5 rounded-xl flex items-center justify-between gap-4">
+                                      <div className="space-y-1 min-w-0">
+                                        <span className="text-[9px] font-black text-white block truncate">{item.name}</span>
+                                        <p className="text-[7px] text-gray-500 leading-relaxed truncate">{item.desc}</p>
+                                      </div>
+                                      <div className="text-right shrink-0">
+                                        <span className="text-[9px] font-mono text-white block">₹{item.price}</span>
+                                        <button
+                                          onClick={() => {
+                                            setPreviewCartCount(c => c + 1);
+                                            showToast(`Added ${item.name} to cart`, "success");
+                                          }}
+                                          className="text-[7px] font-black text-green-400 uppercase tracking-wider mt-1 hover:underline block ml-auto"
+                                        >
+                                          + Add
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Simulated WhatsApp button */}
+                              {smeWhatsappEnabled && (
+                                <button
+                                  onClick={() => {
+                                    const text = `Hi ${smeBizName}, I want to place an order from your generated catalog! Items selected: ${previewCartCount}`;
+                                    window.open(`https://api.whatsapp.com/send?phone=${smePhone.replace(/[^0-9+]/g, '')}&text=${encodeURIComponent(text)}`, '_blank');
+                                    showToast("Simulated WhatsApp redirect API!", "success");
+                                  }}
+                                  className="w-full bg-green-600 hover:bg-green-700 text-white font-black text-[9px] uppercase tracking-wider py-2.5 rounded-xl text-center flex items-center justify-center gap-1.5 transition-all mt-4"
+                                >
+                                  <span>💬 Message on WhatsApp</span>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Websites.co.in SME Strategy integration blueprint */}
+                    <div className="p-8 glass rounded-[3rem] border-white/5 space-y-6">
+                      <div className="space-y-1 text-left">
+                        <span className="text-[8px] font-mono font-black text-purple-400 uppercase tracking-widest bg-purple-400/10 px-3 py-1 rounded">
+                          WEBSITES.CO.IN • STRATEGIC CANDIDATE INITIATIVE
+                        </span>
+                        <h4 className="text-2xl font-black text-white mt-2">SME Platform Integration Roadmap</h4>
+                        <p className="text-xs text-gray-400">Ayush's proposed 90-day technological roadmap to scale local storefront onboarding.</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-left">
+                        <div className="p-5 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                          <span className="text-[9px] font-mono text-purple-400 font-bold uppercase block">Phase 1 (Days 1-30)</span>
+                          <h5 className="text-xs font-black text-white uppercase">GSTIN Auto-Onboarding</h5>
+                          <p className="text-[10px] text-gray-400 leading-normal">Replace manual business verification forms with a unified GSTIN API. Instantly auto-populate address, contact details, and category codes inside the website generation builder.</p>
+                        </div>
+
+                        <div className="p-5 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                          <span className="text-[9px] font-mono text-purple-400 font-bold uppercase block">Phase 2 (Days 31-60)</span>
+                          <h5 className="text-xs font-black text-white uppercase">Localized AI Copilot</h5>
+                          <p className="text-[10px] text-gray-400 leading-normal">Deploy generative models at the edge to suggest product descriptions, select curated brand colors, and configure targeted Google Ad SEO keywords in regional languages.</p>
+                        </div>
+
+                        <div className="p-5 bg-white/[0.01] border border-white/5 rounded-2xl space-y-3">
+                          <span className="text-[9px] font-mono text-purple-400 font-bold uppercase block">Phase 3 (Days 61-90)</span>
+                          <h5 className="text-xs font-black text-white uppercase">SME Payment & WhatsApp Ring</h5>
+                          <p className="text-[10px] text-gray-400 leading-normal">Establish a seamless customer funnel combining instant catalog creation, automated WhatsApp order alerts, and local UPI invoice triggers.</p>
                         </div>
                       </div>
                     </div>

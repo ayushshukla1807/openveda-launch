@@ -9,6 +9,10 @@
     · missingSuspenseWithCSRBailout
 
    Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
  ✓ Compiled successfully
    Skipping validation of types
    Skipping linting
@@ -19,28 +23,28 @@
    Finalizing page optimization     ✓ Finalizing page optimization 
 
 Route (app)                              Size     First Load JS
-┌ ○ /                                    3.71 kB         194 kB
-├ ○ /_not-found                          873 B          88.2 kB
+┌ ○ /                                    8.61 kB         159 kB
+├ ○ /_not-found                          876 B          88.2 kB
 ├ ƒ /api/og/verify                       0 B                0 B
 ├ ƒ /api/revalidate                      0 B                0 B
 ├ ƒ /auth/callback                       0 B                0 B
 ├ ƒ /auth/sign-out                       0 B                0 B
-├ ○ /curriculum                          2.31 kB         131 kB
-├ ○ /dashboard                           6.44 kB         196 kB
-├ ○ /founder                             1.7 kB          139 kB
-├ ƒ /journey                             2.06 kB         187 kB
-├ ○ /login                               21.6 kB         198 kB
-├ ○ /mentorship                          2.07 kB         145 kB
-├ ƒ /mentorship/[slug]                   146 B          87.4 kB
-├ ○ /organizations                       6.84 kB         197 kB
-├ ƒ /playbook/[slug]                     37.6 kB         222 kB
-├ ○ /programs                            2.23 kB         145 kB
-├ ƒ /verify/[uuid]                       1.79 kB         131 kB
-└ ƒ /verify/[uuid]/mobile                146 B          87.4 kB
+├ ○ /curriculum                          5.27 kB         145 kB
+├ ○ /dashboard                           28.1 kB         181 kB
+├ ○ /founder                             5.33 kB         151 kB
+├ ƒ /journey                             1.81 kB         147 kB
+├ ○ /login                               4.12 kB         141 kB
+├ ○ /mentorship                          7.61 kB         158 kB
+├ ƒ /mentorship/[slug]                   175 B          96.1 kB
+├ ○ /organizations                       4.92 kB         155 kB
+├ ƒ /playbook/[slug]                     37.3 kB         183 kB
+├ ○ /programs                            2.24 kB         145 kB
+├ ƒ /verify/[uuid]                       1.8 kB          131 kB
+└ ƒ /verify/[uuid]/mobile                140 B          87.4 kB
 + First Load JS shared by all            87.3 kB
-  ├ chunks/1dd3208c-34348a38238357f4.js  53.6 kB
-  ├ chunks/528-55c76a4307409ce1.js       31.7 kB
-  └ other shared chunks (total)          1.96 kB
+  ├ chunks/1dd3208c-02bd9180abc67d9a.js  53.7 kB
+  ├ chunks/528-e506b899cae3b907.js       31.7 kB
+  └ other shared chunks (total)          1.95 kB
 
 
 ○  (Static)   prerendered as static content

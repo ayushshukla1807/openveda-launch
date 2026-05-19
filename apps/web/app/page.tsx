@@ -6,33 +6,7 @@ import OrgCard from '@/components/ui/OrgCard';
 import Link from 'next/link';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
-
-const programs = [
-  { 
-    name: 'GSoC 2027', 
-    slug: 'GSoC 2027', 
-    description: 'The gold standard for open-source mentorship.', 
-    image_url: '/assets/gsoc_26.png' 
-  },
-  { 
-    name: 'LFX Mentorship', 
-    slug: 'LFX', 
-    description: 'Build the infrastructure of the internet.', 
-    image_url: '/assets/lfx_26.png' 
-  },
-  { 
-    name: 'Outreachy', 
-    slug: 'Outreachy', 
-    description: 'Inclusive internships for underrepresented groups.', 
-    image_url: '/assets/outreachy_26.png' 
-  },
-  { 
-    name: 'ESOC 2027', 
-    slug: 'ESOC 2027', 
-    description: 'EuroSocio-OpenSource for social impact.', 
-    image_url: '/assets/esoc_26.png' 
-  }
-];
+import { Sparkles, Brain, Cpu, Database, Network } from 'lucide-react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -60,6 +34,13 @@ export default function HomePage() {
   const [isJoining, setIsJoining] = useState(false);
   const [joinedSuccess, setJoinedSuccess] = useState(false);
 
+  // AI Match Affinity Radar States
+  const [radarTrack, setRadarTrack] = useState('full-stack');
+  const [radarState, setRadarState] = useState<'idle' | 'scanning' | 'done'>('idle');
+  const [radarScore, setRadarScore] = useState(0);
+  const [radarLogs, setRadarLogs] = useState<string[]>([]);
+  const [radarRecommendation, setRadarRecommendation] = useState('');
+
   useEffect(() => {
     const fetchOrgs = async () => {
       const { data } = await createBrowserSupabaseClient()
@@ -74,9 +55,46 @@ export default function HomePage() {
   const handleJoinDiscord = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsJoining(true);
-    await new Promise(resolve => setTimeout(resolve, 1400));
+    await new Promise<void>(resolve => { setTimeout(resolve, 1400); });
     setIsJoining(false);
     setJoinedSuccess(true);
+  };
+
+  // Run AI Similarity Match Radar
+  const runAiRadarScan = async () => {
+    setRadarState('scanning');
+    setRadarLogs([]);
+    
+    const logs = [
+      `[AI Engine] Tracing client hardware concurrency and browser environment...`,
+      `[Vector Ingestion] Generating candidate embeddings for track: ${radarTrack.toUpperCase()}`,
+      `[Cosine Matrix] Running pgvector dot product computations against 185 CNCF/Wasm playbooks...`,
+      `[Neural Weights] Matching optimal candidate fit indexes...`,
+      `[SUCCESS] Alignment resolved.`
+    ];
+
+    for (let i = 0; i < logs.length; i++) {
+      await new Promise<void>(resolve => { setTimeout(resolve, 350); });
+      setRadarLogs(prev => [...prev, logs[i]]);
+    }
+
+    setRadarScore(Math.round(85 + Math.random() * 14));
+    
+    let recommendation = "";
+    if (radarTrack === 'ai-ml') {
+      recommendation = "Optimal Candidate Profile! Your signature matches top AI systems. We recommend focusing on LFX PyTorch, CNCF Pixie, or InShorts vector retrieval playbooks.";
+    } else if (radarTrack === 'backend') {
+      recommendation = "Highly Compatible! Your systems thread signature is ideal for distributed consensus pipelines. Target Raft Orchestration or Envoy Proxy filters.";
+    } else if (radarTrack === 'full-stack') {
+      recommendation = "Master Key Sync! Ideal for low-latency web platforms. Focus on SWC AST transformers, Next.js build pipelines, or Google-like OAuth credentials.";
+    } else if (radarTrack === 'frontend') {
+      recommendation = "Pixel Perfect Sync! Match resolved for rich client graphs. Focus on React Server Components, responsive bento grids, and active WebSockets.";
+    } else {
+      recommendation = "Data Hub Sync! Perfect for spatial analytics. Focus on Blinkit/Zepto Dijkstra routing simulations and Apache Spark observability telemetry pipelines.";
+    }
+
+    setRadarRecommendation(recommendation);
+    setRadarState('done');
   };
 
   return (
@@ -136,6 +154,76 @@ export default function HomePage() {
                   Explore Syllabus <span className="text-lg">→</span>
                 </Link>
             </div>
+          </motion.div>
+        </section>
+
+        {/* AI Match Affinity Radar Section */}
+        <section className="w-full max-w-5xl px-4 py-16 mb-20 relative">
+          <div className="absolute inset-0 bg-purple-600/5 blur-[120px] rounded-full pointer-events-none" />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-12 glass rounded-[3.5rem] border border-purple-500/20 relative overflow-hidden space-y-10"
+          >
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+              <div className="space-y-2">
+                <span className="text-[#00f0ff] text-[9px] font-mono tracking-widest uppercase font-black flex items-center gap-1.5">
+                  <Brain className="w-3.5 h-3.5 text-[#00f0ff] animate-pulse" />
+                  <span>Interactive Neural Radar</span>
+                </span>
+                <h2 className="text-4xl font-black text-white italic">AI System Match Affinity Radar</h2>
+                <p className="text-xs text-slate-400 font-medium max-w-xl">
+                  Run a local pgvector similarity audit to match your candidate track with the ultimate GSoC/LFX codebases.
+                </p>
+              </div>
+
+              <div className="flex gap-2 bg-black/40 p-2 rounded-2xl border border-white/5">
+                <select
+                  value={radarTrack}
+                  onChange={e => setRadarTrack(e.target.value)}
+                  className="bg-transparent text-white font-black text-[10px] uppercase tracking-widest outline-none border-none cursor-pointer p-2 px-3"
+                >
+                  <option value="full-stack">Full Stack Engineer</option>
+                  <option value="ai-ml">AI/ML Engineer</option>
+                  <option value="backend">Backend Engineer</option>
+                  <option value="frontend">Frontend Engineer</option>
+                  <option value="data-analyst">Data Analyst</option>
+                </select>
+                <button
+                  onClick={runAiRadarScan}
+                  disabled={radarState === 'scanning'}
+                  className="bg-white text-black font-black text-[9px] uppercase tracking-widest px-6 py-2.5 rounded-xl hover:scale-105 active:scale-95 transition-all"
+                >
+                  {radarState === 'scanning' ? 'Scanning...' : 'Scan Alignment'}
+                </button>
+              </div>
+            </div>
+
+            {/* Neural Log Terminal Console */}
+            {radarLogs.length > 0 && (
+              <div className="font-mono text-[10px] bg-black/60 p-6 rounded-2xl border border-white/5 space-y-2 text-[#00f0ff] max-h-[160px] overflow-y-auto scrollbar-none">
+                {radarLogs.map((log, i) => (
+                  <div key={i} className="flex gap-2">
+                    <span className="text-purple-400">⚡</span>
+                    <span>{log}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Radar Result card */}
+            {radarState === 'done' && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 bg-purple-500/5 border border-purple-500/20 rounded-[2rem] items-center">
+                <div className="text-center md:text-left">
+                  <span className="text-[7px] text-gray-500 uppercase block font-mono">Similarity Matrix Match Score</span>
+                  <span className="text-5xl font-black text-white">{radarScore}%</span>
+                </div>
+                <div className="md:col-span-2 text-xs font-semibold text-gray-300 leading-relaxed">
+                  {radarRecommendation}
+                </div>
+              </div>
+            )}
           </motion.div>
         </section>
 

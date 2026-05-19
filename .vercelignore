@@ -1,0 +1,7 @@
+/supabase
+/.git
+/.github
+/.next
+/.turbo
+/.vercel
+node_modules

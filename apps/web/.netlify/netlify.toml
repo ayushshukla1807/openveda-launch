@@ -18,10 +18,11 @@ package = "@netlify/plugin-nextjs"
 publish = "/Users/ayushshukla/Projects/openveda/apps/web/.next"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "/Users/ayushshukla/Projects/openveda/apps/web"
-command = "npm run build"
+command = "npm run build:prod"
 
 [build.environment]
+NEXT_USE_LIB64 = "true"
+NODE_VERSION = "20"
 
 [build.processing]
 

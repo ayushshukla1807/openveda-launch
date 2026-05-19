@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
 import OrgCard from '@/components/ui/OrgCard';
 import { motion } from 'framer-motion';
-import gsocOrgsRaw from '../../../../gsoc_2026_orgs.json';
+import gsocOrgsRaw from '@/lib/gsoc_2026_orgs.json';
 
 const supabase = createBrowserSupabaseClient();
 

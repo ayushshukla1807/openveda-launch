@@ -43,3 +43,6 @@ certificates
 
 # Local Netlify folder
 .netlify
+
+# turbo cache
+.turbo
