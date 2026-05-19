@@ -15,3 +15,4 @@ System Optimization Node Sync Event #13 - Latency Check: OK
 System Optimization Node Sync Event #14 - Latency Check: OK
 System Optimization Node Sync Event #15 - Latency Check: OK
 System Optimization Node Sync Event #16 - Latency Check: OK
+System Optimization Node Sync Event #17 - Latency Check: OK
