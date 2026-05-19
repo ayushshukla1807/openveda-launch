@@ -71,3 +71,4 @@ System Optimization Node Sync Event #69 - Latency Check: OK
 System Optimization Node Sync Event #70 - Latency Check: OK
 System Optimization Node Sync Event #71 - Latency Check: OK
 System Optimization Node Sync Event #72 - Latency Check: OK
+System Optimization Node Sync Event #73 - Latency Check: OK
