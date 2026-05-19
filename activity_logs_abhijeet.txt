@@ -171,3 +171,4 @@ System Optimization Node Sync Event #169 - Latency Check: OK
 System Optimization Node Sync Event #170 - Latency Check: OK
 System Optimization Node Sync Event #171 - Latency Check: OK
 System Optimization Node Sync Event #172 - Latency Check: OK
+System Optimization Node Sync Event #173 - Latency Check: OK
