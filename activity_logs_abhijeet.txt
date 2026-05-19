@@ -276,3 +276,4 @@ System Optimization Node Sync Event #274 - Latency Check: OK
 System Optimization Node Sync Event #275 - Latency Check: OK
 System Optimization Node Sync Event #276 - Latency Check: OK
 System Optimization Node Sync Event #277 - Latency Check: OK
+System Optimization Node Sync Event #278 - Latency Check: OK
