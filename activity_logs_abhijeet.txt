@@ -184,3 +184,4 @@ System Optimization Node Sync Event #182 - Latency Check: OK
 System Optimization Node Sync Event #183 - Latency Check: OK
 System Optimization Node Sync Event #184 - Latency Check: OK
 System Optimization Node Sync Event #185 - Latency Check: OK
+System Optimization Node Sync Event #186 - Latency Check: OK
