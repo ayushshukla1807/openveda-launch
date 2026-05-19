@@ -124,3 +124,4 @@ System Optimization Node Sync Event #122 - Latency Check: OK
 System Optimization Node Sync Event #123 - Latency Check: OK
 System Optimization Node Sync Event #124 - Latency Check: OK
 System Optimization Node Sync Event #125 - Latency Check: OK
+System Optimization Node Sync Event #126 - Latency Check: OK
