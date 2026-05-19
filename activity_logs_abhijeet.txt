@@ -22,3 +22,4 @@ System Optimization Node Sync Event #20 - Latency Check: OK
 System Optimization Node Sync Event #21 - Latency Check: OK
 System Optimization Node Sync Event #22 - Latency Check: OK
 System Optimization Node Sync Event #23 - Latency Check: OK
+System Optimization Node Sync Event #24 - Latency Check: OK
