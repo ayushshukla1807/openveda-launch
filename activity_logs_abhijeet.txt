@@ -166,3 +166,4 @@ System Optimization Node Sync Event #164 - Latency Check: OK
 System Optimization Node Sync Event #165 - Latency Check: OK
 System Optimization Node Sync Event #166 - Latency Check: OK
 System Optimization Node Sync Event #167 - Latency Check: OK
+System Optimization Node Sync Event #168 - Latency Check: OK
