@@ -131,6 +131,86 @@ export default function FounderPage() {
           </motion.div>
         </div>
 
+        {/* Founders & Architects Profiles */}
+        <div className="space-y-12">
+          <motion.div variants={itemVariants} className="text-center md:text-left space-y-2">
+            <span className="text-[#00f0ff] font-mono text-[10px] tracking-widest uppercase font-black">
+              THE LEADERSHIP DIRECTIVE
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-white italic">Founding Architects</h2>
+            <p className="text-sm text-gray-400 max-w-xl">
+              Meet the minds driving the year-round contribution engine and building elite systems portfolios.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            variants={itemVariants} 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {/* Ayush Shukla */}
+            <div className="p-8 md:p-10 glass rounded-[2.5rem] border border-white/5 space-y-6 relative overflow-hidden group hover:border-[#00f0ff]/30 transition-all duration-500">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00f0ff]/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#00f0ff] to-purple-600 p-[2px]">
+                  <div className="w-full h-full bg-[#030305] rounded-[14px] flex items-center justify-center font-black text-white text-xl">
+                    AS
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-white">Ayush Shukla</h3>
+                  <span className="text-[#00f0ff] font-mono text-[9px] tracking-widest uppercase font-black">
+                    Lead Architect & Founder
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                Pioneering open source mentorship paradigms. Core contributor to elite Next.js build engines, custom compiler plugins, and database sync architectures.
+              </p>
+              <div className="flex gap-4 pt-2">
+                <a 
+                  href="https://github.com/ayushshukla1807" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono font-black text-white hover:text-[#00f0ff] transition-colors"
+                >
+                  github.com/ayushshukla1807 ↗
+                </a>
+              </div>
+            </div>
+
+            {/* Abhijeet */}
+            <div className="p-8 md:p-10 glass rounded-[2.5rem] border border-white/5 space-y-6 relative overflow-hidden group hover:border-[#7000ff]/30 transition-all duration-500">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#7000ff]/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#7000ff] to-pink-500 p-[2px]">
+                  <div className="w-full h-full bg-[#030305] rounded-[14px] flex items-center justify-center font-black text-white text-xl">
+                    AA
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-white">Abhijeet</h3>
+                  <span className="text-purple-400 font-mono text-[9px] tracking-widest uppercase font-black">
+                    Co-Founder & Systems Core
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                Specializing in low-overhead execution runtimes, distributed consensus engines, pgvector index pipelines, and real-time telemetry tracing logs.
+              </p>
+              <div className="flex gap-4 pt-2">
+                <a 
+                  href="https://github.com/Abhi3975" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono font-black text-white hover:text-purple-400 transition-colors"
+                >
+                  github.com/Abhi3975 ↗
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Ask the Founder Interactive AI Sandbox */}
         <motion.div 
           variants={itemVariants}

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 export default function MentorProfile({ params }: { params: { slug: string } }) {
-    const allowedSlugs = ['ayush-shukla', 'elena-rostova', 'devon-carter'];
+    const allowedSlugs = ['ayush-shukla', 'abhijeet', 'elena-rostova', 'devon-carter'];
     
     if (!allowedSlugs.includes(params.slug)) {
         notFound();
@@ -15,6 +15,13 @@ export default function MentorProfile({ params }: { params: { slug: string } }) 
         expertise: ['System Architecture', 'Next.js core', 'Distributed Systems'],
         impact: 'Scaled open platforms driving millions of developer commits across high-traffic repositories.',
         github: 'ayushshukla1807'
+    } : params.slug === 'abhijeet' ? {
+        name: 'Abhijeet',
+        role: 'Co-Founder & Systems Core Engineer, OpenVeda',
+        bio: 'Specializing in low-overhead execution runtimes, distributed consensus engines, pgvector index pipelines, and real-time telemetry tracing logs.',
+        expertise: ['Distributed Systems', 'Rust', 'WebAssembly', 'eBPF'],
+        impact: 'Designed telemetry tracing layers and custom vector consensus sync engines for Next.js and Supabase ecosystems.',
+        github: 'Abhi3975'
     } : params.slug === 'elena-rostova' ? {
         name: 'Elena Rostova',
         role: 'Core Linux Kernel Contributor',

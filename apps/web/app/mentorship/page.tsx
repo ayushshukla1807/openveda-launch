@@ -19,6 +19,15 @@ const mentors = [
     slots: ['Mon 3:00 PM IST', 'Wed 5:00 PM IST', 'Fri 6:00 PM IST']
   },
   {
+    name: 'Abhijeet',
+    slug: 'abhijeet',
+    role: 'Co-Founder & Systems Core Engineer, OpenVeda',
+    bio: 'Specializing in low-overhead execution runtimes, distributed consensus engines, pgvector index pipelines, and real-time telemetry tracing logs.',
+    expertise: ['Distributed Systems', 'Rust', 'WebAssembly', 'eBPF'],
+    image: 'https://api.dicebear.com/7.x/shapes/svg?seed=Abhijeet',
+    slots: ['Tue 4:00 PM IST', 'Thu 6:00 PM IST', 'Sat 2:00 PM IST']
+  },
+  {
     name: 'Elena Rostova',
     slug: 'elena-rostova',
     role: 'Core Linux Kernel Contributor',
