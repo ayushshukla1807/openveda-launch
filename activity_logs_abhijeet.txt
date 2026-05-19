@@ -39,3 +39,4 @@ System Optimization Node Sync Event #37 - Latency Check: OK
 System Optimization Node Sync Event #38 - Latency Check: OK
 System Optimization Node Sync Event #39 - Latency Check: OK
 System Optimization Node Sync Event #40 - Latency Check: OK
+System Optimization Node Sync Event #41 - Latency Check: OK
