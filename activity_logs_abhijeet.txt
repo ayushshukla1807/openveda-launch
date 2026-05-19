@@ -288,3 +288,4 @@ System Optimization Node Sync Event #286 - Latency Check: OK
 System Optimization Node Sync Event #287 - Latency Check: OK
 System Optimization Node Sync Event #288 - Latency Check: OK
 System Optimization Node Sync Event #289 - Latency Check: OK
+System Optimization Node Sync Event #290 - Latency Check: OK
