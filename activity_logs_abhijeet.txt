@@ -294,3 +294,4 @@ System Optimization Node Sync Event #292 - Latency Check: OK
 System Optimization Node Sync Event #293 - Latency Check: OK
 System Optimization Node Sync Event #294 - Latency Check: OK
 System Optimization Node Sync Event #295 - Latency Check: OK
+System Optimization Node Sync Event #296 - Latency Check: OK
