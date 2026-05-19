@@ -109,3 +109,4 @@ System Optimization Node Sync Event #107 - Latency Check: OK
 System Optimization Node Sync Event #108 - Latency Check: OK
 System Optimization Node Sync Event #109 - Latency Check: OK
 System Optimization Node Sync Event #110 - Latency Check: OK
+System Optimization Node Sync Event #111 - Latency Check: OK
