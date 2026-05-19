@@ -47,3 +47,4 @@ System Optimization Node Sync Event #45 - Latency Check: OK
 System Optimization Node Sync Event #46 - Latency Check: OK
 System Optimization Node Sync Event #47 - Latency Check: OK
 System Optimization Node Sync Event #48 - Latency Check: OK
+System Optimization Node Sync Event #49 - Latency Check: OK
