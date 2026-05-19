@@ -43,3 +43,4 @@ System Optimization Node Sync Event #41 - Latency Check: OK
 System Optimization Node Sync Event #42 - Latency Check: OK
 System Optimization Node Sync Event #43 - Latency Check: OK
 System Optimization Node Sync Event #44 - Latency Check: OK
+System Optimization Node Sync Event #45 - Latency Check: OK
