@@ -260,3 +260,4 @@ System Optimization Node Sync Event #258 - Latency Check: OK
 System Optimization Node Sync Event #259 - Latency Check: OK
 System Optimization Node Sync Event #260 - Latency Check: OK
 System Optimization Node Sync Event #261 - Latency Check: OK
+System Optimization Node Sync Event #262 - Latency Check: OK
