@@ -191,3 +191,4 @@ System Optimization Node Sync Event #189 - Latency Check: OK
 System Optimization Node Sync Event #190 - Latency Check: OK
 System Optimization Node Sync Event #191 - Latency Check: OK
 System Optimization Node Sync Event #192 - Latency Check: OK
+System Optimization Node Sync Event #193 - Latency Check: OK
