@@ -133,3 +133,4 @@ System Optimization Node Sync Event #131 - Latency Check: OK
 System Optimization Node Sync Event #132 - Latency Check: OK
 System Optimization Node Sync Event #133 - Latency Check: OK
 System Optimization Node Sync Event #134 - Latency Check: OK
+System Optimization Node Sync Event #135 - Latency Check: OK
