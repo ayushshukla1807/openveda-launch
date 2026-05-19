@@ -254,3 +254,4 @@ System Optimization Node Sync Event #252 - Latency Check: OK
 System Optimization Node Sync Event #253 - Latency Check: OK
 System Optimization Node Sync Event #254 - Latency Check: OK
 System Optimization Node Sync Event #255 - Latency Check: OK
+System Optimization Node Sync Event #256 - Latency Check: OK
