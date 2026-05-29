@@ -341,7 +341,7 @@ export default function DashboardPage() {
   // Chatbot Drawer State
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState<any[]>([
-    { sender: 'ai', text: "Welcome to OpenVeda Command AI. Ask me about your target programs (GSoC 2027, LFX), playbook architectures, or how to submit your first proactive PR!" }
+    { sender: 'ai', text: "Welcome to OpenVeda Command AI. Ask me about your target programs (GSoC 2026, LFX), playbook architectures, or how to submit your first proactive PR!" }
   ]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
@@ -741,7 +741,7 @@ export default function DashboardPage() {
       if (lower.includes("lfx") || lower.includes("linux")) {
         reply = "LFX Mentorship is highly selective. To stand out, clone the repository, audit open issues, and start writing pre-requisite pull requests before the application window opens. Our Roadmap checklists below tracks this exactly!";
       } else if (lower.includes("gsoc") || lower.includes("google")) {
-        reply = "For Google Summer of Code 2027, the key is to build direct synchronization context with organization maintainers. Leverage our Playbook profiles, lock your starred organizations, and begin drafting your technical ledger proposal today.";
+        reply = "For Google Summer of Code 2026, the key is to build direct synchronization context with organization maintainers. Leverage our Playbook profiles, lock your starred organizations, and begin drafting your technical ledger proposal today.";
       } else if (lower.includes("proposal") || lower.includes("draft")) {
         reply = "Drafting a proposal is simple in OpenVeda! Simply click the 'Create Draft' button in the GSoC Proposals section. You can choose any organization, draft in Markdown, save to our cloud database, and download the ledger instantly.";
       } else if (lower.includes("playbook")) {
@@ -1065,7 +1065,7 @@ export default function DashboardPage() {
                                   </div>
                                   <div>
                                     <h3 className="text-lg font-black text-foreground group-hover:text-primary transition-colors leading-tight line-clamp-1">{org.name}</h3>
-                                    <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest mt-1">{org.program || 'GSoC 2027'}</p>
+                                    <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest mt-1">{org.program || 'GSoC 2026'}</p>
                                   </div>
                                 </div>
                                 <button
@@ -2587,7 +2587,7 @@ export default function DashboardPage() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. GSoC 2027: Low latency event streaming in Microcks"
+                    placeholder="e.g. GSoC 2026: Low latency event streaming in Microcks"
                     value={activeProposal?.title || ''}
                     onChange={e => setActiveProposal(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full bg-background border border-border px-6 py-4 rounded-xl text-xs text-foreground focus:ring-1 focus:ring-primary outline-none"
@@ -2632,7 +2632,7 @@ export default function DashboardPage() {
                   <textarea
                     rows={8}
                     required
-                    placeholder="# GSoC 2027 Project Ledger&#10;&#10;## 1. Abstract&#10;Describe your system design, APIs, and roadmap milestones..."
+                    placeholder="# GSoC 2026 Project Ledger&#10;&#10;## 1. Abstract&#10;Describe your system design, APIs, and roadmap milestones..."
                     value={activeProposal?.content_markdown || ''}
                     onChange={e => setActiveProposal(prev => ({ ...prev, content_markdown: e.target.value }))}
                     className="w-full bg-background border border-border px-6 py-4 rounded-xl text-xs text-foreground focus:ring-1 focus:ring-primary outline-none font-mono resize-y"
@@ -2768,7 +2768,7 @@ export default function DashboardPage() {
             {/* Suggested Chip Buttons */}
             <div className="px-6 py-2 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none border-t border-border/30 bg-background/10">
               {[
-                "Strategy GSoC 2027",
+                "Strategy GSoC 2026",
                 "LFX application tips",
                 "Drafting proposals"
               ].map(prompt => (

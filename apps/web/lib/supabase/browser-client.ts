@@ -10,18 +10,18 @@ const staticProgramsOrgs = [
   { name: 'GNOME', slug: 'gnome', tech_stack: ['C', 'Rust', 'Python', 'GTK'], program: 'Outreachy', repo_path: 'GNOME/gnome-shell', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/GNOME_logo.svg', description: 'The premier desktop environment for the desktop Linux community worldwide.' },
   { name: 'Fedora', slug: 'fedora', tech_stack: ['Python', 'Shell', 'C', 'Ansible'], program: 'Outreachy', repo_path: 'fedora-infra/fedora-messaging', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Fedora_logo.svg', description: 'A community-driven, cutting-edge Linux distribution and operating system ecosystem.' },
   { name: 'OpenTelemetry', slug: 'opentelemetry', tech_stack: ['Go', 'Java', 'Python', 'Collector'], program: 'Outreachy', repo_path: 'open-telemetry/opentelemetry-collector', logo_url: 'https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/icon.svg', description: 'A collection of tools, APIs, and SDKs to capture cloud-native observability metrics.' },
-  { name: 'OpenSource Health', slug: 'os-health', tech_stack: ['React', 'Node.js', 'PostgreSQL'], program: 'ESOC 2027', repo_path: 'os-health/core', logo_url: 'https://api.dicebear.com/7.x/initials/svg?seed=OH', description: 'Building open tools for community healthcare and patient records in Europe.' },
-  { name: 'GreenCode', slug: 'greencode', tech_stack: ['Python', 'D3.js', 'EarthData'], program: 'ESOC 2027', repo_path: 'greencode/pipeline', logo_url: 'https://api.dicebear.com/7.x/initials/svg?seed=GC', description: 'Open data pipelines and mapping platforms for environmental and climate monitoring.' }
+  { name: 'OpenSource Health', slug: 'os-health', tech_stack: ['React', 'Node.js', 'PostgreSQL'], program: 'ESOC 2026', repo_path: 'os-health/core', logo_url: 'https://api.dicebear.com/7.x/initials/svg?seed=OH', description: 'Building open tools for community healthcare and patient records in Europe.' },
+  { name: 'GreenCode', slug: 'greencode', tech_stack: ['Python', 'D3.js', 'EarthData'], program: 'ESOC 2026', repo_path: 'greencode/pipeline', logo_url: 'https://api.dicebear.com/7.x/initials/svg?seed=GC', description: 'Open data pipelines and mapping platforms for environmental and climate monitoring.' }
 ];
 
 const parsedGsocOrgs = gsocOrgsRaw.map((org: any) => ({
   name: org.name,
   slug: org.slug,
   tech_stack: org.slug === 'appsmith' ? ['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB'] : (org.tech_stack || []),
-  program: 'GSoC 2027',
+  program: 'GSoC 2026',
   repo_path: org.slug === 'appsmith' ? 'appsmithorg/appsmith' : null,
   logo_url: org.slug === 'appsmith' ? 'https://avatars.githubusercontent.com/u/53011310?s=200&v=4' : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(org.name)}`,
-  description: `Master high-impact contributions to ${org.name} for GSoC 2027 and standard release cycles.`
+  description: `Master high-impact contributions to ${org.name} for GSoC 2026 and standard release cycles.`
 }));
 
 const MASTER_ORGS_LIST = [...staticProgramsOrgs, ...parsedGsocOrgs].map((org, index) => ({

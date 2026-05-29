@@ -118,7 +118,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-6 py-2 mb-10 text-[10px] font-black tracking-[0.3em] text-primary uppercase bg-primary/5 border border-primary/20 backdrop-blur-xl rounded-full"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            LIVE TIMELINE: MAY 2026 • THE GSOC 2027 PREP STATION
+            LIVE TIMELINE: MAY 2026 • GSOC 2026 CODING PERIOD LIVE
           </motion.div>
           
           <motion.h1 variants={itemVariants} className="text-8xl md:text-[11rem] font-black text-white leading-[0.85] tracking-[-0.05em] mb-12">
@@ -139,7 +139,7 @@ export default function HomePage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[60px] group-hover:bg-primary/20 transition-all" />
                 <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">PHASE A: ROADMAPS</span>
                 <h3 className="text-3xl font-black italic mt-4 text-white">Track Milestones</h3>
-                <p className="text-slate-400 mt-6 font-medium leading-relaxed">Map your GSoC 2027 milestones. Learn maintainer communication, roadmap selection, and dynamic progress validation tracking.</p>
+                <p className="text-slate-400 mt-6 font-medium leading-relaxed">Map your GSoC 2026 milestones. Learn maintainer communication, roadmap selection, and dynamic progress validation tracking.</p>
                 <Link href="/journey" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
                   Access Roadmap <span className="text-lg">→</span>
                 </Link>
@@ -149,7 +149,7 @@ export default function HomePage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[60px] group-hover:bg-white/10 transition-all" />
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">PHASE B: SYSTEMS</span>
                 <h3 className="text-3xl font-black italic mt-4 text-white">Portfolio Syllabus</h3>
-                <p className="text-slate-500 mt-6 font-medium leading-relaxed">The cycle never ends. Prepare your systems portfolio for GSoC 2027 by mastering SWC, Raft, and container runtime architectures.</p>
+                <p className="text-slate-500 mt-6 font-medium leading-relaxed">The cycle never ends. Prepare your systems portfolio for GSoC 2026 by mastering SWC, Raft, and container runtime architectures.</p>
                 <Link href="/curriculum" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-white group-hover:translate-x-2 transition-transform">
                   Explore Syllabus <span className="text-lg">→</span>
                 </Link>

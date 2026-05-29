@@ -114,7 +114,7 @@ export default function FounderPage() {
               OpenVeda was founded on a simple, uncompromising directive: Indian developers are brilliant, but they are often trapped in surface-level tutorial cycles. They build clones of clones, hoping to stand out. 
             </p>
             <p className="text-lg text-gray-400 leading-relaxed font-medium">
-              We are tearing down that paradigm. By mapping out active playbooks for GSoC 2027, LFX, and Outreachy, we show you exactly how to read massive source codebases, find real issues, and submit merged patches to Linux, Kubernetes, Next.js, and other infrastructure stacks.
+              We are tearing down that paradigm. By mapping out active playbooks for GSoC 2026, LFX, and Outreachy, we show you exactly how to read massive source codebases, find real issues, and submit merged patches to Linux, Kubernetes, Next.js, and other infrastructure stacks.
             </p>
           </motion.div>
 
@@ -126,7 +126,7 @@ export default function FounderPage() {
               In this ecosystem, we measure readiness by actual compiler errors resolved, memory layouts optimized, and pull requests merged.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed font-medium">
-              Whether you are preparing for GSoC 2027, striving for fellowships, or looking to scale engineering products at world-class levels, the directive is simple: Read code. Fork. Merge. Repeat.
+              Whether you are preparing for GSoC 2026, striving for fellowships, or looking to scale engineering products at world-class levels, the directive is simple: Read code. Fork. Merge. Repeat.
             </p>
           </motion.div>
         </div>
@@ -233,7 +233,7 @@ export default function FounderPage() {
                 required
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
-                placeholder="Ask about GSoC 2027 strategy, systems stacks, or escaping tutorial hell..."
+                placeholder="Ask about GSoC 2026 strategy, systems stacks, or escaping tutorial hell..."
                 className="flex-1 w-full bg-white/[0.03] border border-white/15 px-8 py-5 rounded-3xl font-bold text-base focus:outline-none focus:ring-2 focus:ring-[#00f0ff]/30 transition-all placeholder:text-gray-700"
               />
               <button
