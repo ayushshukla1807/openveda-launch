@@ -24,6 +24,7 @@ export default function Footer() {
             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground/30 italic">Navigation</h4>
             <div className="flex flex-col gap-4">
               <Link href="/organizations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Organizations</Link>
+              <Link href="/playground" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Developer Playground</Link>
               <Link href="/journey" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Roadmap Tracker</Link>
               <Link href="/curriculum" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Systems Syllabus</Link>
               <Link href="/founder" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Founder's Corner</Link>

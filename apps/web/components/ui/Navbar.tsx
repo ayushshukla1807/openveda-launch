@@ -81,6 +81,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-1">
             {[
               { name: 'Organizations', href: '/organizations' },
+              { name: 'Playground', href: '/playground' },
               { name: 'Roadmap', href: '/journey' },
               { name: 'Syllabus', href: '/curriculum' },
               { name: 'Mentorship', href: '/mentorship' }
