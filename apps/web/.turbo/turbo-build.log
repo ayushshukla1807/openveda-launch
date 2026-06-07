@@ -12,49 +12,47 @@
 Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
-Browserslist: caniuse-lite is outdated. Please run:
-  npx update-browserslist-db@latest
-  Why you should do it regularly: https://github.com/browserslist/update-db#readme
  ✓ Compiled successfully
    Skipping validation of types
    Skipping linting
    Collecting page data ...
  ⚠ Using edge runtime on a page currently disables static generation for that page
-   Generating static pages (0/25) ...
-   Generating static pages (6/25) 
-   Generating static pages (12/25) 
-   Generating static pages (18/25) 
- ✓ Generating static pages (25/25)
+   Generating static pages (0/26) ...
+   Generating static pages (6/26) 
+   Generating static pages (12/26) 
+   Generating static pages (19/26) 
+ ✓ Generating static pages (26/26)
    Finalizing page optimization ...
    Collecting build traces ...
 
 Route (app)                              Size     First Load JS
-┌ ○ /                                    8.8 kB          160 kB
+┌ ○ /                                    12.1 kB         163 kB
 ├ ○ /_not-found                          876 B          88.2 kB
 ├ ƒ /api/og/verify                       0 B                0 B
 ├ ƒ /api/revalidate                      0 B                0 B
 ├ ƒ /auth/callback                       0 B                0 B
 ├ ƒ /auth/sign-out                       0 B                0 B
-├ ○ /curriculum                          5.03 kB         146 kB
-├ ○ /dashboard                           29.4 kB         183 kB
+├ ○ /curriculum                          5.14 kB         146 kB
+├ ○ /dashboard                           29.5 kB         183 kB
+├ ○ /dashboard/github-workspace          32.6 kB         172 kB
 ├ ○ /founder                             6.06 kB         152 kB
 ├ ƒ /journey                             1.82 kB         147 kB
 ├ ○ /login                               4.14 kB         141 kB
 ├ ○ /mentorship                          7.76 kB         159 kB
 ├ ƒ /mentorship/[slug]                   175 B          96.1 kB
 ├ ○ /opensource                          5.55 kB         143 kB
-├ ○ /opensource/coach                    4.38 kB        91.7 kB
+├ ○ /opensource/coach                    4.37 kB        91.7 kB
 ├ ○ /opensource/contributors             3.24 kB         132 kB
 ├ ○ /opensource/faq                      5.85 kB         135 kB
 ├ ○ /opensource/getting-started          4.79 kB        92.1 kB
-├ ○ /opensource/issues                   3.57 kB        90.9 kB
+├ ○ /opensource/issues                   3.56 kB        90.9 kB
 ├ ○ /opensource/repositories             3.12 kB        90.4 kB
 ├ ○ /opensource/tools                    4.04 kB        91.3 kB
 ├ ○ /opensource/tutorials                6.03 kB         135 kB
 ├ ○ /opensource/upgrades                 5.29 kB         134 kB
 ├ ○ /organizations                       4.94 kB         156 kB
 ├ ƒ /playbook/[slug]                     37.3 kB         183 kB
-├ ○ /playground                          11.7 kB         144 kB
+├ ○ /playground                          11.8 kB         144 kB
 ├ ○ /programs                            2.24 kB         145 kB
 ├ ƒ /verify/[uuid]                       1.8 kB          131 kB
 └ ƒ /verify/[uuid]/mobile                140 B          87.4 kB

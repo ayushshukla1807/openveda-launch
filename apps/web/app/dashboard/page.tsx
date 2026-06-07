@@ -934,22 +934,30 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="flex gap-2 items-center z-10">
-                <input
-                  type="text"
-                  value={githubUsernameInput}
-                  onChange={(e) => setGithubUsernameInput(e.target.value)}
-                  placeholder="GitHub Username"
-                  className="bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-[10px] font-bold text-white outline-none w-full focus:ring-1 focus:ring-primary"
-                />
-                <button
-                  onClick={() => fetchGitHubProfile(githubUsernameInput)}
-                  disabled={githubSyncing}
-                  className="bg-primary hover:bg-primary-hover p-3 rounded-xl text-primary-foreground transition-all shrink-0 hover:scale-105 active:scale-95"
-                  title="Sync Live Data"
+              <div className="flex flex-col gap-2 w-full z-10">
+                <div className="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    value={githubUsernameInput}
+                    onChange={(e) => setGithubUsernameInput(e.target.value)}
+                    placeholder="GitHub Username"
+                    className="bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-[10px] font-bold text-white outline-none w-full focus:ring-1 focus:ring-primary"
+                  />
+                  <button
+                    onClick={() => fetchGitHubProfile(githubUsernameInput)}
+                    disabled={githubSyncing}
+                    className="bg-primary hover:bg-primary/80 p-2.5 rounded-xl text-primary-foreground transition-all shrink-0 hover:scale-105 active:scale-95"
+                    title="Sync Live Data"
+                  >
+                    <RefreshCw className={`w-3.5 h-3.5 ${githubSyncing ? 'animate-spin' : ''}`} />
+                  </button>
+                </div>
+                <Link
+                  href="/dashboard/github-workspace"
+                  className="w-full text-center bg-white/5 hover:bg-white/10 text-white border border-white/5 py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all block"
                 >
-                  <RefreshCw className={`w-3.5 h-3.5 ${githubSyncing ? 'animate-spin' : ''}`} />
-                </button>
+                  Launch Git Workspace ↗
+                </Link>
               </div>
             </div>
             <div className="bg-primary p-10 rounded-[3rem] text-primary-foreground flex flex-col justify-center relative overflow-hidden group">

@@ -82,6 +82,7 @@ export default function Navbar() {
             {[
               { name: 'Organizations', href: '/organizations' },
               { name: 'Playground', href: '/playground' },
+              { name: 'Git Workspace', href: '/dashboard/github-workspace' },
               { name: 'Roadmap', href: '/journey' },
               { name: 'Syllabus', href: '/curriculum' },
               { name: 'Mentorship', href: '/mentorship' }

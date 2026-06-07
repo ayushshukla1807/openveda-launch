@@ -25,6 +25,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <Link href="/organizations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Organizations</Link>
               <Link href="/playground" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Developer Playground</Link>
+              <Link href="/dashboard/github-workspace" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Git Workspace</Link>
               <Link href="/journey" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Roadmap Tracker</Link>
               <Link href="/curriculum" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Systems Syllabus</Link>
               <Link href="/founder" className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold uppercase tracking-widest text-[10px]">Founder's Corner</Link>
