@@ -57,18 +57,6 @@ export default function LoginPage() {
         if (error) {
           showToast(error.message, "error");
         } else {
-          // Success! Update local mock user to store full name
-          const mockUser = {
-            id: 'mock-user-uuid-12345678',
-            email,
-            user_metadata: { 
-              full_name: fullName, 
-              avatar_url: `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(fullName)}` 
-            }
-          };
-          localStorage.setItem('openveda_user', JSON.stringify(mockUser));
-          document.cookie = `openveda_session=${encodeURIComponent(JSON.stringify(mockUser))}; path=/; max-age=31536000; SameSite=Lax`;
-          
           showToast("Session initialized successfully!", "success");
           setTimeout(() => {
             router.push('/dashboard');
@@ -101,7 +89,7 @@ export default function LoginPage() {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     const mockUser = {
-      id: 'mock-user-uuid-12345678',
+      id: 'mock-user-uuid-democontributor',
       email: 'demo@openveda.in',
       user_metadata: { 
         full_name: 'Demo Contributor', 

@@ -79,15 +79,17 @@ class QueryBuilder {
       } 
       
       else if (this.table === 'user_proposals') {
-        const stored = localStorage.getItem('openveda_proposals') || '[]';
-        let proposals = JSON.parse(stored);
+        const currentUserStr = typeof window !== 'undefined' ? localStorage.getItem('openveda_user') : null;
+        const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
+        const userId = currentUser ? currentUser.id : 'default';
+        const stored = typeof window !== 'undefined' ? localStorage.getItem(`openveda_proposals_${userId}`) : '[]';
+        let proposals = JSON.parse(stored || '[]');
 
         if (this.operation === 'select') {
           const userFilter = this.filters.find(f => f.field === 'user_id');
           if (userFilter) {
             proposals = proposals.filter((p: any) => p.user_id === userFilter.val);
           }
-          // Populate organization details
           data = proposals.map((p: any) => {
             const org = MASTER_ORGS_LIST.find(o => o.id === p.org_id || o.slug === p.org_id);
             return {
@@ -106,7 +108,9 @@ class QueryBuilder {
             ...this.payload
           };
           proposals.push(newProposal);
-          localStorage.setItem('openveda_proposals', JSON.stringify(proposals));
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`openveda_proposals_${userId}`, JSON.stringify(proposals));
+          }
           data = [newProposal];
         } 
         
@@ -119,7 +123,9 @@ class QueryBuilder {
               }
               return p;
             });
-            localStorage.setItem('openveda_proposals', JSON.stringify(proposals));
+            if (typeof window !== 'undefined') {
+              localStorage.setItem(`openveda_proposals_${userId}`, JSON.stringify(proposals));
+            }
             data = proposals.filter((p: any) => p.id === idFilter.val);
           }
         } 
@@ -128,15 +134,20 @@ class QueryBuilder {
           const idFilter = this.filters.find(f => f.field === 'id');
           if (idFilter) {
             proposals = proposals.filter((p: any) => p.id !== idFilter.val);
-            localStorage.setItem('openveda_proposals', JSON.stringify(proposals));
+            if (typeof window !== 'undefined') {
+              localStorage.setItem(`openveda_proposals_${userId}`, JSON.stringify(proposals));
+            }
             data = [];
           }
         }
       } 
       
       else if (this.table === 'user_stars') {
-        const stored = localStorage.getItem('openveda_stars') || '[]';
-        let stars = JSON.parse(stored);
+        const currentUserStr = typeof window !== 'undefined' ? localStorage.getItem('openveda_user') : null;
+        const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
+        const userId = currentUser ? currentUser.id : 'default';
+        const stored = typeof window !== 'undefined' ? localStorage.getItem(`openveda_stars_${userId}`) : '[]';
+        let stars = JSON.parse(stored || '[]');
 
         if (this.operation === 'select') {
           const userFilter = this.filters.find(f => f.field === 'user_id');
@@ -162,7 +173,9 @@ class QueryBuilder {
           const isDup = stars.some((s: any) => s.user_id === newStar.user_id && s.org_id === newStar.org_id);
           if (!isDup) {
             stars.push(newStar);
-            localStorage.setItem('openveda_stars', JSON.stringify(stars));
+            if (typeof window !== 'undefined') {
+              localStorage.setItem(`openveda_stars_${userId}`, JSON.stringify(stars));
+            }
           }
           data = [newStar];
         } 
@@ -172,25 +185,33 @@ class QueryBuilder {
           const orgFilter = this.filters.find(f => f.field === 'org_id');
           if (userFilter && orgFilter) {
             stars = stars.filter((s: any) => !(s.user_id === userFilter.val && s.org_id === orgFilter.val));
-            localStorage.setItem('openveda_stars', JSON.stringify(stars));
+            if (typeof window !== 'undefined') {
+              localStorage.setItem(`openveda_stars_${userId}`, JSON.stringify(stars));
+            }
             data = [];
           }
         }
       } 
       
       else if (this.table === 'user_progress') {
+        const currentUserStr = typeof window !== 'undefined' ? localStorage.getItem('openveda_user') : null;
+        const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
+        const userId = currentUser ? currentUser.id : 'default';
+
         if (this.operation === 'upsert' || this.operation === 'insert') {
           const completed = this.payload.completed_steps || [];
-          document.cookie = `openveda_progress=${encodeURIComponent(JSON.stringify(completed))}; path=/; max-age=31536000; SameSite=Lax`;
-          localStorage.setItem('openveda_progress', JSON.stringify(completed));
+          document.cookie = `openveda_progress_${userId}=${encodeURIComponent(JSON.stringify(completed))}; path=/; max-age=31536000; SameSite=Lax`;
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`openveda_progress_${userId}`, JSON.stringify(completed));
+          }
           data = { completed_steps: completed };
         } else {
-          const progressCookie = document.cookie.split('; ').find(row => row.startsWith('openveda_progress='));
+          const progressCookie = typeof document !== 'undefined' ? document.cookie.split('; ').find(row => row.startsWith(`openveda_progress_${userId}=`)) : null;
           let completed = [];
           if (progressCookie) {
             completed = JSON.parse(decodeURIComponent(progressCookie.split('=')[1]));
           } else {
-            const local = localStorage.getItem('openveda_progress');
+            const local = typeof window !== 'undefined' ? localStorage.getItem(`openveda_progress_${userId}`) : null;
             if (local) completed = JSON.parse(local);
           }
           data = { completed_steps: completed };
@@ -198,8 +219,12 @@ class QueryBuilder {
       }
       
       else if (this.table === 'mentor_bookings') {
-        const stored = localStorage.getItem('openveda_bookings') || '[]';
-        let bookings = JSON.parse(stored);
+        const currentUserStr = typeof window !== 'undefined' ? localStorage.getItem('openveda_user') : null;
+        const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
+        const userId = currentUser ? currentUser.id : 'default';
+        const stored = typeof window !== 'undefined' ? localStorage.getItem(`openveda_bookings_${userId}`) : '[]';
+        let bookings = JSON.parse(stored || '[]');
+
         if (this.operation === 'select') {
           const userFilter = this.filters.find(f => f.field === 'user_id');
           if (userFilter) {
@@ -213,25 +238,32 @@ class QueryBuilder {
             ...this.payload
           };
           bookings.push(newBooking);
-          localStorage.setItem('openveda_bookings', JSON.stringify(bookings));
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`openveda_bookings_${userId}`, JSON.stringify(bookings));
+          }
           
           // Also append to the activity logs in localStorage so it appears in the dashboard logs!
-          const logsStr = localStorage.getItem('openveda_logs') || '[]';
-          const logs = JSON.parse(logsStr);
+          const logsStr = typeof window !== 'undefined' ? localStorage.getItem(`openveda_logs_${userId}`) : '[]';
+          const logs = JSON.parse(logsStr || '[]');
           logs.unshift({
             id: 'log-uuid-' + Date.now(),
             text: `Booked Mentor Session: ${this.payload.mentor_name} at ${this.payload.slot}`,
             type: 'progress',
             created_at: new Date().toISOString()
           });
-          localStorage.setItem('openveda_logs', JSON.stringify(logs.slice(0, 10)));
-          
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`openveda_logs_${userId}`, JSON.stringify(logs.slice(0, 10)));
+          }
         }
       }
       
       else if (this.table === 'founder_queries') {
-        const stored = localStorage.getItem('openveda_founder_queries') || '[]';
-        let queries = JSON.parse(stored);
+        const currentUserStr = typeof window !== 'undefined' ? localStorage.getItem('openveda_user') : null;
+        const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
+        const userId = currentUser ? currentUser.id : 'default';
+        const stored = typeof window !== 'undefined' ? localStorage.getItem(`openveda_founder_queries_${userId}`) : '[]';
+        let queries = JSON.parse(stored || '[]');
+
         if (this.operation === 'select') {
           data = queries;
         } else if (this.operation === 'insert') {
@@ -241,7 +273,9 @@ class QueryBuilder {
             ...this.payload
           };
           queries.push(newQuery);
-          localStorage.setItem('openveda_founder_queries', JSON.stringify(queries));
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(`openveda_founder_queries_${userId}`, JSON.stringify(queries));
+          }
           data = [newQuery];
         }
       }
@@ -274,13 +308,16 @@ class BrowserMockSupabaseClient {
       return { data: { session: { user: userObj, access_token: 'mock-jwt-token' } }, error: null };
     },
     
-    signInWithPassword: async ({ email }: { email: string }) => {
+    signInWithPassword: async ({ email, options }: { email: string, options?: any }) => {
+      const cleanEmail = (email || 'demo@openveda.in').toLowerCase().trim();
+      const emailSlug = cleanEmail.replace(/[^a-z0-9]/g, '');
+      const fullName = options?.data?.full_name || cleanEmail.split('@')[0];
       const mockUser = {
-        id: 'mock-user-uuid-12345678',
-        email: email || 'demo@openveda.in',
+        id: `mock-user-uuid-${emailSlug}`,
+        email: cleanEmail,
         user_metadata: { 
-          full_name: 'Demo Contributor', 
-          avatar_url: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Demo' 
+          full_name: fullName, 
+          avatar_url: options?.data?.avatar_url || `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(fullName)}` 
         }
       };
       localStorage.setItem('openveda_user', JSON.stringify(mockUser));
@@ -290,13 +327,16 @@ class BrowserMockSupabaseClient {
       return { data: { user: mockUser, session: { user: mockUser } }, error: null };
     },
     
-    signUp: async ({ email }: { email: string }) => {
+    signUp: async ({ email, options }: { email: string, options?: any }) => {
+      const cleanEmail = (email || 'demo@openveda.in').toLowerCase().trim();
+      const emailSlug = cleanEmail.replace(/[^a-z0-9]/g, '');
+      const fullName = options?.data?.full_name || cleanEmail.split('@')[0];
       const mockUser = {
-        id: 'mock-user-uuid-12345678',
-        email: email || 'demo@openveda.in',
+        id: `mock-user-uuid-${emailSlug}`,
+        email: cleanEmail,
         user_metadata: { 
-          full_name: 'Demo Contributor', 
-          avatar_url: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Demo' 
+          full_name: fullName, 
+          avatar_url: options?.data?.avatar_url || `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(fullName)}` 
         }
       };
       localStorage.setItem('openveda_user', JSON.stringify(mockUser));
