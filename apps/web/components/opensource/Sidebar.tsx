@@ -14,14 +14,17 @@ export function Sidebar() {
     { name: "Issues", href: "/opensource/issues" },
     { name: "Tutorials", href: "/opensource/tutorials" },
     { name: "Contributors", href: "/opensource/contributors" },
+    { name: "AI Git Coach", href: "/opensource/coach" },
+    { name: "Essential Tools", href: "/opensource/tools" },
+    { name: "FAQ", href: "/opensource/faq" },
   ];
 
   const sections = [
     {
       title: "Welcome to Hacktoberfest 2026",
       items: [
-        { name: "Frequently Asked Questions", href: "#faq" },
-        { name: "Components", href: "#components" },
+        { name: "Frequently Asked Questions", href: "/opensource/faq" },
+        { name: "Components", href: "/opensource" },
       ]
     },
     {
@@ -109,15 +112,15 @@ export function Sidebar() {
         
         {/* Additional static links for visual completeness */}
         <div className="mt-6 space-y-1">
-          <button className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">
+          <Link href="/opensource/issues" className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">
             All Issues <ChevronRight size={14} />
-          </button>
-          <button className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">
+          </Link>
+          <Link href="/opensource/repositories" className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">
             All Repositories <ChevronRight size={14} />
-          </button>
-          <button className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">
+          </Link>
+          <Link href="/opensource/tools" className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors">
             Essential Tools <ChevronRight size={14} />
-          </button>
+          </Link>
         </div>
       </nav>
 
