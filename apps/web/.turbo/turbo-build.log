@@ -12,6 +12,9 @@
 Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
  ✓ Compiled successfully
    Skipping validation of types
    Skipping linting
@@ -35,10 +38,10 @@ Route (app)                              Size     First Load JS
 ├ ○ /curriculum                          5.14 kB         146 kB
 ├ ○ /dashboard                           29.5 kB         183 kB
 ├ ○ /dashboard/github-workspace          32.6 kB         172 kB
-├ ○ /founder                             6.06 kB         152 kB
+├ ○ /founder                             5.9 kB          152 kB
 ├ ƒ /journey                             1.82 kB         147 kB
 ├ ○ /login                               4.14 kB         141 kB
-├ ○ /mentorship                          7.76 kB         159 kB
+├ ○ /mentorship                          7.65 kB         159 kB
 ├ ƒ /mentorship/[slug]                   175 B          96.1 kB
 ├ ○ /opensource                          5.55 kB         143 kB
 ├ ○ /opensource/coach                    4.37 kB        91.7 kB

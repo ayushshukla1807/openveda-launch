@@ -74,7 +74,7 @@ const TABLE_DATA: Record<string, any[]> = {
   ],
   contributors: [
     { id: 'c-1', username: 'ayushshukla1807', repo_id: 'repo-1', commits: 42, role: 'Maintainer' },
-    { id: 'c-2', username: 'Abhi3975', repo_id: 'repo-4', commits: 55, role: 'Contributor' },
+    { id: 'c-2', username: 'elena-rostova-dev', repo_id: 'repo-4', commits: 55, role: 'Contributor' },
     { id: 'c-3', username: 'liggitt', repo_id: 'repo-1', commits: 1450, role: 'Reviewer' },
     { id: 'c-4', username: 'brancz', repo_id: 'repo-2', commits: 320, role: 'Maintainer' },
     { id: 'c-5', username: 'sharat87', repo_id: 'repo-4', commits: 640, role: 'Maintainer' }

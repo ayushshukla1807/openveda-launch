@@ -182,7 +182,7 @@ export default function GithubEventsFeed() {
 
   const loadInitialMockEvents = () => {
     const mockList: GitHubEvent[] = [];
-    const actors = [targetName, 'Abhi3975', 'torvalds', 'taylorotwell', 'yyx990803'];
+    const actors = [targetName, 'elena-rostova-dev', 'torvalds', 'taylorotwell', 'yyx990803'];
     
     for (let i = 0; i < 12; i++) {
       const timeOffset = i * 30 * 60 * 1000; // 30 mins offsets
@@ -209,7 +209,7 @@ export default function GithubEventsFeed() {
   };
 
   const generateMockEvent = () => {
-    const actors = [targetName, 'Abhi3975', 'elena-rostova-dev', 'devon-carter-cloud'];
+    const actors = [targetName, 'torvalds', 'elena-rostova-dev', 'devon-carter-cloud'];
     const actor = actors[Math.floor(Math.random() * actors.length)];
     const eventType = ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'WatchEvent', 'CreateEvent'][Math.floor(Math.random() * 5)];
     const mockCommit = MOCK_ORGS_COMMITS[Math.floor(Math.random() * MOCK_ORGS_COMMITS.length)];
