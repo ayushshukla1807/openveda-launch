@@ -5,7 +5,7 @@ VALUES (
     'appsmith', 
     'https://avatars.githubusercontent.com/u/53011310?s=200&v=4', 
     ARRAY['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB'], 
-    'GSoC 2026'
+    'GSoC 2027'
 )
 ON CONFLICT (slug) DO UPDATE SET 
     tech_stack = EXCLUDED.tech_stack,

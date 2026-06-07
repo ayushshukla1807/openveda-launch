@@ -26,7 +26,7 @@ function getRepoPath(url) {
   return null; // For now, only support GitHub for Live Issues
 }
 
-let sql = `-- GSOC 2026 Next Steps Migration: Repo Paths and Playbook Content
+let sql = `-- GSOC 2027 Next Steps Migration: Repo Paths and Playbook Content
 BEGIN;
 
 `;
@@ -43,7 +43,7 @@ orgs.forEach(org => {
   const tech = org.tech_stack && org.tech_stack.length > 0 ? org.tech_stack.join(', ') : 'Open Source';
   const content = `### Welcome to ${org.name}!
 
-This organization is part of **Google Summer of Code 2026**.
+This organization is part of **Google Summer of Code 2027**.
 
 **Technologies used:** ${tech}
 
@@ -64,5 +64,5 @@ Happy coding!
 
 sql += `COMMIT;`;
 
-fs.writeFileSync('GSOC_2026_NEXT_STEPS.sql', sql);
-console.log('Migration script generated: GSOC_2026_NEXT_STEPS.sql');
+fs.writeFileSync('GSOC_2027_NEXT_STEPS.sql', sql);
+console.log('Migration script generated: GSOC_2027_NEXT_STEPS.sql');
