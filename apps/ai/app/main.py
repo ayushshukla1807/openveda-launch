@@ -41,7 +41,7 @@ async def chat(request: ChatRequest):
         if "lfx" in q or "linux foundation" in q:
             return {"answer": "LFX Mentorship is a prestigious program by the Linux Foundation. OpenVeda helps you dominated this program by auditing CNCF projects and submitting proactive PRs before the application window even opens."}
         if "gsoc" in q or "google summer of code" in q:
-            return {"answer": "GSoC 2026 is the gold standard for global open-source mentorship. Our playbooks focus on high-impact projects like Wikimedia and Microcks, helping you secure selection through veteran-authored proposals."}
+            return {"answer": "GSoC 2027 is the gold standard for global open-source mentorship. Our playbooks focus on high-impact projects like Wikimedia and Microcks, helping you secure selection through veteran-authored proposals."}
         
         return {
             "answer": "OpenVeda AI is currently in 'Showcase Mode'. While I'm ready to answer complex RAG queries with an API key, my current core mission is to guide you through the OpenVeda ecosystem. Try asking about 'LFX' or 'What is OpenVeda'!"

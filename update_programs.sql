@@ -1,6 +1,6 @@
 -- 0. Ensure schema is up to date
 ALTER TABLE organizations ADD COLUMN IF NOT EXISTS description TEXT;
-ALTER TABLE organizations ADD COLUMN IF NOT EXISTS program TEXT DEFAULT 'GSoC 2026';
+ALTER TABLE organizations ADD COLUMN IF NOT EXISTS program TEXT DEFAULT 'GSoC 2027';
 
 -- 1. Insert Outreachy Organizations
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program, description, repo_path)
@@ -15,11 +15,11 @@ ON CONFLICT (slug) DO UPDATE SET
   description = EXCLUDED.description,
   repo_path = EXCLUDED.repo_path;
 
--- 2. Insert ESOC 2026 Organizations (EuroSocio-OpenSource)
+-- 2. Insert ESOC 2027 Organizations (EuroSocio-OpenSource)
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program, description, repo_path)
 VALUES 
-('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2026', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
-('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2026', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
+('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2027', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
+('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2027', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
 ON CONFLICT (slug) DO UPDATE SET 
   logo_url = EXCLUDED.logo_url,
   tech_stack = EXCLUDED.tech_stack,

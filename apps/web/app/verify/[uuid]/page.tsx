@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: VerifyPageProps): Promise<Met
   if (!data) return { title: 'Verification Not Found | OpenVeda' };
 
   const title = `Verified: ${data.github_username} scored ${Math.round(data.score)}/100`;
-  const description = `${data.github_username}'s GSoC 2026 Readiness is verified. View the full score breakdown and open-source contribution metrics on OpenVeda.`;
+  const description = `${data.github_username}'s GSoC 2027 Readiness is verified. View the full score breakdown and open-source contribution metrics on OpenVeda.`;
 
   return {
     title: `${title} | OpenVeda Credentials`,

@@ -2,7 +2,7 @@
 -- RESTORE & POPULATE ORGANIZATIONS SQL SCRIPT
 -- ==========================================
 -- This script safely UPSERTS organizations into your database.
--- It covers GSoC 2026, LFX, Outreachy, and ESOC 2026.
+-- It covers GSoC 2027, LFX, Outreachy, and ESOC 2027.
 
 BEGIN;
 
@@ -12,7 +12,7 @@ VALUES (
     '52-north-spatial-information-research-gmbh',
     'https://api.dicebear.com/7.x/initials/svg?seed=52%C2%B0North%20Spatial%20Information%20Research%20GmbH',
     ARRAY['javascript', 'android', 'java', 'web services', 'ogc standards'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -27,7 +27,7 @@ VALUES (
     'aboutcode',
     'https://api.dicebear.com/7.x/initials/svg?seed=AboutCode',
     ARRAY['python', 'javascript', 'Django+PostgreSQL', 'C/Rust/Go'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -42,7 +42,7 @@ VALUES (
     'accord-project',
     'https://api.dicebear.com/7.x/initials/svg?seed=Accord%20Project',
     ARRAY['python', 'javascript', 'json', 'react', 'artificial intelligence'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -57,7 +57,7 @@ VALUES (
     'aflplusplus',
     'https://api.dicebear.com/7.x/initials/svg?seed=AFLplusplus',
     ARRAY['llvm', 'rust', 'fuzzing', 'qemu'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -72,7 +72,7 @@ VALUES (
     'alaska',
     'https://api.dicebear.com/7.x/initials/svg?seed=Alaska',
     ARRAY[]::TEXT[],
-    'GSoC 2026',
+    'GSoC 2027',
     'uaanchorage/GSoC'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -87,7 +87,7 @@ VALUES (
     'ankidroid',
     'https://api.dicebear.com/7.x/initials/svg?seed=AnkiDroid',
     ARRAY['android', 'rust', 'kotlin', 'mobile'],
-    'GSoC 2026',
+    'GSoC 2027',
     'ankidroid/Anki-Android'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -102,7 +102,7 @@ VALUES (
     'aossie',
     'https://api.dicebear.com/7.x/initials/svg?seed=AOSSIE',
     ARRAY['python', 'javascript', 'flutter', 'Blockchain', 'Solidity'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -117,7 +117,7 @@ VALUES (
     'apache-foundation',
     'https://api.dicebear.com/7.x/initials/svg?seed=Apache%20Software%20Foundation',
     ARRAY['c', 'java', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -132,7 +132,7 @@ VALUES (
     'api-dash',
     'https://api.dicebear.com/7.x/initials/svg?seed=API%20Dash',
     ARRAY['python', 'react', 'flutter', 'typescript', 'ai'],
-    'GSoC 2026',
+    'GSoC 2027',
     'foss42/apidash'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -147,7 +147,7 @@ VALUES (
     'ardupilot',
     'https://api.dicebear.com/7.x/initials/svg?seed=ArduPilot',
     ARRAY['python', 'lua', 'c++', 'pixhawk'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -162,7 +162,7 @@ VALUES (
     'blender',
     'https://api.dicebear.com/7.x/initials/svg?seed=Blender%20Foundation',
     ARRAY['c', 'python', 'opengl', 'c++', 'vulkan'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -177,7 +177,7 @@ VALUES (
     'boa',
     'https://api.dicebear.com/7.x/initials/svg?seed=Boa',
     ARRAY['javascript', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     'boa-dev/boa'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -192,7 +192,7 @@ VALUES (
     'brl-cad',
     'https://api.dicebear.com/7.x/initials/svg?seed=BRL-CAD',
     ARRAY['python', 'c/c++', 'opengl', 'opencl', 'scripting'],
-    'GSoC 2026',
+    'GSoC 2027',
     'BRL-CAD/brlcad'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -207,7 +207,7 @@ VALUES (
     'c2si',
     'https://api.dicebear.com/7.x/initials/svg?seed=C2SI',
     ARRAY['python', 'java', 'go', 'nodejs', 'tensorflow'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -222,7 +222,7 @@ VALUES (
     'cbioportal',
     'https://api.dicebear.com/7.x/initials/svg?seed=cBioPortal%20for%20Cancer%20Genomics',
     ARRAY['mysql', 'javascript', 'java', 'react', 'typescript'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -237,7 +237,7 @@ VALUES (
     'ccextractor',
     'https://api.dicebear.com/7.x/initials/svg?seed=CCExtractor%20Development',
     ARRAY['c', 'linux', 'rust', 'flutter'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -252,7 +252,7 @@ VALUES (
     'ceph',
     'https://api.dicebear.com/7.x/initials/svg?seed=Ceph',
     ARRAY['python', 'javascript', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -267,7 +267,7 @@ VALUES (
     'cern-hsf',
     'https://api.dicebear.com/7.x/initials/svg?seed=CERN-HSF',
     ARRAY['python', 'c/c++', 'data analysis', 'artificial intelligence', 'container orchestration'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -282,7 +282,7 @@ VALUES (
     'cgal',
     'https://api.dicebear.com/7.x/initials/svg?seed=CGAL%20Project',
     ARRAY['c++', 'qt'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -297,7 +297,7 @@ VALUES (
     'checkstyle',
     'https://api.dicebear.com/7.x/initials/svg?seed=checkstyle',
     ARRAY['java', 'antlr', 'artificial-intelligence'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -312,7 +312,7 @@ VALUES (
     'circuitverse',
     'https://api.dicebear.com/7.x/initials/svg?seed=CircuitVerse.org',
     ARRAY['javascript', 'ruby', 'rails', 'canvas', 'vue'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -327,7 +327,7 @@ VALUES (
     'cncf',
     'https://api.dicebear.com/7.x/initials/svg?seed=CNCF',
     ARRAY['prometheus', 'kubernetes', 'OpenTelemetry', 'envoy'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -342,7 +342,7 @@ VALUES (
     'criu',
     'https://api.dicebear.com/7.x/initials/svg?seed=CRIU',
     ARRAY['c', 'python', 'linux', 'go'],
-    'GSoC 2026',
+    'GSoC 2027',
     'checkpoint-restore/criu'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -357,7 +357,7 @@ VALUES (
     'cdli',
     'https://api.dicebear.com/7.x/initials/svg?seed=Cuneiform%20Digital%20Library%20Initiative%20(CDLI)',
     ARRAY['mysql', 'javascript', 'docker', 'php', 'SCSS'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -372,7 +372,7 @@ VALUES (
     'd-language',
     'https://api.dicebear.com/7.x/initials/svg?seed=D%20Language%20Foundation',
     ARRAY['linux', 'make', 'd', 'windows', 'C\C++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -387,7 +387,7 @@ VALUES (
     'dart',
     'https://api.dicebear.com/7.x/initials/svg?seed=Dart',
     ARRAY['flutter', 'dart'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -402,7 +402,7 @@ VALUES (
     'data-common-good',
     'https://api.dicebear.com/7.x/initials/svg?seed=Data%20for%20the%20Common%20Good',
     ARRAY['python', 'javascript', 'kubernetes', 'reactjs', 'terraform'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -417,7 +417,7 @@ VALUES (
     'dbpedia',
     'https://api.dicebear.com/7.x/initials/svg?seed=DBpedia',
     ARRAY['python', 'javascript', 'java', 'scala', 'rdf'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -432,7 +432,7 @@ VALUES (
     'debian',
     'https://api.dicebear.com/7.x/initials/svg?seed=Debian',
     ARRAY['python', 'java', 'perl', 'c++', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -447,7 +447,7 @@ VALUES (
     'deepchem',
     'https://api.dicebear.com/7.x/initials/svg?seed=DeepChem',
     ARRAY['python', 'numpy', 'pytorch', 'HuggingFace'],
-    'GSoC 2026',
+    'GSoC 2027',
     'deepchem/deepchem'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -462,7 +462,7 @@ VALUES (
     'django',
     'https://api.dicebear.com/7.x/initials/svg?seed=Django%20Software%20Foundation',
     ARRAY['python', 'django'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -477,7 +477,7 @@ VALUES (
     'dora-rs',
     'https://api.dicebear.com/7.x/initials/svg?seed=dora-rs',
     ARRAY['python', 'ros', 'c++', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -492,7 +492,7 @@ VALUES (
     'drupal',
     'https://api.dicebear.com/7.x/initials/svg?seed=Drupal%20Association',
     ARRAY['mysql', 'javascript', 'html', 'php', 'symfony'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -507,7 +507,7 @@ VALUES (
     'eclipse',
     'https://api.dicebear.com/7.x/initials/svg?seed=Eclipse%20Foundation',
     ARRAY['java', 'rtos', 'eclipsejavaide', 'jakartaee', 'softwaredefinedvehicles'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -522,7 +522,7 @@ VALUES (
     'erofs',
     'https://api.dicebear.com/7.x/initials/svg?seed=EROFS%20filesystem',
     ARRAY['c', 'android', 'linux kernel', 'Containerd', 'gVisor'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -537,7 +537,7 @@ VALUES (
     'ffmpeg',
     'https://api.dicebear.com/7.x/initials/svg?seed=FFmpeg',
     ARRAY['c', 'git', 'asm'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -552,7 +552,7 @@ VALUES (
     'flare',
     'https://api.dicebear.com/7.x/initials/svg?seed=FLARE',
     ARRAY['python', 'Sandbox', 'ida-pro'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -567,7 +567,7 @@ VALUES (
     'fortran',
     'https://api.dicebear.com/7.x/initials/svg?seed=Fortran-lang',
     ARRAY['python', 'c++', 'fortran'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -582,7 +582,7 @@ VALUES (
     'fossasia',
     'https://api.dicebear.com/7.x/initials/svg?seed=FOSSASIA',
     ARRAY['c', 'python', 'javascript', 'django', 'android'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -597,7 +597,7 @@ VALUES (
     'fossology',
     'https://api.dicebear.com/7.x/initials/svg?seed=FOSSology',
     ARRAY['python', 'postgresql', 'c/c++', 'go', 'php'],
-    'GSoC 2026',
+    'GSoC 2027',
     'fossology/fossology'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -612,7 +612,7 @@ VALUES (
     'fossi',
     'https://api.dicebear.com/7.x/initials/svg?seed=Free%20and%20Open%20Source%20Silicon%20Foundation',
     ARRAY['verilog', 'vhdl', 'risc-v', 'compiler'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -627,7 +627,7 @@ VALUES (
     'freecad',
     'https://api.dicebear.com/7.x/initials/svg?seed=FreeCAD',
     ARRAY['python', 'c++', 'qt', 'OpenCASCADE', 'OpenInventor'],
-    'GSoC 2026',
+    'GSoC 2027',
     'freecad/freecad'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -642,7 +642,7 @@ VALUES (
     'gambit',
     'https://api.dicebear.com/7.x/initials/svg?seed=Gambit%3A%20The%20package%20for%20computation%20in%20game%20theory',
     ARRAY['python', 'c++', 'wxwidgets', 'visualization'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -657,7 +657,7 @@ VALUES (
     'gemini-cli',
     'https://api.dicebear.com/7.x/initials/svg?seed=Gemini%20CLI',
     ARRAY['typescript', 'GenAI', 'MCP', 'Software Agent', 'A2A'],
-    'GSoC 2026',
+    'GSoC 2027',
     'google-gemini/gemini-cli'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -672,7 +672,7 @@ VALUES (
     'genome-assembly',
     'https://api.dicebear.com/7.x/initials/svg?seed=Genome%20Assembly%20and%20Annotation',
     ARRAY['python', 'mysql', 'docker', 'pytorch', 'nextflow'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -687,7 +687,7 @@ VALUES (
     'geomscale',
     'https://api.dicebear.com/7.x/initials/svg?seed=GeomScale',
     ARRAY['python', 'c++', 'r', 'jupyter', 'github-actions'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -702,7 +702,7 @@ VALUES (
     'german-center-ai',
     'https://api.dicebear.com/7.x/initials/svg?seed=German%20Center%20for%20Open%20Source%20AI',
     ARRAY['python', 'pytorch', 'scikit-learn'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -717,7 +717,7 @@ VALUES (
     'git',
     'https://api.dicebear.com/7.x/initials/svg?seed=Git',
     ARRAY['shell script', 'git', 'c language'],
-    'GSoC 2026',
+    'GSoC 2027',
     'git/git'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -732,7 +732,7 @@ VALUES (
     'ga4gh',
     'https://api.dicebear.com/7.x/initials/svg?seed=Global%20Alliance%20for%20Genomics%20and%20Health',
     ARRAY['python', 'postgresql', 'java', 'react', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -747,7 +747,7 @@ VALUES (
     'gnome',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNOME%20Foundation',
     ARRAY['c', 'linux', 'rust', 'gtk', 'Flatpak'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -762,7 +762,7 @@ VALUES (
     'gcc',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNU%20Compiler%20Collection%20(GCC)',
     ARRAY['c/c++', 'gnu make', 'gnu autotools'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -777,7 +777,7 @@ VALUES (
     'gimp',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNU%20Image%20Manipulation%20Program',
     ARRAY['c', 'GEGL'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -792,7 +792,7 @@ VALUES (
     'mailman',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNU%20Mailman',
     ARRAY['python', 'django', 'rest', 'sqlalchemy', 'zope'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -807,7 +807,7 @@ VALUES (
     'octave',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNU%20Octave',
     ARRAY['c++', 'hg'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -822,7 +822,7 @@ VALUES (
     'gnu',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNU%20Project',
     ARRAY['c', 'c++', 'gcc', 'autotools', 'GNU'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -837,7 +837,7 @@ VALUES (
     'gnu-radio',
     'https://api.dicebear.com/7.x/initials/svg?seed=GNU%20Radio',
     ARRAY['python', 'c++', 'qt', 'simd'],
-    'GSoC 2026',
+    'GSoC 2027',
     'gnuradio/gnuradio'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -852,7 +852,7 @@ VALUES (
     'gprmax',
     'https://api.dicebear.com/7.x/initials/svg?seed=gprMax',
     ARRAY['python', 'cuda', 'openmp', 'mpi', 'opencl'],
-    'GSoC 2026',
+    'GSoC 2027',
     'gprMax/gprMax'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -867,7 +867,7 @@ VALUES (
     'grame',
     'https://api.dicebear.com/7.x/initials/svg?seed=GRAME',
     ARRAY['c', 'javascript', 'c++', 'rust', 'typescript'],
-    'GSoC 2026',
+    'GSoC 2027',
     'grame-cncm/faust'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -882,7 +882,7 @@ VALUES (
     'graphite',
     'https://api.dicebear.com/7.x/initials/svg?seed=Graphite',
     ARRAY['rust', 'vulkan', 'webgpu'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -897,7 +897,7 @@ VALUES (
     'haiku',
     'https://api.dicebear.com/7.x/initials/svg?seed=Haiku',
     ARRAY['c++', 'posix', 'unix'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -912,7 +912,7 @@ VALUES (
     'haskell',
     'https://api.dicebear.com/7.x/initials/svg?seed=Haskell.org',
     ARRAY['haskell', 'ghc'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -927,7 +927,7 @@ VALUES (
     'humanai',
     'https://api.dicebear.com/7.x/initials/svg?seed=HumanAI',
     ARRAY['python', 'machine learning', 'c++', 'data analysis', 'artificial intelligence'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -942,7 +942,7 @@ VALUES (
     'incf',
     'https://api.dicebear.com/7.x/initials/svg?seed=INCF',
     ARRAY['python', 'javascript', 'java', 'c++', 'gpu'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -957,7 +957,7 @@ VALUES (
     'catrobat',
     'https://api.dicebear.com/7.x/initials/svg?seed=International%20Catrobat%20Association',
     ARRAY['python', 'javascript', 'swift', 'kotlin', 'flutter'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -972,7 +972,7 @@ VALUES (
     'internet-archive',
     'https://api.dicebear.com/7.x/initials/svg?seed=Internet%20Archive',
     ARRAY['python', 'javascript', 'go', 'elasticsearch', 'hadoop'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -987,7 +987,7 @@ VALUES (
     'invesalius',
     'https://api.dicebear.com/7.x/initials/svg?seed=Invesalius',
     ARRAY['python', 'cython', 'numpy', 'dicom', 'Vtk'],
-    'GSoC 2026',
+    'GSoC 2027',
     'invesalius/invesalius3'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1002,7 +1002,7 @@ VALUES (
     'ioos',
     'https://api.dicebear.com/7.x/initials/svg?seed=IOOS',
     ARRAY['python', 'java', 'r', 'Zarr', 'NetCDF'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1017,7 +1017,7 @@ VALUES (
     'jabref',
     'https://api.dicebear.com/7.x/initials/svg?seed=JabRef%20e.V.',
     ARRAY['java', 'javafx', 'ai', 'bibtex'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1032,7 +1032,7 @@ VALUES (
     'jboss',
     'https://api.dicebear.com/7.x/initials/svg?seed=JBoss%20Community',
     ARRAY['java', 'react', 'golang', 'cloud'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1047,7 +1047,7 @@ VALUES (
     'jderobot',
     'https://api.dicebear.com/7.x/initials/svg?seed=JdeRobot',
     ARRAY['python', 'ros', 'gazebo', 'opencv', 'tensorflow'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1062,7 +1062,7 @@ VALUES (
     'jenkins',
     'https://api.dicebear.com/7.x/initials/svg?seed=Jenkins',
     ARRAY['javascript', 'java', 'go', 'docker', 'kubernetes'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1077,7 +1077,7 @@ VALUES (
     'jitsi',
     'https://api.dicebear.com/7.x/initials/svg?seed=Jitsi',
     ARRAY['javascript', 'java', 'react', 'kotlin', 'webrtc'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1092,7 +1092,7 @@ VALUES (
     'joomla',
     'https://api.dicebear.com/7.x/initials/svg?seed=Joomla!',
     ARRAY['mysql', 'javascript', 'html', 'php', 'ai'],
-    'GSoC 2026',
+    'GSoC 2027',
     'joomla/joomla-cms'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1107,7 +1107,7 @@ VALUES (
     'joplin',
     'https://api.dicebear.com/7.x/initials/svg?seed=Joplin',
     ARRAY['javascript', 'react', 'typescript', 'electron', 'React-Native'],
-    'GSoC 2026',
+    'GSoC 2027',
     'laurent22/joplin'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1122,7 +1122,7 @@ VALUES (
     'json-schema',
     'https://api.dicebear.com/7.x/initials/svg?seed=JSON%20Schema',
     ARRAY['python', 'javascript', 'typescript', '.net', 'JSON Schema'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1137,7 +1137,7 @@ VALUES (
     'kde',
     'https://api.dicebear.com/7.x/initials/svg?seed=KDE%20Community',
     ARRAY['c++', 'qt', 'qml', 'data structures'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1152,7 +1152,7 @@ VALUES (
     'kiwix',
     'https://api.dicebear.com/7.x/initials/svg?seed=Kiwix',
     ARRAY['python', 'c++', 'nodejs', 'kotlin', 'vue.js'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1167,7 +1167,7 @@ VALUES (
     'kolibrios',
     'https://api.dicebear.com/7.x/initials/svg?seed=KolibriOS%20Project%20Team',
     ARRAY['c', 'assembly', 'asm', 'fasm', 'pci'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1182,7 +1182,7 @@ VALUES (
     'konflux',
     'https://api.dicebear.com/7.x/initials/svg?seed=Konflux',
     ARRAY['python', 'go', 'docker', 'kubernetes', 'tekton'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1197,7 +1197,7 @@ VALUES (
     'kornia',
     'https://api.dicebear.com/7.x/initials/svg?seed=Kornia',
     ARRAY['cuda', 'rust', 'deep learning', 'data science', 'Spatial AI'],
-    'GSoC 2026',
+    'GSoC 2027',
     'kornia/kornia-rs'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1212,7 +1212,7 @@ VALUES (
     'kotlin',
     'https://api.dicebear.com/7.x/initials/svg?seed=Kotlin%20Foundation',
     ARRAY['gradle', 'kotlin', 'jvm', 'Parsers & Compilers', 'Multiplatform'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1227,7 +1227,7 @@ VALUES (
     'kubeflow',
     'https://api.dicebear.com/7.x/initials/svg?seed=Kubeflow',
     ARRAY['python', 'go', 'kubernetes', 'typescript', 'YAML'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1242,7 +1242,7 @@ VALUES (
     'kubevirt',
     'https://api.dicebear.com/7.x/initials/svg?seed=KubeVirt',
     ARRAY['golang', 'grpc'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1257,7 +1257,7 @@ VALUES (
     'lablua',
     'https://api.dicebear.com/7.x/initials/svg?seed=LabLua',
     ARRAY['lua', 'luarocks', 'kernel', 'lunatik', 'pallene'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1272,7 +1272,7 @@ VALUES (
     'learning-equality',
     'https://api.dicebear.com/7.x/initials/svg?seed=Learning%20Equality',
     ARRAY['python', 'javascript', 'django', 'vue.js'],
-    'GSoC 2026',
+    'GSoC 2027',
     'learningequality/kolibri'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1287,7 +1287,7 @@ VALUES (
     'learning-unlimited',
     'https://api.dicebear.com/7.x/initials/svg?seed=Learning%20Unlimited',
     ARRAY['python', 'javascript', 'django', 'html', 'css'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1302,7 +1302,7 @@ VALUES (
     'librecube',
     'https://api.dicebear.com/7.x/initials/svg?seed=LibreCube%20Initiative',
     ARRAY['python', 'docker', 'raspberry pi', 'micropython'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1317,7 +1317,7 @@ VALUES (
     'librehealth',
     'https://api.dicebear.com/7.x/initials/svg?seed=LibreHealth',
     ARRAY['python', 'javascript', 'android', 'java', 'dart/flutter'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1332,7 +1332,7 @@ VALUES (
     'libreoffice',
     'https://api.dicebear.com/7.x/initials/svg?seed=LibreOffice',
     ARRAY['python', 'java', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1347,7 +1347,7 @@ VALUES (
     'libssh',
     'https://api.dicebear.com/7.x/initials/svg?seed=libssh',
     ARRAY['c', 'git', 'ci', 'ssh', 'sftp'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1362,7 +1362,7 @@ VALUES (
     'liquid-galaxy',
     'https://api.dicebear.com/7.x/initials/svg?seed=Liquid%20Galaxy%20project',
     ARRAY['linux', 'android', 'nodejs', 'flutter', 'Google Earth'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1377,7 +1377,7 @@ VALUES (
     'llvm',
     'https://api.dicebear.com/7.x/initials/svg?seed=LLVM%20Compiler%20Infrastructure',
     ARRAY['llvm', 'c++', 'clang', 'mlir'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1392,7 +1392,7 @@ VALUES (
     'ml4sci',
     'https://api.dicebear.com/7.x/initials/svg?seed=Machine%20Learning%20for%20Science%20(ML4SCI)',
     ARRAY['python', 'machine learning', 'c++', 'data analysis', 'artificial intelligence'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1407,7 +1407,7 @@ VALUES (
     'malariagen',
     'https://api.dicebear.com/7.x/initials/svg?seed=MalariaGEN',
     ARRAY['python', 'GCS'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1422,7 +1422,7 @@ VALUES (
     'mariadb',
     'https://api.dicebear.com/7.x/initials/svg?seed=MariaDB',
     ARRAY['python', 'javascript', 'c/c++', 'perl', 'databases'],
-    'GSoC 2026',
+    'GSoC 2027',
     'MariaDB/server'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1437,7 +1437,7 @@ VALUES (
     'mdanalysis',
     'https://api.dicebear.com/7.x/initials/svg?seed=MDAnalysis',
     ARRAY['python', 'cython', 'c/c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     'MDAnalysis/mdanalysis'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1452,7 +1452,7 @@ VALUES (
     'm-lab',
     'https://api.dicebear.com/7.x/initials/svg?seed=Measurement%20Lab',
     ARRAY['python', 'javascript', 'html', 'sql', 'css'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1467,7 +1467,7 @@ VALUES (
     'meshery',
     'https://api.dicebear.com/7.x/initials/svg?seed=Meshery',
     ARRAY['javascript', 'golang', 'kubernetes', 'ai', 'visual design'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1482,7 +1482,7 @@ VALUES (
     'metabrainz',
     'https://api.dicebear.com/7.x/initials/svg?seed=MetaBrainz%20Foundation%20Inc',
     ARRAY['python', 'machine learning', 'perl', 'postgres', 'spark'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1497,7 +1497,7 @@ VALUES (
     'metacall',
     'https://api.dicebear.com/7.x/initials/svg?seed=MetaCall',
     ARRAY['python', 'c++', 'rust', 'nodejs', 'docker'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1512,7 +1512,7 @@ VALUES (
     'metaflow',
     'https://api.dicebear.com/7.x/initials/svg?seed=Metaflow',
     ARRAY['python', 'javascript', 'kubernetes'],
-    'GSoC 2026',
+    'GSoC 2027',
     'Netflix/metaflow'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1527,7 +1527,7 @@ VALUES (
     'metasploit',
     'https://api.dicebear.com/7.x/initials/svg?seed=Metasploit',
     ARRAY['c', 'python', 'postgresql', 'ruby', 'assembly'],
-    'GSoC 2026',
+    'GSoC 2027',
     'rapid7/metasploit-framework'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1542,7 +1542,7 @@ VALUES (
     'mit-app-inventor',
     'https://api.dicebear.com/7.x/initials/svg?seed=MIT%20App%20Inventor',
     ARRAY['javascript', 'java', 'gwt', 'swift'],
-    'GSoC 2026',
+    'GSoC 2027',
     'mit-cml/appinventor-sources'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1557,7 +1557,7 @@ VALUES (
     'mixxx',
     'https://api.dicebear.com/7.x/initials/svg?seed=Mixxx',
     ARRAY['javascript', 'c++', 'qt', 'pytorch', 'onnx'],
-    'GSoC 2026',
+    'GSoC 2027',
     'mixxxdj/mixxx'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1572,7 +1572,7 @@ VALUES (
     'mllam',
     'https://api.dicebear.com/7.x/initials/svg?seed=MLLAM',
     ARRAY['python', 'numpy', 'pytorch', 'xarray', 'Zarr'],
-    'GSoC 2026',
+    'GSoC 2027',
     'mllam/neural-lam'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1587,7 +1587,7 @@ VALUES (
     'mofa',
     'https://api.dicebear.com/7.x/initials/svg?seed=MoFA%20Org',
     ARRAY['python', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1602,7 +1602,7 @@ VALUES (
     'moganlab',
     'https://api.dicebear.com/7.x/initials/svg?seed=MoganLab',
     ARRAY['c++', 'qt', 'scheme'],
-    'GSoC 2026',
+    'GSoC 2027',
     'XmacsLabs/mogan'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1617,7 +1617,7 @@ VALUES (
     'nrnb',
     'https://api.dicebear.com/7.x/initials/svg?seed=National%20Resource%20for%20Network%20Biology%20(NRNB)',
     ARRAY['python', 'javascript', 'html', 'css', 'LLM'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1632,7 +1632,7 @@ VALUES (
     'neovim',
     'https://api.dicebear.com/7.x/initials/svg?seed=Neovim',
     ARRAY['c', 'lua'],
-    'GSoC 2026',
+    'GSoC 2027',
     'neovim/neovim'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1647,7 +1647,7 @@ VALUES (
     'niu',
     'https://api.dicebear.com/7.x/initials/svg?seed=Neuroinformatics%20Unit',
     ARRAY['python', 'numpy', 'pytorch', 'Scipy', 'napari'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1662,7 +1662,7 @@ VALUES (
     'neutralinojs',
     'https://api.dicebear.com/7.x/initials/svg?seed=Neutralinojs',
     ARRAY['c', 'javascript', 'node.js', 'c++', 'typescript'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1677,7 +1677,7 @@ VALUES (
     'nixos',
     'https://api.dicebear.com/7.x/initials/svg?seed=NixOS%20Foundation',
     ARRAY['git', 'nix'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1692,7 +1692,7 @@ VALUES (
     'numfocus',
     'https://api.dicebear.com/7.x/initials/svg?seed=NumFOCUS',
     ARRAY['python', 'c++', 'r', 'julia'],
-    'GSoC 2026',
+    'GSoC 2027',
     'numfocus/gsoc#organizations-confirmed-under-numfocus-umbrella'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1707,7 +1707,7 @@ VALUES (
     'omegaup',
     'https://api.dicebear.com/7.x/initials/svg?seed=omegaUp',
     ARRAY['python', 'mysql', 'php', 'typescript', 'vue.js'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1722,7 +1722,7 @@ VALUES (
     'openfoodfacts',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Food%20Facts',
     ARRAY['python', 'javascript', 'machine learning', 'perl', 'flutter'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1737,7 +1737,7 @@ VALUES (
     'open-genome-informatics',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Genome%20Informatics',
     ARRAY['python', 'react', 'r-project', 'graph', 'angular'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1752,7 +1752,7 @@ VALUES (
     'ohcn',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20HealthCare%20Network',
     ARRAY['python', 'django', 'react', 'typescript', 'NextJs'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1767,7 +1767,7 @@ VALUES (
     'osrf',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Robotics',
     ARRAY['python', 'ros', 'gazebo', 'c++', 'Bevy'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1782,7 +1782,7 @@ VALUES (
     'osipi',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Science%20Initiative%20for%20Perfusion%20Imaging',
     ARRAY['python', 'github'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1797,7 +1797,7 @@ VALUES (
     'osl',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Science%20Labs',
     ARRAY['python', 'javascript', 'llvm', 'c++', 'docker'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1812,7 +1812,7 @@ VALUES (
     'gfoss',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Technologies%20Alliance%20-%20GFOSS',
     ARRAY['javascript', 'c/c++', 'nodejs', 'python 3', 'Machine Learning (ML)'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1827,7 +1827,7 @@ VALUES (
     'otsf',
     'https://api.dicebear.com/7.x/initials/svg?seed=Open%20Transit%20Software%20Foundation',
     ARRAY['android', 'java', 'golang', 'docker', 'ios'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1842,7 +1842,7 @@ VALUES (
     'openafs',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenAFS',
     ARRAY['c', 'python', 'javascript', 'git', 'tcp/udp'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1857,7 +1857,7 @@ VALUES (
     'openastronomy',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenAstronomy',
     ARRAY['c', 'python', 'c++', 'julia'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1872,7 +1872,7 @@ VALUES (
     'openelis',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenELIS%20Global',
     ARRAY['postgresql', 'javascript', 'java', 'react', 'spring'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1887,7 +1887,7 @@ VALUES (
     'openmrs',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenMRS',
     ARRAY['mysql', 'javascript', 'java', 'reactjs', 'fhir'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1902,7 +1902,7 @@ VALUES (
     'openms',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenMS%20Inc',
     ARRAY['python', 'cython', 'c++', 'pytorch', 'Streamlit'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1917,7 +1917,7 @@ VALUES (
     'openstreetmap',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenStreetMap',
     ARRAY['python', 'javascript', 'c++', 'docker', 'glTF'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1932,7 +1932,7 @@ VALUES (
     'opensuse',
     'https://api.dicebear.com/7.x/initials/svg?seed=openSUSE%20Project',
     ARRAY['python', 'c/c++', 'go', 'ruby', 'reactjs javascript'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1947,7 +1947,7 @@ VALUES (
     'openvino',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenVINO%20Toolkit',
     ARRAY['python', 'c++', 'arm', 'x86'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1962,7 +1962,7 @@ VALUES (
     'openwisp',
     'https://api.dicebear.com/7.x/initials/svg?seed=OpenWISP',
     ARRAY['python', 'javascript', 'django', 'lua', 'openwrt'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1977,7 +1977,7 @@ VALUES (
     'oppia',
     'https://api.dicebear.com/7.x/initials/svg?seed=Oppia%20Foundation',
     ARRAY['python', 'google app engine', 'angular', 'typescript', 'Apache Beam'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -1992,7 +1992,7 @@ VALUES (
     'osgeo',
     'https://api.dicebear.com/7.x/initials/svg?seed=OSGeo%20(Open%20Source%20Geospatial%20Foundation)',
     ARRAY['c', 'python', 'javascript', 'java', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2007,7 +2007,7 @@ VALUES (
     'owasp',
     'https://api.dicebear.com/7.x/initials/svg?seed=OWASP%20Foundation',
     ARRAY['python', 'javascript', 'java', 'ZAP', 'Juice Shop'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2022,7 +2022,7 @@ VALUES (
     'pecan',
     'https://api.dicebear.com/7.x/initials/svg?seed=%20PEcAn%20Project',
     ARRAY['r', 'docker', 'api', 'geospatial'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2037,7 +2037,7 @@ VALUES (
     'pharo',
     'https://api.dicebear.com/7.x/initials/svg?seed=Pharo%20Consortium',
     ARRAY['git', 'smalltalk', 'pharo', 'spec', 'SUnit'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2052,7 +2052,7 @@ VALUES (
     'postgresql',
     'https://api.dicebear.com/7.x/initials/svg?seed=PostgreSQL',
     ARRAY['c', 'python', 'postgresql', 'javascript', 'go'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2067,7 +2067,7 @@ VALUES (
     'precice',
     'https://api.dicebear.com/7.x/initials/svg?seed=preCICE',
     ARRAY['c', 'python', 'shell', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2082,7 +2082,7 @@ VALUES (
     'processing',
     'https://api.dicebear.com/7.x/initials/svg?seed=Processing%20Foundation',
     ARRAY['javascript', 'java', 'typescript', 'webgl', 'GitHub Actions'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2097,7 +2097,7 @@ VALUES (
     'project-mesa',
     'https://api.dicebear.com/7.x/initials/svg?seed=Project%20Mesa',
     ARRAY['python', 'gis', 'object oriented programming', 'LLMs', 'network topology'],
-    'GSoC 2026',
+    'GSoC 2027',
     'projectmesa/mesa'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2112,7 +2112,7 @@ VALUES (
     'python',
     'https://api.dicebear.com/7.x/initials/svg?seed=Python%20Software%20Foundation',
     ARRAY['python', 'javascript'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2127,7 +2127,7 @@ VALUES (
     'qc-devs',
     'https://api.dicebear.com/7.x/initials/svg?seed=QC-Devs',
     ARRAY['python', 'github', 'c++', 'julia', 'jupyter'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2142,7 +2142,7 @@ VALUES (
     'qemu',
     'https://api.dicebear.com/7.x/initials/svg?seed=QEMU',
     ARRAY['c', 'python', 'linux', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2157,7 +2157,7 @@ VALUES (
     'qubes',
     'https://api.dicebear.com/7.x/initials/svg?seed=Qubes%20OS',
     ARRAY['c', 'python', 'xen'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2172,7 +2172,7 @@ VALUES (
     'r-project',
     'https://api.dicebear.com/7.x/initials/svg?seed=R%20project%20for%20statistical%20computing',
     ARRAY['c', 'javascript', 'c++', 'r-project', 'fortran'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2187,7 +2187,7 @@ VALUES (
     'rizin',
     'https://api.dicebear.com/7.x/initials/svg?seed=Rizin',
     ARRAY['c', 'python', 'go', 'c++', 'qt'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2202,7 +2202,7 @@ VALUES (
     'rocket-chat',
     'https://api.dicebear.com/7.x/initials/svg?seed=rocket.chat',
     ARRAY['javascript', 'typescript', 'node', 'LLM', 'generative ai'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2217,7 +2217,7 @@ VALUES (
     'rtems',
     'https://api.dicebear.com/7.x/initials/svg?seed=RTEMS%20Project',
     ARRAY['python', 'c/c++', 'assembly', 'posix'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2232,7 +2232,7 @@ VALUES (
     'ruby',
     'https://api.dicebear.com/7.x/initials/svg?seed=Ruby',
     ARRAY['c', 'java', 'ruby on rails', 'ruby', 'rubygems'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2247,7 +2247,7 @@ VALUES (
     'sagemath',
     'https://api.dicebear.com/7.x/initials/svg?seed=SageMath',
     ARRAY['python', 'cython'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2262,7 +2262,7 @@ VALUES (
     'scummvm',
     'https://api.dicebear.com/7.x/initials/svg?seed=ScummVM',
     ARRAY['python', 'opengl', 'c++', 'assembly', 'sdl'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2277,7 +2277,7 @@ VALUES (
     'st-jude',
     'https://api.dicebear.com/7.x/initials/svg?seed=St.%20Jude%20Children's%20Research%20Hospital',
     ARRAY['python', 'rust', 'simd', 'WDL'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2292,7 +2292,7 @@ VALUES (
     'stdlib',
     'https://api.dicebear.com/7.x/initials/svg?seed=stdlib',
     ARRAY['c', 'javascript', 'node.js', 'typescript', 'webassembly'],
-    'GSoC 2026',
+    'GSoC 2027',
     'stdlib-js/stdlib'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2307,7 +2307,7 @@ VALUES (
     'stellar-group',
     'https://api.dicebear.com/7.x/initials/svg?seed=Ste%7C%7Car%20group',
     ARRAY['c++', 'hpc'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2322,7 +2322,7 @@ VALUES (
     'su2',
     'https://api.dicebear.com/7.x/initials/svg?seed=Stichting%20SU2',
     ARRAY['python', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2337,7 +2337,7 @@ VALUES (
     'submitty',
     'https://api.dicebear.com/7.x/initials/svg?seed=Submitty',
     ARRAY['python', 'postgresql', 'javascript', 'c++', 'php'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2352,7 +2352,7 @@ VALUES (
     'sugar-labs',
     'https://api.dicebear.com/7.x/initials/svg?seed=Sugar%20Labs',
     ARRAY['python', 'gtk', 'typescript', 'javascipt', 'LLM'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2367,7 +2367,7 @@ VALUES (
     'sw360',
     'https://api.dicebear.com/7.x/initials/svg?seed=SW360',
     ARRAY['java', 'react', 'couchdb', 'SpringBoot'],
-    'GSoC 2026',
+    'GSoC 2027',
     'eclipse-sw360/sw360'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2382,7 +2382,7 @@ VALUES (
     'swift',
     'https://api.dicebear.com/7.x/initials/svg?seed=Swift',
     ARRAY['c++', 'cmake', 'swift'],
-    'GSoC 2026',
+    'GSoC 2027',
     'apple/swift'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2397,7 +2397,7 @@ VALUES (
     'sympy',
     'https://api.dicebear.com/7.x/initials/svg?seed=SymPy',
     ARRAY['python', 'numpy', 'jupyter'],
-    'GSoC 2026',
+    'GSoC 2027',
     'sympy/sympy'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2412,7 +2412,7 @@ VALUES (
     'synfig',
     'https://api.dicebear.com/7.x/initials/svg?seed=Synfig',
     ARRAY['python', 'c++', 'gtk', 'gtkmm'],
-    'GSoC 2026',
+    'GSoC 2027',
     'synfig/synfig'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2427,7 +2427,7 @@ VALUES (
     'tardis-rt',
     'https://api.dicebear.com/7.x/initials/svg?seed=TARDIS%20RT%20Collaboration',
     ARRAY['python', 'numba', 'numpy', 'jupyter', 'pandas'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2442,7 +2442,7 @@ VALUES (
     'freebsd',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20FreeBSD%20Project',
     ARRAY['c', 'llvm', 'assembly', 'make', 'POSIX shell'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2457,7 +2457,7 @@ VALUES (
     'honeynet',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20Honeynet%20Project',
     ARRAY['python', 'javascript', 'django', 'go', 'docker'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2472,7 +2472,7 @@ VALUES (
     'jpf',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20JPF%20team',
     ARRAY['android', 'java', 'distributed systems', 'jvm'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2487,7 +2487,7 @@ VALUES (
     'julia',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20Julia%20Language',
     ARRAY['machine learning', 'julia', 'data science', 'compilers', 'garbage-collection'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2502,7 +2502,7 @@ VALUES (
     'libreswan',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20Libreswan%20Project',
     ARRAY['c', 'kernel', 'nss', 'RFCs', 'libevent'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2517,7 +2517,7 @@ VALUES (
     'linux-foundation',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20Linux%20Foundation',
     ARRAY['c', 'linux', 'cups', 'ai', 'fuzz-testing'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2532,7 +2532,7 @@ VALUES (
     'mifos',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20Mifos%20Initiative',
     ARRAY['android', 'java', 'kotlin', 'spring', 'angular'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2547,7 +2547,7 @@ VALUES (
     'netbsd',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20NetBSD%20Foundation',
     ARRAY['c', 'shell script', 'make', 'unix', 'bsd'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2562,7 +2562,7 @@ VALUES (
     'ns-3',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20ns-3%20Network%20Simulator%20Project',
     ARRAY['python', 'django', 'c++'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2577,7 +2577,7 @@ VALUES (
     'openroad',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20OpenROAD%20Initiative',
     ARRAY['python', 'verilog', 'c++', 'tcl', 'OpenRoad'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2592,7 +2592,7 @@ VALUES (
     'p4',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20P4%20Language%20Consortium',
     ARRAY['llvm', 'c++', 'linux kernel', 'mlir', 'ebpf'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2607,7 +2607,7 @@ VALUES (
     'rust-foundation',
     'https://api.dicebear.com/7.x/initials/svg?seed=The%20Rust%20Foundation',
     ARRAY['python', 'rust'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2622,7 +2622,7 @@ VALUES (
     'tiled',
     'https://api.dicebear.com/7.x/initials/svg?seed=Tiled',
     ARRAY['c++', 'qt'],
-    'GSoC 2026',
+    'GSoC 2027',
     'mapeditor/tiled'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2637,7 +2637,7 @@ VALUES (
     'typelevel',
     'https://api.dicebear.com/7.x/initials/svg?seed=Typelevel',
     ARRAY['linux', 'node.js', 'jvm', 'scala', 'wasm'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2652,7 +2652,7 @@ VALUES (
     'uc-ospo',
     'https://api.dicebear.com/7.x/initials/svg?seed=UC%20OSPO',
     ARRAY['python', 'javascript', 'c/c++', 'machine learning', 'pytorch'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2667,7 +2667,7 @@ VALUES (
     'unikraft',
     'https://api.dicebear.com/7.x/initials/svg?seed=Unikraft',
     ARRAY['c', 'xen', 'golang', 'kvm', 'assembly language'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2682,7 +2682,7 @@ VALUES (
     'un-oict',
     'https://api.dicebear.com/7.x/initials/svg?seed=United%20Nations%20Office%20of%20Information%20Communication%20Technology',
     ARRAY['python', 'javascript', 'css'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2697,7 +2697,7 @@ VALUES (
     'uramaki-lab',
     'https://api.dicebear.com/7.x/initials/svg?seed=Uramaki%20LAB',
     ARRAY['python', 'javascript', 'html', 'css', 'Firebase'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2712,7 +2712,7 @@ VALUES (
     'videolan',
     'https://api.dicebear.com/7.x/initials/svg?seed=VideoLAN',
     ARRAY['c', 'c++', 'qt', 'assembly', 'video'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2727,7 +2727,7 @@ VALUES (
     'wagtail',
     'https://api.dicebear.com/7.x/initials/svg?seed=Wagtail',
     ARRAY['python', 'javascript', 'django'],
-    'GSoC 2026',
+    'GSoC 2027',
     'wagtail/wagtail'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2742,7 +2742,7 @@ VALUES (
     'webpack',
     'https://api.dicebear.com/7.x/initials/svg?seed=webpack',
     ARRAY['javascript', 'typescript', 'node'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2757,7 +2757,7 @@ VALUES (
     'wikimedia',
     'https://api.dicebear.com/7.x/initials/svg?seed=Wikimedia%20Foundation',
     ARRAY['javascript', 'html', 'php', 'css', 'Phyton'],
-    'GSoC 2026',
+    'GSoC 2027',
     NULL
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2772,7 +2772,7 @@ VALUES (
     'zulip',
     'https://api.dicebear.com/7.x/initials/svg?seed=Zulip',
     ARRAY['python', 'django', 'flutter', 'css', 'typescript'],
-    'GSoC 2026',
+    'GSoC 2027',
     'zulip/zulip'
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -2783,7 +2783,7 @@ ON CONFLICT (slug) DO UPDATE SET
 
 
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program)
-VALUES ('Appsmith', 'appsmith', 'https://avatars.githubusercontent.com/u/53011310?s=200&v=4', ARRAY['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB'], 'GSoC 2026')
+VALUES ('Appsmith', 'appsmith', 'https://avatars.githubusercontent.com/u/53011310?s=200&v=4', ARRAY['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB'], 'GSoC 2027')
 ON CONFLICT (slug) DO UPDATE SET logo_url = EXCLUDED.logo_url, tech_stack = EXCLUDED.tech_stack, program = EXCLUDED.program;
 
 -- Insert LFX Mentorship Organizations
@@ -2802,10 +2802,10 @@ VALUES
 ('OpenTelemetry', 'opentelemetry', 'https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/icon.svg', ARRAY['Go', 'Java', 'Python', 'Collector'], 'Outreachy', 'A collection of tools, APIs, and SDKs for observability.', 'open-telemetry/opentelemetry-collector')
 ON CONFLICT (slug) DO UPDATE SET logo_url = EXCLUDED.logo_url, tech_stack = EXCLUDED.tech_stack, program = EXCLUDED.program, description = EXCLUDED.description, repo_path = EXCLUDED.repo_path;
 
--- Insert ESOC 2026 Organizations
+-- Insert ESOC 2027 Organizations
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program, description, repo_path)
 VALUES 
-('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2026', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
-('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2026', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
+('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2027', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
+('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2027', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
 ON CONFLICT (slug) DO UPDATE SET logo_url = EXCLUDED.logo_url, tech_stack = EXCLUDED.tech_stack, program = EXCLUDED.program, description = EXCLUDED.description, repo_path = EXCLUDED.repo_path;
 COMMIT;

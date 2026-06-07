@@ -79,7 +79,7 @@ export async function GET(request: Request) {
                 <div style={{ height: '80px', width: '2px', backgroundColor: 'rgba(255,255,255,0.1)' }} />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '16px', fontWeight: '900', color: '#f97316', letterSpacing: '0.1em' }}>READINESS SCORE</span>
-                    <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.4)' }}>Certified Feb 2026</span>
+                    <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.4)' }}>Certified Feb 2027</span>
                 </div>
             </div>
 

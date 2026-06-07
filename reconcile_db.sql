@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS public.organizations (
     website_url TEXT,
     repo_path TEXT,
     tech_stack TEXT[],
-    program TEXT DEFAULT 'GSoC 2026',
+    program TEXT DEFAULT 'GSoC 2027',
     stars_count INTEGER DEFAULT 0,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );

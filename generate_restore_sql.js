@@ -32,7 +32,7 @@ let sql = `-- ==========================================
 -- RESTORE & POPULATE ORGANIZATIONS SQL SCRIPT
 -- ==========================================
 -- This script safely UPSERTS organizations into your database.
--- It covers GSoC 2026, LFX, Outreachy, and ESOC 2026.
+-- It covers GSoC 2027, LFX, Outreachy, and ESOC 2027.
 
 BEGIN;
 
@@ -52,7 +52,7 @@ VALUES (
     '${escapeSql(org.slug)}',
     'https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(org.name)}',
     ${techStackArr},
-    'GSoC 2026',
+    'GSoC 2027',
     ${repoPath ? `'${escapeSql(repoPath)}'` : 'NULL'}
 )
 ON CONFLICT (slug) DO UPDATE SET 
@@ -67,7 +67,7 @@ ON CONFLICT (slug) DO UPDATE SET
 // Appsmith (GSoC) update Logo
 sql += `
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program)
-VALUES ('Appsmith', 'appsmith', 'https://avatars.githubusercontent.com/u/53011310?s=200&v=4', ARRAY['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB'], 'GSoC 2026')
+VALUES ('Appsmith', 'appsmith', 'https://avatars.githubusercontent.com/u/53011310?s=200&v=4', ARRAY['Java', 'Spring Boot', 'React', 'TypeScript', 'MongoDB'], 'GSoC 2027')
 ON CONFLICT (slug) DO UPDATE SET logo_url = EXCLUDED.logo_url, tech_stack = EXCLUDED.tech_stack, program = EXCLUDED.program;
 `;
 
@@ -94,13 +94,13 @@ VALUES
 ON CONFLICT (slug) DO UPDATE SET logo_url = EXCLUDED.logo_url, tech_stack = EXCLUDED.tech_stack, program = EXCLUDED.program, description = EXCLUDED.description, repo_path = EXCLUDED.repo_path;
 `;
 
-// ESOC 2026 Orgs
+// ESOC 2027 Orgs
 sql += `
--- Insert ESOC 2026 Organizations
+-- Insert ESOC 2027 Organizations
 INSERT INTO organizations (name, slug, logo_url, tech_stack, program, description, repo_path)
 VALUES 
-('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2026', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
-('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2026', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
+('OpenSource Health', 'os-health', 'https://api.dicebear.com/7.x/initials/svg?seed=OH', ARRAY['React', 'Node.js', 'PostgreSQL'], 'ESOC 2027', 'Building open tools for community healthcare in Europe.', 'os-health/core'),
+('GreenCode', 'greencode', 'https://api.dicebear.com/7.x/initials/svg?seed=GC', ARRAY['Python', 'D3.js', 'EarthData'], 'ESOC 2027', 'Open data pipelines for environmental monitoring.', 'greencode/pipeline')
 ON CONFLICT (slug) DO UPDATE SET logo_url = EXCLUDED.logo_url, tech_stack = EXCLUDED.tech_stack, program = EXCLUDED.program, description = EXCLUDED.description, repo_path = EXCLUDED.repo_path;
 `;
 

@@ -68,7 +68,7 @@ export default function ReadinessBadge({ score, breakdown, username }: BadgeProp
         <div className="flex flex-col w-full gap-4">
             <button 
                 onClick={() => {
-                    const certUrl = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=GSoC%202026%20Readiness%20Certified&organizationName=OpenVeda&issueYear=2026&issueMonth=5&certUrl=https://openveda.in/verify/${username}`;
+                    const certUrl = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=GSoC%202027%20Readiness%20Certified&organizationName=OpenVeda&issueYear=2027&issueMonth=5&certUrl=https://openveda.in/verify/${username}`;
                     window.open(certUrl, '_blank');
                 }}
                 className="bg-[#0a66c2] text-white font-black px-8 py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center gap-2"
@@ -78,7 +78,7 @@ export default function ReadinessBadge({ score, breakdown, username }: BadgeProp
             </button>
             <button 
                 onClick={() => {
-                    const text = `I just earned a ${Math.round(score)}/100 GSoC 2026 Readiness score on OpenVeda! Check out my verified profile: https://openveda.in/verify/${username}`;
+                    const text = `I just earned a ${Math.round(score)}/100 GSoC 2027 Readiness score on OpenVeda! Check out my verified profile: https://openveda.in/verify/${username}`;
                     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
                 }}
                 className="text-muted-foreground font-black text-[10px] uppercase tracking-widest hover:text-foreground transition-colors"

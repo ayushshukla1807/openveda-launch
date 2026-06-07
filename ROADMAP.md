@@ -4,7 +4,7 @@ Our mission is to build the world's most effective launchpad for open-source con
 
 ## Q1: Foundation & Expansion (Completed)
 - [x] **Premium UI/UX Overhaul**: 100% human-authored, dual-theme design system.
-- [x] **Multi-Program Support**: Integration with GSoC, LFX, Outreachy, and ESOC 2026.
+- [x] **Multi-Program Support**: Integration with GSoC, LFX, Outreachy, and ESOC 2026/2027.
 - [x] **Platinum Playbooks**: High-signal contributor guides for top 20 organizations.
 - [x] **Mentorship Hub 1.0**: Dynamic mentor profiles and 1-on-1 connection system.
 
