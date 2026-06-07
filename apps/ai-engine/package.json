@@ -1,0 +1,7 @@
+{
+  "name": "openveda-ai-engine",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "uv run python agent.py"
+  }
+}

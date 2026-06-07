@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReadinessBadge from '@/components/ui/ReadinessBadge';
 import ProjectShowcase from '@/components/ui/ProjectShowcase';
+import ContributorReadinessScore from '@/components/ui/ContributorReadinessScore';
 import { 
   Plus, Search, Edit3, Trash2, Download, CheckCircle, X, Send, 
   MessageSquare, Star, ArrowUpRight, Activity, BookOpen, Clock,
@@ -854,6 +855,16 @@ export default function DashboardPage() {
               <h3 className="text-6xl font-black tracking-tighter">{journeyProgress}%</h3>
               <p className="text-xs font-bold mt-2 uppercase opacity-60">Roadmap Milestones completed</p>
             </div>
+          </motion.div>
+
+          {/* New Architecture Component: Contributor Readiness Score */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mb-12"
+          >
+            <ContributorReadinessScore />
           </motion.div>
 
           {/* Main Dashboard Grid */}
