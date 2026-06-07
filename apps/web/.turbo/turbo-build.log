@@ -9,7 +9,10 @@
 
    Creating an optimized production build ...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
  ✓ Compiled successfully
@@ -26,20 +29,20 @@ Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
    Collecting build traces ...
 
 Route (app)                              Size     First Load JS
-┌ ○ /                                    8.6 kB          159 kB
+┌ ○ /                                    8.64 kB         159 kB
 ├ ○ /_not-found                          876 B          88.2 kB
 ├ ƒ /api/og/verify                       0 B                0 B
 ├ ƒ /api/revalidate                      0 B                0 B
 ├ ƒ /auth/callback                       0 B                0 B
 ├ ƒ /auth/sign-out                       0 B                0 B
-├ ○ /curriculum                          5.27 kB         145 kB
-├ ○ /dashboard                           28 kB           181 kB
-├ ○ /founder                             6.02 kB         151 kB
-├ ƒ /journey                             1.81 kB         147 kB
-├ ○ /login                               4.12 kB         141 kB
-├ ○ /mentorship                          7.72 kB         158 kB
+├ ○ /curriculum                          5.27 kB         146 kB
+├ ○ /dashboard                           29 kB           182 kB
+├ ○ /founder                             6.06 kB         152 kB
+├ ƒ /journey                             1.82 kB         147 kB
+├ ○ /login                               4.15 kB         141 kB
+├ ○ /mentorship                          7.76 kB         158 kB
 ├ ƒ /mentorship/[slug]                   175 B          96.1 kB
-├ ○ /organizations                       4.92 kB         155 kB
+├ ○ /organizations                       4.93 kB         156 kB
 ├ ƒ /playbook/[slug]                     37.3 kB         183 kB
 ├ ○ /programs                            2.24 kB         145 kB
 ├ ƒ /verify/[uuid]                       1.8 kB          131 kB

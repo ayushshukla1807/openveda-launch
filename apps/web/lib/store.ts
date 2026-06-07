@@ -14,8 +14,8 @@ export const useContributorStore = create<ContributorState>((set) => ({
   fetchScore: async () => {
     set({ isAnalyzing: true });
     try {
-      // Connecting to the new FastAPI Backend (simulated for now)
-      const res = await fetch('http://localhost:8000/api/v1/readiness');
+      const baseUrl = process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8000';
+      const res = await fetch(`${baseUrl}/api/v1/readiness`);
       if (res.ok) {
         const data = await res.json();
         set({ score: data.score, stage: data.stage, isAnalyzing: false });

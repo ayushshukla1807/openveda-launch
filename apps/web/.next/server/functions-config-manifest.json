@@ -1,1 +1,1 @@
-{"version":1,"functions":{"/auth/callback":{},"/api/og/verify":{},"/mentorship/[slug]":{},"/founder":{},"/playbook/[slug]":{},"/mentorship":{},"/":{},"/dashboard":{}}}
+{"version":1,"functions":{"/mentorship/[slug]":{},"/founder":{},"/playbook/[slug]":{},"/api/og/verify":{},"/auth/callback":{},"/mentorship":{},"/":{},"/dashboard":{}}}

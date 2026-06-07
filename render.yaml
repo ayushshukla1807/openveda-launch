@@ -1,30 +1,34 @@
 services:
   - type: web
-    name: openveda-scoring-api
+    name: openveda-fastapi
     env: python
     region: ohio
-    plan: free
-    buildCommand: "cd apps/scoring && pip install -r requirements.txt"
-    startCommand: "cd apps/scoring && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    plan: starter
+    buildCommand: "curl -LsSf https://astral.sh/uv/install.sh | sh && $HOME/.cargo/bin/uv venv && $HOME/.cargo/bin/uv pip install -r apps/api/pyproject.toml"
+    startCommand: "cd apps/api && $HOME/.cargo/bin/uv run uvicorn main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
+      - key: DATABASE_URL
+        sync: false
       
   - type: web
-    name: openveda-ai-rag
+    name: openveda-langgraph
     env: python
-    plan: free
+    plan: starter
     region: ohio
-    buildCommand: "cd apps/ai && pip install -r requirements.txt"
-    startCommand: "cd apps/ai && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    buildCommand: "curl -LsSf https://astral.sh/uv/install.sh | sh && $HOME/.cargo/bin/uv venv && $HOME/.cargo/bin/uv pip install -r apps/ai-engine/pyproject.toml"
+    startCommand: "cd apps/ai-engine && $HOME/.cargo/bin/uv run python agent.py"
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
       - key: OPENAI_API_KEY
         sync: false
+      - key: DATABASE_URL
+        sync: false
 
   - type: web
-    name: openveda-ayush
+    name: openveda-web
     env: node
     region: ohio
     buildCommand: "npm install && npm run build:prod"
@@ -36,13 +40,13 @@ services:
         sync: false
       - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
         sync: false
-      - key: NEXT_PUBLIC_SCORING_API_URL
+      - key: NEXT_PUBLIC_FASTAPI_URL
         fromService:
           type: web
-          name: openveda-scoring-api
+          name: openveda-fastapi
           envVarKey: RENDER_EXTERNAL_URL
-      - key: NEXT_PUBLIC_AI_API_URL
+      - key: NEXT_PUBLIC_LANGGRAPH_URL
         fromService:
           type: web
-          name: openveda-ai-rag
+          name: openveda-langgraph
           envVarKey: RENDER_EXTERNAL_URL
