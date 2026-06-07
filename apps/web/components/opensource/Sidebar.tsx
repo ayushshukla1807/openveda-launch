@@ -9,32 +9,32 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { name: "Documentation", href: "/opensource" },
-    { name: "55 Feature Upgrades", href: "/opensource/upgrades" },
-    { name: "Repositories", href: "/opensource/repositories" },
-    { name: "Issues", href: "/opensource/issues" },
-    { name: "Tutorials", href: "/opensource/tutorials" },
-    { name: "Contributors", href: "/opensource/contributors" },
-    { name: "AI Git Coach", href: "/opensource/coach" },
-    { name: "Essential Tools", href: "/opensource/tools" },
-    { name: "FAQ", href: "/opensource/faq" },
+    { name: "Forge Playbooks", href: "/opensource" },
+    { name: "Architectural Upgrades", href: "/opensource/upgrades" },
+    { name: "Target Codebases", href: "/opensource/repositories" },
+    { name: "Active Issue Pipeline", href: "/opensource/issues" },
+    { name: "Git Terminal Simulator", href: "/opensource/tutorials" },
+    { name: "Engineers Leaderboard", href: "/opensource/contributors" },
+    { name: "AI Code Auditor", href: "/opensource/coach" },
+    { name: "System Dependencies", href: "/opensource/tools" },
+    { name: "Developer FAQ", href: "/opensource/faq" },
   ];
 
   const sections = [
     {
-      title: "Welcome to Hacktoberfest 2026",
+      title: "OpenVeda Forge Hub",
       items: [
         { name: "Frequently Asked Questions", href: "/opensource/faq" },
-        { name: "Components", href: "/opensource" },
+        { name: "Forge Playbooks", href: "/opensource" },
       ]
     },
     {
-      title: "Getting Started",
+      title: "System Onboarding",
       isActive: true,
       items: [
-        { name: "Open Source Programs", href: "/opensource/getting-started#programs" },
-        { name: "Setup Git", href: "/opensource/getting-started#git" },
-        { name: "What is GitHub?", href: "/opensource/getting-started#github" },
+        { name: "Developer Programs", href: "/opensource/getting-started#programs" },
+        { name: "Git Setup Pipeline", href: "/opensource/getting-started#git" },
+        { name: "Distributed Workspaces", href: "/opensource/getting-started#github" },
       ]
     }
   ];
@@ -43,12 +43,12 @@ export function Sidebar() {
     <aside className="w-64 border-r border-[#2a2d36] bg-[#0f1115] h-screen fixed left-0 top-0 overflow-y-auto flex flex-col hidden md:flex font-sans">
       {/* Header */}
       <div className="p-4 border-b border-[#2a2d36] flex items-center justify-between">
-        <Link href="/opensource" className="flex items-center gap-2 text-white font-bold text-lg group">
+        <Link href="/opensource" className="flex items-center gap-2 text-white font-bold text-base group">
           <div className="text-orange-500 group-hover:scale-110 transition-transform">
              {/* Simple SVG icon matching the target site */}
              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           </div>
-          Hacktoberfest 2026
+          OpenVeda Forge
         </Link>
       </div>
 
