@@ -134,24 +134,40 @@ export default function HomePage() {
           </motion.p>
           
           {/* Action Hub - Professional Tracks */}
-          <motion.div variants={itemVariants} className="mt-20 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-2 glass rounded-[3.5rem]">
-            <div className="relative group p-12 rounded-[3rem] bg-white/5 border border-white/10 hover:border-primary/40 transition-all duration-500 overflow-hidden">
+          <motion.div variants={itemVariants} className="mt-20 w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-2 glass rounded-[3.5rem]">
+            <div className="relative group p-10 rounded-[3rem] bg-white/5 border border-white/10 hover:border-primary/40 transition-all duration-500 overflow-hidden text-left flex flex-col justify-between">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[60px] group-hover:bg-primary/20 transition-all" />
-                <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">PHASE A: ROADMAPS</span>
-                <h3 className="text-3xl font-black italic mt-4 text-white">Track Milestones</h3>
-                <p className="text-slate-400 mt-6 font-medium leading-relaxed">Map your GSoC 2026 milestones. Learn maintainer communication, roadmap selection, and dynamic progress validation tracking.</p>
+                <div>
+                  <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">PHASE A: ROADMAPS</span>
+                  <h3 className="text-3xl font-black italic mt-4 text-white">Track Milestones</h3>
+                  <p className="text-slate-400 mt-6 font-medium leading-relaxed text-sm">Map your GSoC 2026 milestones. Learn maintainer communication, roadmap selection, and dynamic progress validation tracking.</p>
+                </div>
                 <Link href="/journey" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
                   Access Roadmap <span className="text-lg">→</span>
                 </Link>
             </div>
             
-            <div className="relative group p-12 rounded-[3rem] bg-white/[0.02] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden">
+            <div className="relative group p-10 rounded-[3rem] bg-white/[0.03] border border-white/5 hover:border-primary/30 transition-all duration-500 overflow-hidden text-left flex flex-col justify-between">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[60px] group-hover:bg-white/10 transition-all" />
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">PHASE B: SYSTEMS</span>
-                <h3 className="text-3xl font-black italic mt-4 text-white">Portfolio Syllabus</h3>
-                <p className="text-slate-500 mt-6 font-medium leading-relaxed">The cycle never ends. Prepare your systems portfolio for GSoC 2026 by mastering SWC, Raft, and container runtime architectures.</p>
-                <Link href="/curriculum" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-white group-hover:translate-x-2 transition-transform">
+                <div>
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">PHASE B: SYSTEMS</span>
+                  <h3 className="text-3xl font-black italic mt-4 text-white">Portfolio Syllabus</h3>
+                  <p className="text-slate-400 mt-6 font-medium leading-relaxed text-sm">The cycle never ends. Prepare your systems portfolio for GSoC 2026 by mastering SWC, Raft, and container runtime architectures.</p>
+                </div>
+                <Link href="/curriculum" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-slate-300 group-hover:translate-x-2 transition-transform">
                   Explore Syllabus <span className="text-lg">→</span>
+                </Link>
+            </div>
+
+            <div className="relative group p-10 rounded-[3rem] bg-white/[0.01] border border-white/5 hover:border-primary/40 transition-all duration-500 overflow-hidden text-left flex flex-col justify-between">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/15 blur-[60px] group-hover:bg-primary/25 transition-all" />
+                <div>
+                  <span className="text-[10px] font-black text-primary uppercase tracking-[0.4em]">PHASE C: OPEN SOURCE</span>
+                  <h3 className="text-3xl font-black italic mt-4 text-white">OS Contributors</h3>
+                  <p className="text-slate-400 mt-6 font-medium leading-relaxed text-sm">Practice with Git Terminal Sandbox, visual branch trees, live issue tracking, and our AI open-source code assistant.</p>
+                </div>
+                <Link href="/opensource" className="mt-10 inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                  Launch Sandbox <span className="text-lg">→</span>
                 </Link>
             </div>
           </motion.div>
