@@ -10,6 +10,7 @@ export function Sidebar() {
 
   const navLinks = [
     { name: "Documentation", href: "/opensource" },
+    { name: "55 Feature Upgrades", href: "/opensource/upgrades" },
     { name: "Repositories", href: "/opensource/repositories" },
     { name: "Issues", href: "/opensource/issues" },
     { name: "Tutorials", href: "/opensource/tutorials" },
