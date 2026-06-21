@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ReadinessBadge from '@/components/ui/ReadinessBadge';
+import ReadinessBadge from '../../../components/ui/ReadinessBadge';
 
 interface VerifyPageProps {
   params: { uuid: string };

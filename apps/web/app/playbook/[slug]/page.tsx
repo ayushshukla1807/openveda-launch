@@ -1,7 +1,7 @@
-import { createServerSupabaseClient } from '@/lib/supabase/client';
+import { createServerSupabaseClient } from '../../../lib/supabase/client';
 import { notFound } from 'next/navigation';
 import PlaybookClient from './PlaybookClient';
-import gsocOrgsRaw from '@/lib/gsoc_2026_orgs.json';
+import gsocOrgsRaw from '../../../lib/gsoc_2026_orgs.json';
 
 // Force dynamic rendering — skip SSG entirely to avoid build-time prerender errors
 export const dynamic = 'force-dynamic';

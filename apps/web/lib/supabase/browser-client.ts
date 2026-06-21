@@ -1,6 +1,6 @@
 // lib/supabase/browser-client.ts
 
-import gsocOrgsRaw from '@/lib/gsoc_2026_orgs.json';
+import gsocOrgsRaw from '../gsoc_2026_orgs.json';
 
 // Local static lists for offline-first resilient architecture
 const staticProgramsOrgs = [

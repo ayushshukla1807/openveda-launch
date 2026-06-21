@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Newsletter from '@/components/ui/Newsletter';
+import Newsletter from './Newsletter';
 
 export default function Footer() {
   return (

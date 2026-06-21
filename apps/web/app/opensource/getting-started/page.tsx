@@ -1,6 +1,6 @@
 "use client";
 
-import { useOpenSourceStore } from "@/lib/opensourceStore";
+import { useOpenSourceStore } from '../../../lib/opensourceStore';
 import { CheckCircle, Rocket, BookOpen, Star, Shield, Cpu, Terminal } from "lucide-react";
 
 export default function GettingStartedPage() {

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useContributorStore } from '@/lib/store';
+import { useContributorStore } from '../../lib/store';
 
 export default function ContributorReadinessScore() {
   const { score, stage, isAnalyzing, fetchScore } = useContributorStore();

@@ -1,5 +1,5 @@
 'use client';
-import { Button } from "@/components/ui/button";
+import { Button } from './button';
 
 interface OrgFiltersProps {
   techStacks: string[]; categories: string[]; programs: string[];

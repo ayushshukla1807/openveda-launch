@@ -1,6 +1,6 @@
 'use client';
 
-import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+import { createBrowserSupabaseClient } from '../../lib/supabase/browser-client';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';

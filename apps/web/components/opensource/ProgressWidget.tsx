@@ -1,6 +1,6 @@
 "use client";
 
-import { useOpenSourceStore } from "@/lib/opensourceStore";
+import { useOpenSourceStore } from '../../lib/opensourceStore';
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, ChevronRight, X } from "lucide-react";

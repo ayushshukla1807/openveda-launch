@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RepositoryCard, RepositoryData } from "@/components/opensource/RepositoryCard";
+import { RepositoryCard, RepositoryData } from '../../../components/opensource/RepositoryCard';
 import { Star, Flame, Rocket, RefreshCw } from "lucide-react";
 
 const hardcodedRepos: RepositoryData[] = [

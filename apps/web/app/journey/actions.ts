@@ -2,7 +2,7 @@
 
 'use server'; 
 
-import { createServerSupabaseClient } from '@/lib/supabase/client'; 
+import { createServerSupabaseClient } from '../../lib/supabase/client'; 
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers'; 
 

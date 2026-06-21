@@ -1,5 +1,5 @@
-import { Sidebar } from "@/components/opensource/Sidebar";
-import { ProgressWidget } from "@/components/opensource/ProgressWidget";
+import { Sidebar } from '../../components/opensource/Sidebar';
+import { ProgressWidget } from '../../components/opensource/ProgressWidget';
 
 export default function OpenSourceLayout({
   children,

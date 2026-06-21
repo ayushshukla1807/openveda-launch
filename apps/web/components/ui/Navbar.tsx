@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import AuthButton from '@/components/ui/AuthButton';
-import ThemeToggle from '@/components/ui/ThemeToggle';
+import AuthButton from './AuthButton';
+import ThemeToggle from './ThemeToggle';
 import React, { useState, useEffect } from 'react';
 
 export default function Navbar() {

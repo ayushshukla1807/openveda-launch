@@ -1,6 +1,6 @@
 'use client';
 
-import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+import { createBrowserSupabaseClient } from '../../lib/supabase/browser-client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 

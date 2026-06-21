@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+import { createBrowserSupabaseClient } from '../../lib/supabase/browser-client';
 
 const supabase = createBrowserSupabaseClient();
 

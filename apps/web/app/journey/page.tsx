@@ -1,5 +1,5 @@
-import { createServerSupabaseClient } from '@/lib/supabase/client';
-import JourneyChecklist from '@/components/ui/JourneyChecklist';
+import { createServerSupabaseClient } from '../../lib/supabase/client';
+import JourneyChecklist from '../../components/ui/JourneyChecklist';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 

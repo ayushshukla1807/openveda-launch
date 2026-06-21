@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
 import '../styles/main.css';
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer'; 
-import CommandPalette from '@/components/ui/CommandPalette';
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import Navbar from '../components/ui/Navbar';
+import Footer from '../components/ui/Footer'; 
+import CommandPalette from '../components/ui/CommandPalette';
+import { ThemeProvider } from '../components/providers/ThemeProvider';
 
 const meta = {
   title: 'OpenVeda | The Contribution Engine',

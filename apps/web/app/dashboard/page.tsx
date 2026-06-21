@@ -1,14 +1,14 @@
 'use client';
 
-import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+import { createBrowserSupabaseClient } from '../../lib/supabase/browser-client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ReadinessBadge from '@/components/ui/ReadinessBadge';
-import ProjectShowcase from '@/components/ui/ProjectShowcase';
-import ContributorReadinessScore from '@/components/ui/ContributorReadinessScore';
+import ReadinessBadge from '../../components/ui/ReadinessBadge';
+import ProjectShowcase from '../../components/ui/ProjectShowcase';
+import ContributorReadinessScore from '../../components/ui/ContributorReadinessScore';
 import { 
   Plus, Search, Edit3, Trash2, Download, CheckCircle, X, Send, 
   MessageSquare, Star, ArrowUpRight, Activity, BookOpen, Clock,
