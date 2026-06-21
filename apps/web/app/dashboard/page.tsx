@@ -13,7 +13,7 @@ import {
   Plus, Search, Edit3, Trash2, Download, CheckCircle, X, Send, 
   MessageSquare, Star, ArrowUpRight, Activity, BookOpen, Clock,
   Sparkles, ShieldCheck, MapPin, Cpu, BarChart2, DollarSign,
-  Globe, Store, Share2, Info
+  Globe, Store, Share2, Info, RefreshCw
 } from 'lucide-react';
 
 const supabase = createBrowserSupabaseClient();
