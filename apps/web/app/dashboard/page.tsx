@@ -1099,7 +1099,7 @@ export default function DashboardPage() {
                                   </span>
                                 </div>
                                 <h3 className="text-xl font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{proposal.title}</h3>
-                                <p className="text-[10px] text-muted-foreground font-mono mb-8">
+                                <p suppressHydrationWarning className="text-[10px] text-muted-foreground font-mono mb-8">
                                   Last sync: {new Date(proposal.updated_at).toLocaleString()}
                                 </p>
                               </div>
