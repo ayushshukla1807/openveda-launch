@@ -19,12 +19,9 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".", // CRITICAL: This sets the base for all '@/' imports
-    "paths": {       // CRITICAL: This defines your custom aliases
-      "@/components/*": ["./components/*"], // For components in the root 'components' (if any)
-      "@/components/ui/*": ["./components/ui/*"], // For shadcn/ui components
-      "@/lib/*": ["./lib/*"],
-      "@/utils/*": ["./utils/*"] // For the template's existing utils folder
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
