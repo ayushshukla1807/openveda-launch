@@ -386,6 +386,17 @@ class BrowserMockSupabaseClient {
       }
     };
   }
+
+  channel(name: string) {
+    return {
+      on: (event: any, filter: any, callback: any) => this.channel(name),
+      subscribe: () => this.channel(name)
+    };
+  }
+
+  removeChannel(channel: any) {
+    // mock remove
+  }
 }
 
 export const createBrowserSupabaseClient = () => {
