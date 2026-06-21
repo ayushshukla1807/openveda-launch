@@ -362,8 +362,12 @@ class BrowserMockSupabaseClient {
       if (typeof window !== 'undefined') {
         const userStr = localStorage.getItem('openveda_user');
         if (userStr) {
-          const user = JSON.parse(userStr);
-          callback('SIGNED_IN', { user });
+          try {
+            const user = JSON.parse(userStr);
+            callback('SIGNED_IN', { user });
+          } catch (e) {
+            callback('SIGNED_OUT', null);
+          }
         } else {
           callback('SIGNED_OUT', null);
         }
