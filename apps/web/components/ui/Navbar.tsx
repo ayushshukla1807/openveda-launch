@@ -71,8 +71,8 @@ export default function Navbar() {
       <div className="px-8 flex items-center justify-between">
         <div className="flex items-center gap-12">
           <Link href="/" className="group flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-black text-xl">
-              V
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="OpenVeda" className="w-full h-full object-cover" />
             </div>
             <span className="text-2xl font-black text-foreground group-hover:text-primary transition-all duration-300 tracking-tighter">
               OpenVeda<span className="text-primary italic">.in</span>
