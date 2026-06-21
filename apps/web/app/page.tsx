@@ -139,26 +139,8 @@ export default function HomePage() {
   ]);
 
   useEffect(() => {
-    const supabase = createBrowserSupabaseClient();
-    
-    // Subscribe to new github_issues being ingested by the AI microservice
-    const channel = supabase.channel('schema-db-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'github_issues'
-        },
-        (payload) => {
-          setLiveIssues(prev => [payload.new, ...prev].slice(0, 10));
-        }
-      )
-      .subscribe();
-      
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    // Realtime subscription removed to prevent any mock client incompatibilities 
+    // Live issues will just use the pre-seeded initial state.
   }, []);
 
   // Background canvas reference
