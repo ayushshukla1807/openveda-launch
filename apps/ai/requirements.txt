@@ -1,16 +1,13 @@
-lanfix(ai): cleanup requirements.txt and use faiss-cpulangchain==0.2.1
+langchain==0.2.1
 langchain-openai==0.1.8
-faiss-cpu
+langchain-community==0.2.1
+supabase==2.5.1
+psycopg2-binary==2.9.9
+pgvector==0.3.0
 python-dotenv==1.0.1
 pydantic==2.7.4
 fastapi==0.111.0
 uvicorn==0.30.1
-langchain-community
-langchain==0.2.1
-langchain-openai==
-faiss-cpu==1.8.0
-python-dotenv==1.0.1
-pydantic==2.7.4
-fastapi==0.111.0111.0
-uvicorn==0.30.1
-langchain-community
+httpx==0.27.0
+celery==5.4.0
+redis==5.0.4

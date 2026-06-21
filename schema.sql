@@ -142,4 +142,4 @@ create policy "Can only view own subs data." on subscriptions for select using (
  * Only allow realtime listening on public tables.
  */
 drop publication if exists supabase_realtime;
-create publication supabase_realtime for table products, prices;
+create publication supabase_realtime for table products, prices, github_issues;

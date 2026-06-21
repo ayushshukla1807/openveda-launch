@@ -1,6 +1,11 @@
 services:
+  - type: redis
+    name: openveda-redis
+    region: ohio
+    plan: starter
+
   - type: web
-    name: openveda-fastapi
+    name: openveda-api
     env: python
     region: ohio
     plan: starter
@@ -11,20 +16,79 @@ services:
         value: 3.10.0
       - key: DATABASE_URL
         sync: false
-      
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: openveda-redis
+          envVarKey: REDIS_URL
+      - key: AI_SERVICE_URL
+        fromService:
+          type: web
+          name: openveda-ai
+          envVarKey: RENDER_EXTERNAL_URL
+
   - type: web
-    name: openveda-langgraph
+    name: openveda-ai
     env: python
-    plan: starter
     region: ohio
-    buildCommand: "curl -LsSf https://astral.sh/uv/install.sh | sh && $HOME/.cargo/bin/uv venv && $HOME/.cargo/bin/uv pip install -r apps/ai-engine/pyproject.toml"
-    startCommand: "cd apps/ai-engine && $HOME/.cargo/bin/uv run python agent.py"
+    plan: starter
+    buildCommand: "curl -LsSf https://astral.sh/uv/install.sh | sh && $HOME/.cargo/bin/uv venv && $HOME/.cargo/bin/uv pip install -r apps/ai/requirements.txt"
+    startCommand: "cd apps/ai && $HOME/.cargo/bin/uv run uvicorn app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: openveda-redis
+          envVarKey: REDIS_URL
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
       - key: OPENAI_API_KEY
         sync: false
-      - key: DATABASE_URL
+
+  - type: worker
+    name: openveda-ai-worker
+    env: python
+    region: ohio
+    plan: starter
+    buildCommand: "curl -LsSf https://astral.sh/uv/install.sh | sh && $HOME/.cargo/bin/uv venv && $HOME/.cargo/bin/uv pip install -r apps/ai/requirements.txt"
+    startCommand: "cd apps/ai && $HOME/.cargo/bin/uv run celery -A app.worker.celery_app worker --loglevel=info"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: openveda-redis
+          envVarKey: REDIS_URL
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
+  - type: web
+    name: openveda-scoring
+    env: python
+    region: ohio
+    plan: starter
+    buildCommand: "curl -LsSf https://astral.sh/uv/install.sh | sh && $HOME/.cargo/bin/uv venv && $HOME/.cargo/bin/uv pip install -r apps/scoring/requirements.txt"
+    startCommand: "cd apps/scoring && $HOME/.cargo/bin/uv run uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: openveda-redis
+          envVarKey: REDIS_URL
+      - key: OPENAI_API_KEY
         sync: false
 
   - type: web
@@ -43,10 +107,5 @@ services:
       - key: NEXT_PUBLIC_FASTAPI_URL
         fromService:
           type: web
-          name: openveda-fastapi
-          envVarKey: RENDER_EXTERNAL_URL
-      - key: NEXT_PUBLIC_LANGGRAPH_URL
-        fromService:
-          type: web
-          name: openveda-langgraph
+          name: openveda-api
           envVarKey: RENDER_EXTERNAL_URL

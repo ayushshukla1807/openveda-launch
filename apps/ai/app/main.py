@@ -1,16 +1,20 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from .services.rag_service import RAGService
+from typing import List, Optional
 import os
+from .services.rag_service import RAGService
+from .services.vector_service import VectorService
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(
-    title="OpenVeda AI Mentorship Service",
-    description="RAG-powered mentorship bot providing playbook-specific guidance.",
-    version="1.0.0"
+    title="OpenVeda AI & ML Microservice",
+    description="Enterprise-grade RAG and Vector Search API for GitHub Issues.",
+    version="2.0.0"
 )
 
-# Enable CORS for the Next.js frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -19,47 +23,98 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize RAG Service
 rag = RAGService()
+vector_service = None
+
+@app.on_event("startup")
+async def startup_event():
+    global vector_service
+    # Initialize only if keys exist to prevent crashes in mock environments
+    if os.getenv("OPENAI_API_KEY") and os.getenv("NEXT_PUBLIC_SUPABASE_URL"):
+        vector_service = VectorService()
 
 class ChatRequest(BaseModel):
     question: str
 
-class ChatResponse(BaseModel):
-    answer: str
+class IngestRequest(BaseModel):
+    repo_owner: str
+    repo_name: str
+    issue_number: int
 
-@app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    """
-    Handles user questions about open-source programs and playbooks.
-    """
-    if not os.getenv("OPENAI_API_KEY"):
-        # Intelligent fallback for resume showcase
-        q = request.question.lower()
-        if "what is openveda" in q:
-            return {"answer": "OpenVeda is 'The Contribution Engine' designed to bridge the gap between students and top-tier open-source programs like LFX, GSoC, and Outreachy through AI-powered playbooks and mentorship."}
-        if "lfx" in q or "linux foundation" in q:
-            return {"answer": "LFX Mentorship is a prestigious program by the Linux Foundation. OpenVeda helps you dominated this program by auditing CNCF projects and submitting proactive PRs before the application window even opens."}
-        if "gsoc" in q or "google summer of code" in q:
-            return {"answer": "GSoC 2027 is the gold standard for global open-source mentorship. Our playbooks focus on high-impact projects like Wikimedia and Microcks, helping you secure selection through veteran-authored proposals."}
-        
-        return {
-            "answer": "OpenVeda AI is currently in 'Showcase Mode'. While I'm ready to answer complex RAG queries with an API key, my current core mission is to guide you through the OpenVeda ecosystem. Try asking about 'LFX' or 'What is OpenVeda'!"
-        }
+class SearchRequest(BaseModel):
+    query: str
+    limit: Optional[int] = 5
+
+class IngestRepoRequest(BaseModel):
+    repo_owner: str
+    repo_name: str
+    limit: Optional[int] = 30
+
+@app.post("/ingest-repo")
+async def ingest_repo(request: IngestRepoRequest):
+    """Batch ingests open issues from a GitHub repository via Celery Background Worker."""
+    from .worker import ingest_repo_task
     
     try:
-        # In a real run, you'd load docs once at startup. 
-        # For simplicity in this demo, the service handles its own state.
-        answer = rag.ask_question(request.question)
+        task = ingest_repo_task.delay(request.repo_owner, request.repo_name, request.limit)
+        return {"status": "success", "message": "Batch ingestion queued to Celery.", "task_id": task.id}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/ingest")
+async def ingest_issue(request: IngestRequest, background_tasks: BackgroundTasks):
+    """Ingests a GitHub issue, generates embeddings, and saves to pgvector."""
+    if not vector_service:
+        raise HTTPException(status_code=503, detail="Vector service not initialized (Missing API keys)")
+    
+    try:
+        data = await vector_service.ingest_github_issue(
+            request.repo_owner, 
+            request.repo_name, 
+            request.issue_number
+        )
+        return {"status": "success", "message": "Issue successfully ingested into vector DB", "data": data}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/search")
+async def search_issues(request: SearchRequest):
+    """Semantic search for Good First Issues using pgvector."""
+    if not vector_service:
+        # Mock response for UI testing if no keys are provided
+        return {
+            "status": "mock",
+            "results": [
+                {
+                    "org_name": "appsmithorg",
+                    "repo_name": "appsmith",
+                    "title": "feat: add virtual scrolling to List Widget",
+                    "similarity": 0.89,
+                    "url": "https://github.com/appsmithorg/appsmith/issues/1240"
+                }
+            ]
+        }
         
-        # RetrievalQA invoke returns a dict in newer langchain versions
+    try:
+        results = await vector_service.search_issues(request.query, request.limit)
+        return {"status": "success", "results": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/chat")
+async def chat(request: ChatRequest):
+    """Handles general QA about OpenVeda playbooks using LangChain RAG."""
+    if not os.getenv("OPENAI_API_KEY"):
+        return {"answer": "AI is in showcase mode. Add OPENAI_API_KEY to test the full LangChain RAG pipeline."}
+    
+    try:
+        answer = rag.ask_question(request.question)
         if isinstance(answer, dict):
             answer = answer.get("result", str(answer))
-            
         return {"answer": str(answer)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/")
-async def root():
-    return {"status": "online", "service": "AI Mentorship Service"}
+@app.get("/health")
+async def health_check():
+    return {"status": "online", "service": "AI & ML Microservice", "vector_db": vector_service is not None}

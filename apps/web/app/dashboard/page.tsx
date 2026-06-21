@@ -791,22 +791,14 @@ export default function DashboardPage() {
     setChatLoading(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
-
-      const lower = userMessage.toLowerCase();
-      let reply = "";
-
-      if (lower.includes("lfx") || lower.includes("linux")) {
-        reply = "LFX Mentorship is highly selective. To stand out, clone the repository, audit open issues, and start writing pre-requisite pull requests before the application window opens. Our Roadmap checklists below tracks this exactly!";
-      } else if (lower.includes("gsoc") || lower.includes("google")) {
-        reply = "For Google Summer of Code 2027, the key is to build direct synchronization context with organization maintainers. Leverage our Playbook profiles, lock your starred organizations, and begin drafting your technical ledger proposal today.";
-      } else if (lower.includes("proposal") || lower.includes("draft")) {
-        reply = "Drafting a proposal is simple in OpenVeda! Simply click the 'Create Draft' button in the GSoC Proposals section. You can choose any organization, draft in Markdown, save to our cloud database, and download the ledger instantly.";
-      } else if (lower.includes("playbook")) {
-        reply = "OpenVeda Playbooks analyze internal architectures, system dependencies, and 'unwritten rules' of top open-source repositories to give you a definitive contribution playbook.";
-      } else {
-        reply = "I've logged your query into the OpenVeda matrix. Focus on shortlisting organizations, completing your Roadmap milestones (such as setting up the local sync context), and drafting beautiful proposals in our Proposals panel!";
-      }
+      const response = await fetch(`${process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8000'}/ai/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: userMessage })
+      });
+      if (!response.ok) throw new Error("API Error");
+      const data = await response.json();
+      const reply = data.answer || "I received a blank signal from the nexus.";
 
       setChatMessages(prev => [...prev, { sender: 'ai', text: reply }]);
       addActivityLog(`Consulted AI Assistant: "${userMessage.substring(0, 20)}..."`, "progress");
@@ -2830,22 +2822,30 @@ export default function DashboardPage() {
 
       {/* Floating AI Chatbot Assistant Widget & Drawer */}
       <div className="fixed bottom-8 right-8 z-40">
-        {!chatbotOpen ? (
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setChatbotOpen(true)}
-            className="p-5 bg-primary text-primary-foreground rounded-full shadow-[0_15px_40px_rgba(var(--primary-rgb),0.3)] hover:shadow-primary/40 border border-primary/20 flex items-center justify-center transition-all"
-            title="Launch Command AI Chatbot"
-          >
-            <MessageSquare className="w-6 h-6" />
-          </motion.button>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-sm sm:w-[400px] h-[500px] bg-muted/90 glass border border-border rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden"
-          >
+        <AnimatePresence mode="wait">
+          {!chatbotOpen ? (
+            <motion.button
+              key="chat-btn"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setChatbotOpen(true)}
+              className="p-5 bg-primary text-primary-foreground rounded-full shadow-[0_15px_40px_rgba(var(--primary-rgb),0.3)] hover:shadow-primary/40 border border-primary/20 flex items-center justify-center transition-all"
+              title="Launch Command AI Chatbot"
+            >
+              <MessageSquare className="w-6 h-6" />
+            </motion.button>
+          ) : (
+            <motion.div
+              key="chat-drawer"
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="w-full max-w-sm sm:w-[400px] h-[500px] bg-muted/90 glass border border-border rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden"
+            >
             {/* Chatbot Header */}
             <div className="px-6 py-4 border-b border-border/80 flex items-center justify-between bg-background/50">
               <div className="flex items-center gap-2">
@@ -2923,6 +2923,7 @@ export default function DashboardPage() {
 
           </motion.div>
         )}
+        </AnimatePresence>
       </div>
 
       <footer className="mt-40 py-20 border-t border-border text-center">

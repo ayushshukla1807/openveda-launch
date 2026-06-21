@@ -130,6 +130,37 @@ export default function HomePage() {
   const [isJoining, setIsJoining] = useState(false);
   const [joinedSuccess, setJoinedSuccess] = useState(false);
 
+  // Live Supabase Realtime Issues
+  const [liveIssues, setLiveIssues] = useState<any[]>([
+    { org_name: "CNCF/Pixie", title: "Fix memory leak in tracer" },
+    { org_name: "Appsmith", title: "Add virtual scrolling to List Widget" },
+    { org_name: "Vercel/Next.js", title: "Optimize RSC Payload Size" },
+    { org_name: "GNOME", title: "Update dark mode contrast in Terminal" }
+  ]);
+
+  useEffect(() => {
+    const supabase = createBrowserSupabaseClient();
+    
+    // Subscribe to new github_issues being ingested by the AI microservice
+    const channel = supabase.channel('schema-db-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'github_issues'
+        },
+        (payload) => {
+          setLiveIssues(prev => [payload.new, ...prev].slice(0, 10));
+        }
+      )
+      .subscribe();
+      
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
   // Background canvas reference
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -366,6 +397,21 @@ export default function HomePage() {
               <div className="text-[8px] font-black uppercase tracking-widest text-slate-500">Placement Match</div>
             </div>
           </motion.div>
+
+          {/* Real-time "Good First Issues" Ticker */}
+          <motion.div variants={itemVariants} className="w-full max-w-6xl mx-auto mt-12 overflow-hidden border-y border-white/5 bg-white/[0.02] py-3 flex">
+             <div className="flex animate-shimmer whitespace-nowrap gap-8 text-[10px] font-mono text-slate-400 uppercase tracking-widest px-4">
+                {liveIssues.map((issue, idx) => (
+                  <React.Fragment key={idx}>
+                    <span className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"/> 
+                      [{issue.org_name}] {issue.title}
+                    </span>
+                    {idx < liveIssues.length - 1 && <span className="text-primary">•</span>}
+                  </React.Fragment>
+                ))}
+             </div>
+          </motion.div>
           
           {/* Main Action Hub bento cards grid */}
           <motion.div 
@@ -378,12 +424,12 @@ export default function HomePage() {
                   <img src="/gsoc_rocket_launch.png" alt="GSoC rocket launch" className="object-cover w-full h-full" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-black text-primary uppercase tracking-[0.4em]">PHASE A: METRICS</span>
-                  <h3 className="text-2xl font-black italic mt-4 text-white">Roadmap Tracker</h3>
-                  <p className="text-slate-400 mt-6 font-semibold leading-relaxed text-[13px]">Map your GSoC 2027 milestone goals. Monitor progress variables, connect profiles, and compile proposals.</p>
+                  <span className="text-[9px] font-black text-primary uppercase tracking-[0.4em]">PHASE A: AI MATCHING</span>
+                  <h3 className="text-2xl font-black italic mt-4 text-white">Contributor Matchmaking</h3>
+                  <p className="text-slate-400 mt-6 font-semibold leading-relaxed text-[13px]">Let our neural engine match your exact skill profile to the most suitable high-impact "Good First Issues".</p>
                 </div>
-                <Link href="/journey" className="mt-10 inline-flex items-center gap-2 font-black text-[9px] uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
-                  Access Roadmap <span className="text-sm">→</span>
+                <Link href="/matchmaking" className="mt-10 inline-flex items-center gap-2 font-black text-[9px] uppercase tracking-widest text-primary group-hover:translate-x-2 transition-transform">
+                  Launch Matchmaking <span className="text-sm">→</span>
                 </Link>
             </div>
             
@@ -408,12 +454,12 @@ export default function HomePage() {
                   <img src="/git_github_nodes.png" alt="Git network nodes" className="object-cover w-full h-full" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-black text-purple-400 uppercase tracking-[0.4em]">PHASE C: WORKSPACE</span>
-                  <h3 className="text-2xl font-black italic mt-4 text-white">Git Workspace</h3>
-                  <p className="text-slate-400 mt-6 font-semibold leading-relaxed text-[13px]">Operate dynamic Git graph DAG commands, inspect live action streams, and queries schemas via the MySQL console.</p>
+                  <span className="text-[9px] font-black text-purple-400 uppercase tracking-[0.4em]">PHASE C: PORTFOLIO</span>
+                  <h3 className="text-2xl font-black italic mt-4 text-white">Contributor Portfolio</h3>
+                  <p className="text-slate-400 mt-6 font-semibold leading-relaxed text-[13px]">Aggregate your merged PRs, open issues, and program acceptances into a verifiable, highly visual resume.</p>
                 </div>
-                <Link href="/dashboard/github-workspace" className="mt-10 inline-flex items-center gap-2 font-black text-[9px] uppercase tracking-widest text-purple-400 group-hover:translate-x-2 transition-transform">
-                  Launch Workspace <span className="text-sm">→</span>
+                <Link href="/portfolio/ayushshukla1807" className="mt-10 inline-flex items-center gap-2 font-black text-[9px] uppercase tracking-widest text-purple-400 group-hover:translate-x-2 transition-transform">
+                  View Portfolio <span className="text-sm">→</span>
                 </Link>
             </div>
           </motion.div>

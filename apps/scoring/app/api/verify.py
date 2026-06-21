@@ -69,3 +69,57 @@ async def get_credentials(uuid: str):
             "consistency": 0.82
         }
     }
+
+import os
+import json
+from openai import AsyncOpenAI
+
+class ReadinessRequest(BaseModel):
+    github_username: str
+    tech_stack: list[str]
+    experience_level: str
+    issue_title: str
+    issue_body: str
+
+@router.post("/readiness")
+async def calculate_readiness(req: ReadinessRequest):
+    """
+    Uses OpenAI to analyze the issue and the user's stack to output a Readiness Score.
+    """
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        # Mock mode if no key
+        return {"score": 85, "reason": "Mocked (No API key provided)"}
+
+    client = AsyncOpenAI(api_key=api_key)
+    
+    prompt = f"""
+    Evaluate the readiness of a contributor to tackle this GitHub Issue.
+    Contributor Stack: {', '.join(req.tech_stack)}
+    Experience Level: {req.experience_level}
+    
+    Issue Title: {req.issue_title}
+    Issue Body: {req.issue_body[:1000]}
+    
+    Return a JSON object with:
+    - 'score': an integer from 0 to 100 representing the match percentage.
+    - 'reason': a short 1-sentence explanation of why.
+    """
+    
+    try:
+        response = await client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": "You are a tech lead assigning open-source issues. Output valid JSON only."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        
+        result = json.loads(response.choices[0].message.content)
+        return {
+            "score": result.get("score", 75),
+            "reason": result.get("reason", "Calculated successfully.")
+        }
+    except Exception as e:
+        return {"score": 75, "reason": f"Fallback due to error: {str(e)}"}
