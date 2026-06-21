@@ -64,6 +64,11 @@ class QueryBuilder {
     return this;
   }
 
+  limit(count: number) {
+    // mock limit
+    return this;
+  }
+
   async then(resolve: any) {
     let data: any = null;
     let error: any = null;
