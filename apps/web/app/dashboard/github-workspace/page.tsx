@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { createBrowserSupabaseClient } from '@/lib/supabase/browser-client';
+import { createBrowserSupabaseClient } from '../../../lib/supabase/browser-client';
 
 // Icons
 import { 
@@ -13,13 +13,13 @@ import {
 } from 'lucide-react';
 
 // Components
-import GitGraphVisualizer from '@/components/github-workspace/GitGraphVisualizer';
-import GithubEventsFeed from '@/components/github-workspace/GithubEventsFeed';
-import ActionsRunner from '@/components/github-workspace/ActionsRunner';
-import SqlConsole from '@/components/github-workspace/SqlConsole';
-import KanbanBoard from '@/components/github-workspace/KanbanBoard';
-import ProposalReviewer from '@/components/github-workspace/ProposalReviewer';
-import OrgsRadar from '@/components/github-workspace/OrgsRadar';
+import GitGraphVisualizer from '../../../components/github-workspace/GitGraphVisualizer';
+import GithubEventsFeed from '../../../components/github-workspace/GithubEventsFeed';
+import ActionsRunner from '../../../components/github-workspace/ActionsRunner';
+import SqlConsole from '../../../components/github-workspace/SqlConsole';
+import KanbanBoard from '../../../components/github-workspace/KanbanBoard';
+import ProposalReviewer from '../../../components/github-workspace/ProposalReviewer';
+import OrgsRadar from '../../../components/github-workspace/OrgsRadar';
 
 const supabase = createBrowserSupabaseClient();
 
